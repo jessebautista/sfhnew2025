@@ -17,9 +17,14 @@ export async function loadTranslations(lang: LanguageCode = DEFAULT_LANGUAGE) {
     const translations = await import(`../../public/locales/${lang}/common.json`);
     return translations.default || translations;
   } catch (error) {
-    console.warn(`Failed to load translations for ${lang}, falling back to English`);
+    console.warn(`Failed to load translations for ${lang}, falling back to English`, error);
     if (lang !== DEFAULT_LANGUAGE) {
-      return await loadTranslations(DEFAULT_LANGUAGE);
+      try {
+        return await loadTranslations(DEFAULT_LANGUAGE);
+      } catch (fallbackError) {
+        console.error('Failed to load default language translations', fallbackError);
+        return {};
+      }
     }
     return {};
   }

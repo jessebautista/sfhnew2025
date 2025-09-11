@@ -1,0 +1,17 @@
+---
+// Simple debug page to test serverless functions
+const message = "Hello from Vercel Serverless Function";
+const timestamp = new Date().toISOString();
+---
+
+<html>
+<head>
+    <title>Debug Page</title>
+</head>
+<body>
+    <h1>Debug Page</h1>
+    <p>{message}</p>
+    <p>Timestamp: {timestamp}</p>
+    <p>Node.js Version: {process.version}</p>
+</body>
+</html>
