@@ -1,0 +1,342 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { Shirt, Package } from 'lucide-react';
+---
+
+<Base
+  title="Apparel - Sing for Hope Shop"
+  description="Browse our collection of artist-designed clothing including t-shirts, hoodies, and accessories that support arts programs."
+>
+  <div class="min-h-screen bg-gray-50">
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b">
+      <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+        <nav class="flex" aria-label="Breadcrumb">
+          <ol class="flex items-center space-x-4">
+            <li>
+              <a href="/" class="text-gray-400 hover:text-gray-500">Home</a>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <svg class="flex-shrink-0 h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                </svg>
+                <a href="/shop" class="ml-4 text-gray-400 hover:text-gray-500">Shop</a>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <svg class="flex-shrink-0 h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                </svg>
+                <span class="ml-4 text-gray-900 font-medium">Apparel</span>
+              </div>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Category Hero -->
+    <div class="relative bg-gradient-to-r from-harmony/10 to-melody/10 overflow-hidden">
+      <div class="absolute inset-0 bg-[url('/piano-pattern.svg')] opacity-5"></div>
+      <div class="relative max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div class="flex items-center mb-6">
+              <Shirt className="w-8 h-8 text-harmony mr-3" />
+              <h1 class="text-4xl font-bold text-gray-900">Apparel Collection</h1>
+            </div>
+            <p class="text-xl text-gray-600 mb-8">
+              Wear your support for the arts with our comfortable, stylish clothing designed by talented artists. Each piece tells a story of hope and creativity.
+            </p>
+            
+            <div class="grid grid-cols-2 gap-6 text-center lg:text-left">
+              <div>
+                <div class="text-2xl font-bold text-harmony mb-1">25+</div>
+                <div class="text-sm text-gray-600">Apparel Items</div>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-melody mb-1">100%</div>
+                <div class="text-sm text-gray-600">Cotton Quality</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="aspect-square rounded-2xl overflow-hidden shadow-xl bg-white p-8">
+              <img
+                src="/src/images/singforhope.jpg"
+                alt="Sing for Hope Apparel"
+                class="w-full h-full object-cover rounded-lg"
+              />
+            </div>
+            <div class="absolute -bottom-4 -right-4 bg-harmony text-white rounded-xl p-4 shadow-lg">
+              <div class="text-sm font-medium">Artist Designed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      <!-- Filter Controls -->
+      <div class="mb-8">
+        <div class="flex flex-wrap items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-gray-900">Browse Apparel</h2>
+          <div class="flex items-center space-x-4">
+            <select class="border border-gray-300 rounded-lg px-4 py-2 text-sm bg-white">
+              <option>Sort by: Featured</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Newest First</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Size Filter -->
+        <div class="flex flex-wrap items-center gap-2 mb-6">
+          <span class="text-sm font-medium text-gray-700">Size:</span>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-harmony hover:text-harmony transition-colors">XS</button>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-harmony hover:text-harmony transition-colors">S</button>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-harmony hover:text-harmony transition-colors bg-harmony text-white">M</button>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-harmony hover:text-harmony transition-colors">L</button>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-harmony hover:text-harmony transition-colors">XL</button>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-harmony hover:text-harmony transition-colors">XXL</button>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <!-- Product 1 - T-Shirt -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/src/images/singforhope.jpg"
+              alt="Sing for Hope Classic T-Shirt"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Classic Logo T-Shirt</h3>
+            <p class="text-sm text-gray-600 mb-3">100% cotton with our signature logo</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$25.00</span>
+              <div class="flex items-center space-x-1">
+                <span class="w-3 h-3 bg-black rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-white rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-gray-500 rounded-full border border-gray-300"></span>
+              </div>
+            </div>
+            <button class="w-full btn-harmony justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 2 - Hoodie -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/src/images/singforhope.jpg"
+              alt="Sing for Hope Hoodie"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Comfort Hoodie</h3>
+            <p class="text-sm text-gray-600 mb-3">Soft fleece blend with kangaroo pocket</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$45.00</span>
+              <div class="flex items-center space-x-1">
+                <span class="w-3 h-3 bg-gray-800 rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-melody rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-harmony rounded-full border border-gray-300"></span>
+              </div>
+            </div>
+            <button class="w-full btn-harmony justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 3 - Tank Top -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/src/images/singforhope.jpg"
+              alt="Sing for Hope Tank Top"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Music Note Tank</h3>
+            <p class="text-sm text-gray-600 mb-3">Lightweight cotton blend tank top</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$22.00</span>
+              <div class="flex items-center space-x-1">
+                <span class="w-3 h-3 bg-white rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-pink-300 rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-blue-300 rounded-full border border-gray-300"></span>
+              </div>
+            </div>
+            <button class="w-full btn-harmony justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 4 - Long Sleeve -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/src/images/singforhope.jpg"
+              alt="Sing for Hope Long Sleeve"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Artist Series Long Sleeve</h3>
+            <p class="text-sm text-gray-600 mb-3">Limited edition artist collaboration</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$32.00</span>
+              <span class="text-xs bg-melody text-white px-2 py-1 rounded-full">Limited</span>
+            </div>
+            <button class="w-full btn-harmony justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 5 - Baseball Cap -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/src/images/singforhope.jpg"
+              alt="Sing for Hope Baseball Cap"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Classic Baseball Cap</h3>
+            <p class="text-sm text-gray-600 mb-3">Adjustable cap with embroidered logo</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$18.00</span>
+              <div class="flex items-center space-x-1">
+                <span class="w-3 h-3 bg-black rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-navy rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-gray-600 rounded-full border border-gray-300"></span>
+              </div>
+            </div>
+            <button class="w-full btn-harmony justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 6 - V-Neck -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/src/images/singforhope.jpg"
+              alt="Sing for Hope V-Neck"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Soft V-Neck Tee</h3>
+            <p class="text-sm text-gray-600 mb-3">Relaxed fit v-neck in premium cotton</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$28.00</span>
+              <div class="flex items-center space-x-1">
+                <span class="w-3 h-3 bg-white rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-gray-300 rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-melody rounded-full border border-gray-300"></span>
+              </div>
+            </div>
+            <button class="w-full btn-harmony justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 7 - Zip Hoodie -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/src/images/singforhope.jpg"
+              alt="Sing for Hope Zip Hoodie"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Full-Zip Hoodie</h3>
+            <p class="text-sm text-gray-600 mb-3">Premium fleece with full zip closure</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$52.00</span>
+              <div class="flex items-center space-x-1">
+                <span class="w-3 h-3 bg-gray-800 rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-harmony rounded-full border border-gray-300"></span>
+              </div>
+            </div>
+            <button class="w-full btn-harmony justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 8 - Polo Shirt -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/src/images/singforhope.jpg"
+              alt="Sing for Hope Polo Shirt"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Classic Polo Shirt</h3>
+            <p class="text-sm text-gray-600 mb-3">Professional polo with embroidered logo</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$35.00</span>
+              <div class="flex items-center space-x-1">
+                <span class="w-3 h-3 bg-navy rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-white rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-gray-500 rounded-full border border-gray-300"></span>
+              </div>
+            </div>
+            <button class="w-full btn-harmony justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="mt-12 flex justify-center">
+        <nav class="flex items-center space-x-2">
+          <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700">Previous</button>
+          <button class="px-3 py-2 text-sm bg-harmony text-white rounded">1</button>
+          <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700">2</button>
+          <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700">3</button>
+          <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700">Next</button>
+        </nav>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .navy {
+    background-color: #1e3a8a;
+  }
+</style>

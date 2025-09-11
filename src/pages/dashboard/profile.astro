@@ -1,0 +1,23 @@
+---
+import { requireAuth } from '../../lib/auth-utils';
+import Base from '../../layouts/Base.astro';
+import ProfilePage from '../../components/dashboard/ProfilePage.tsx';
+import AuthProvider from '../../lib/auth.tsx';
+
+// Check authentication
+const authResult = requireAuth(Astro);
+if (authResult instanceof Response) {
+  return authResult;
+}
+---
+
+<Base
+  title="Profile Settings - Sing for Hope"
+  description="Manage your profile information, preferences, and account settings."
+>
+  <div class="min-h-screen bg-gray-50">
+    <AuthProvider client:load>
+      <ProfilePage client:load />
+    </AuthProvider>
+  </div>
+</Base>

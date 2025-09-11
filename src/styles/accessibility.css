@@ -1,0 +1,226 @@
+/* Accessibility CSS - Global styles for a11y features */
+
+/* High Contrast Mode */
+body.high-contrast {
+  --tw-bg-opacity: 1 !important;
+  --tw-text-opacity: 1 !important;
+}
+
+/* Override all background colors */
+body.high-contrast *:not(svg):not(path) {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Dark backgrounds should be black */
+body.high-contrast .bg-gray-900,
+body.high-contrast .bg-gray-800,
+body.high-contrast .bg-gray-700,
+body.high-contrast .bg-melody,
+body.high-contrast .bg-rhythm,
+body.high-contrast .bg-harmony,
+body.high-contrast .bg-sonata,
+body.high-contrast .bg-symphony,
+body.high-contrast header,
+body.high-contrast footer,
+body.high-contrast [class*="bg-"] {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Light backgrounds should be white */
+body.high-contrast .bg-white,
+body.high-contrast .bg-gray-50,
+body.high-contrast .bg-gray-100,
+body.high-contrast .bg-gray-200,
+body.high-contrast main {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+/* Text colors */
+body.high-contrast .text-gray-500,
+body.high-contrast .text-gray-600,
+body.high-contrast .text-gray-700,
+body.high-contrast .text-gray-800,
+body.high-contrast .text-gray-900 {
+  color: #000000 !important;
+}
+
+body.high-contrast .text-white {
+  color: #ffffff !important;
+}
+
+/* Buttons and form elements */
+body.high-contrast button,
+body.high-contrast input,
+body.high-contrast select,
+body.high-contrast textarea {
+  border: 2px solid #000000 !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+body.high-contrast button:hover,
+body.high-contrast button:focus {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Links */
+body.high-contrast a {
+  color: #0000EE !important;
+  text-decoration: underline !important;
+}
+
+body.high-contrast a:visited {
+  color: #551A8B !important;
+}
+
+body.high-contrast a:hover,
+body.high-contrast a:focus {
+  color: #FF0000 !important;
+  background-color: #FFFF00 !important;
+}
+
+/* Images and media */
+body.high-contrast img {
+  filter: contrast(1.2) !important;
+}
+
+/* Remove gradients and shadows */
+body.high-contrast * {
+  background-image: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Specific overrides for your color classes */
+body.high-contrast [class*="melody"],
+body.high-contrast [class*="rhythm"],
+body.high-contrast [class*="harmony"],
+body.high-contrast [class*="sonata"],
+body.high-contrast [class*="symphony"] {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Reduced Motion */
+body.reduce-motion *,
+body.reduce-motion *::before,
+body.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+body.reduce-motion .group:hover .group-hover\:opacity-75 {
+  opacity: 1 !important;
+}
+
+/* Screen Reader Mode */
+body.screen-reader-mode {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+body.screen-reader-mode * {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+body.screen-reader-mode *:focus {
+  outline: 3px solid #000000 !important;
+  outline-offset: 2px !important;
+}
+
+/* Skip to content link */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000000;
+  color: #ffffff;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  font-weight: bold;
+}
+
+.skip-to-content:focus {
+  top: 6px;
+}
+
+/* Focus indicators */
+body:not(.reduce-motion) *:focus {
+  transition: outline 0.2s ease-in-out;
+}
+
+/* Slider styling for better accessibility */
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #4f46e5;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2px #4f46e5;
+}
+
+.slider::-webkit-slider-thumb:focus {
+  outline: 3px solid #000000;
+  outline-offset: 2px;
+}
+
+.slider::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #4f46e5;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 0 2px #4f46e5;
+}
+
+/* Enhanced button focus states */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #4f46e5;
+  outline-offset: 2px;
+}
+
+/* Ensure sufficient color contrast for links */
+body.high-contrast a {
+  color: #0000EE !important;
+  text-decoration: underline !important;
+}
+
+body.high-contrast a:visited {
+  color: #551A8B !important;
+}
+
+body.high-contrast a:hover,
+body.high-contrast a:focus {
+  color: #FF0000 !important;
+  background-color: #FFFF00 !important;
+}
+
+/* Print styles for accessibility */
+@media print {
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+    color: #000000;
+    background: #ffffff;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+}

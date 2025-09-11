@@ -1,0 +1,285 @@
+---
+import { getLanguageFromURL, loadTranslations, t } from '../lib/i18n';
+
+const currentLang = getLanguageFromURL(Astro.url.pathname);
+const translations = await loadTranslations(currentLang);
+---
+
+<section class="relative overflow-hidden bg-black">
+  <div class="relative h-[400px] lg:h-[50vh] lg:min-h-[550px] flex flex-col justify-end">
+    <!-- Background Video -->
+    <div class="absolute inset-0 md:-top-28 z-10">
+      <!-- Desktop Video -->
+      <div class="hidden md:block h-full w-full">
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          id="homepage-video"
+          class="w-full h-full object-cover"
+          aria-label="Background video showing Sing for Hope's impact"
+          role="presentation"
+        >
+          <source
+            src="https://app.singforhope.org/storage/v1/object/public/content/website/home-full.mp4"
+            type="video/mp4"
+          />
+          <!-- Fallback image for when video fails to load -->
+          <img
+            src="/singforhope.jpg"
+            alt="Sing for Hope artists performing"
+            class="w-full h-full object-cover"
+          />
+        </video>
+      </div>
+
+      <!-- Mobile Video -->
+      <div class="md:hidden h-full w-full">
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          id="homepage-video-mobile"
+          class="w-full h-full object-cover"
+          aria-label="Background video showing Sing for Hope's impact"
+          role="presentation"
+        >
+          <source
+            src="https://app.singforhope.org/storage/v1/object/public/content/website/home-mob.mp4"
+            type="video/mp4"
+          />
+          <!-- Fallback image for when video fails to load -->
+          <img
+            src="/singforhope.jpg"
+            alt="Sing for Hope artists performing"
+            class="w-full h-full object-cover"
+          />
+        </video>
+      </div>
+
+      <!-- Gradient Overlay -->
+      <div
+        class="absolute inset-0"
+        style="background: linear-gradient(205deg, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.75) 100%);"
+      ></div>
+    </div>
+
+    <!-- Content Overlay -->
+    <div class="relative z-20 flex items-end">
+      <div class="w-full p-4 mb-6 lg:w-1/2 lg:p-8">
+        <h1
+          class="text-3xl font-extrabold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl"
+          style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);"
+        >
+          {t("home.hero_title", translations)}
+        </h1>
+        <p
+          class="mt-4 text-base text-white sm:text-lg md:text-xl lg:pr-6"
+          style="text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);"
+        >
+          {t("home.hero_subtitle", translations)}
+        </p>
+        
+        <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:gap-4">
+          <a
+            href="/about"
+            class="inline-flex items-center justify-center px-6 py-3 bg-harmony text-white font-semibold rounded-full hover:bg-harmonydark transition-all duration-300 transform hover:scale-105"
+          >
+            {t("home.about_us", translations)}
+          </a>
+          <button
+            type="button"
+            id="hero-donate-button"
+            class="inline-flex items-center justify-center px-6 py-3 bg-melody text-white font-semibold rounded-full hover:bg-melodydark transition-all duration-300 transform hover:scale-105"
+          >
+            {t("home.donate_now", translations)}
+          </button>
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center px-6 py-3 text-white font-medium border border-white/30 rounded-full hover:bg-white/10 transition-all duration-300"
+          >
+            <span class="mr-2">{t("home.contact_us", translations)}</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animated Wave SVG -->
+    <svg
+      class="relative z-30 w-full h-16 -mb-1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 24 150 28"
+      preserveAspectRatio="none"
+    >
+      <defs>
+        <path
+          id="gentle-wave"
+          d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+        />
+      </defs>
+      <g class="parallax1">
+        <use href="#gentle-wave" x="50" y="3" fill="#3b82f6" opacity="0.7" />
+      </g>
+      <g class="parallax2">
+        <use href="#gentle-wave" x="50" y="0" fill="#ec4899" opacity="0.5" />
+      </g>
+      <g class="parallax3">
+        <use href="#gentle-wave" x="50" y="9" fill="#10b981" opacity="0.3" />
+      </g>
+      <g class="parallax4">
+        <use href="#gentle-wave" x="50" y="6" fill="#f59e0b" opacity="0.5" />
+      </g>
+      <g class="parallax5">
+        <use href="#gentle-wave" x="50" y="12" fill="#ffffff" />
+      </g>
+    </svg>
+  </div>
+</section>
+
+<style>
+  /* Wave Animation */
+  .parallax1 > use {
+    animation: move-forever1 10s ease-in-out infinite reverse;
+    transform-origin: center bottom;
+  }
+  .parallax2 > use {
+    animation: move-forever2 8s linear infinite reverse;
+    transform-origin: center bottom;
+  }
+  .parallax3 > use {
+    animation: move-forever3 6s ease-in-out infinite reverse;
+    transform-origin: center bottom;
+  }
+  .parallax4 > use {
+    animation: move-forever4 4s linear infinite reverse;
+    transform-origin: center bottom;
+  }
+  .parallax5 > use {
+    animation: move-forever5 15s ease-in-out infinite reverse;
+    transform-origin: center bottom;
+  }
+
+  @keyframes move-forever1 {
+    0% { transform: translate3d(-90px, 0, 0); }
+    100% { transform: translate3d(85px, 0, 0); }
+  }
+  @keyframes move-forever2 {
+    0% { transform: translate3d(-90px, 0, 0); }
+    100% { transform: translate3d(85px, 0, 0); }
+  }
+  @keyframes move-forever3 {
+    0% { transform: translate3d(-90px, 0, 0); }
+    100% { transform: translate3d(85px, 0, 0); }
+  }
+  @keyframes move-forever4 {
+    0% { transform: translate3d(-90px, 0, 0); }
+    100% { transform: translate3d(85px, 0, 0); }
+  }
+  @keyframes move-forever5 {
+    0% { transform: translate3d(-90px, 0, 0); }
+    100% { transform: translate3d(85px, 0, 0); }
+  }
+
+  /* Reduce animations on smaller screens for better performance */
+  @media (max-width: 768px) {
+    .parallax1 > use,
+    .parallax2 > use,
+    .parallax3 > use,
+    .parallax4 > use,
+    .parallax5 > use {
+      animation-duration: 20s;
+    }
+  }
+
+  /* Optimize for reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .parallax1 > use,
+    .parallax2 > use,
+    .parallax3 > use,
+    .parallax4 > use,
+    .parallax5 > use {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Hero donate button functionality
+    const heroDonateButton = document.getElementById('hero-donate-button');
+    
+    if (heroDonateButton) {
+      heroDonateButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        try {
+          if (window.Funraise) {
+            window.Funraise.popup();
+          } else {
+            window.location.href = '/donate';
+          }
+        } catch (error) {
+          console.warn('Funraise popup failed, redirecting to fallback', error);
+          window.location.href = '/donate';
+        }
+      });
+    }
+
+    // Video optimization and error handling
+    const desktopVideo = document.getElementById('homepage-video');
+    const mobileVideo = document.getElementById('homepage-video-mobile');
+    
+    function handleVideoError(video, fallbackSrc) {
+      video.addEventListener('error', function() {
+        console.warn('Video failed to load, showing fallback image');
+        const img = document.createElement('img');
+        img.src = fallbackSrc;
+        img.alt = 'Sing for Hope artists performing';
+        img.className = 'w-full h-full object-cover';
+        video.parentNode.replaceChild(img, video);
+      });
+    }
+
+    function optimizeVideoForConnection(video) {
+      // Check if user prefers reduced data usage
+      if (navigator.connection) {
+        const connection = navigator.connection;
+        if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+          video.preload = 'none';
+        }
+      }
+
+      // Pause video when not visible (Intersection Observer)
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              video.play().catch(() => {
+                console.warn('Video autoplay failed');
+              });
+            } else {
+              video.pause();
+            }
+          });
+        }, { threshold: 0.25 });
+        
+        observer.observe(video);
+      }
+    }
+
+    if (desktopVideo) {
+      handleVideoError(desktopVideo, '/singforhope.jpg');
+      optimizeVideoForConnection(desktopVideo);
+    }
+    
+    if (mobileVideo) {
+      handleVideoError(mobileVideo, '/singforhope.jpg');
+      optimizeVideoForConnection(mobileVideo);
+    }
+  });
+</script>

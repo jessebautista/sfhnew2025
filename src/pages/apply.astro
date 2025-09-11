@@ -1,0 +1,26 @@
+---
+import { requireAuth } from '../lib/auth-utils';
+import Base from '../layouts/Base.astro';
+import ApplicationPage from '../components/applications/ApplicationPage.tsx';
+import AuthProvider from '../lib/auth.tsx';
+
+// Check authentication on server side
+const authResult = requireAuth(Astro);
+if (authResult instanceof Response) {
+  return authResult;
+}
+
+// Get program ID from query parameters
+const programId = Astro.url.searchParams.get('program');
+---
+
+<Base
+  title="Apply - Sing for Hope"
+  description="Apply for Sing for Hope piano programs and artist opportunities. Join our community of artists making a difference through art."
+>
+  <div class="min-h-screen bg-gray-50">
+    <AuthProvider client:load>
+      <ApplicationPage client:load programId={programId} />
+    </AuthProvider>
+  </div>
+</Base>

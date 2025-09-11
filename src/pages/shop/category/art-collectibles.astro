@@ -1,0 +1,375 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { Palette, Star, Package } from 'lucide-react';
+---
+
+<Base
+  title="Art & Collectibles - Sing for Hope Shop"
+  description="Browse our collection of art prints, pins, and unique collectibles created by talented artists that support arts programs."
+>
+  <div class="min-h-screen bg-gray-50">
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b">
+      <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+        <nav class="flex" aria-label="Breadcrumb">
+          <ol class="flex items-center space-x-4">
+            <li>
+              <a href="/" class="text-gray-400 hover:text-gray-500">Home</a>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <svg class="flex-shrink-0 h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                </svg>
+                <a href="/shop" class="ml-4 text-gray-400 hover:text-gray-500">Shop</a>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <svg class="flex-shrink-0 h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                </svg>
+                <span class="ml-4 text-gray-900 font-medium">Art & Collectibles</span>
+              </div>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Category Hero -->
+    <div class="relative bg-gradient-to-r from-rhythm/10 to-harmony/10 overflow-hidden">
+      <div class="absolute inset-0 bg-[url('/piano-pattern.svg')] opacity-5"></div>
+      <div class="relative max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div class="flex items-center mb-6">
+              <Palette className="w-8 h-8 text-rhythm mr-3" />
+              <h1 class="text-4xl font-bold text-gray-900">Art & Collectibles</h1>
+            </div>
+            <p class="text-xl text-gray-600 mb-8">
+              Discover unique pieces created by talented artists from our community. Each collectible tells a story of hope, creativity, and the transformative power of the arts.
+            </p>
+            
+            <div class="grid grid-cols-2 gap-6 text-center lg:text-left">
+              <div>
+                <div class="text-2xl font-bold text-rhythm mb-1">50+</div>
+                <div class="text-sm text-gray-600">Unique Items</div>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-harmony mb-1">Limited</div>
+                <div class="text-sm text-gray-600">Edition</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="aspect-square rounded-2xl overflow-hidden shadow-xl bg-white">
+              <img
+                src="/src/images/pianos-stock-1.png"
+                alt="Art & Collectibles Collection"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="absolute -bottom-4 -right-4 bg-rhythm text-white rounded-xl p-4 shadow-lg">
+              <div class="text-sm font-medium">Artist Created</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      <!-- Filter Controls -->
+      <div class="mb-8">
+        <div class="flex flex-wrap items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-gray-900">Browse Art & Collectibles</h2>
+          <div class="flex items-center space-x-4">
+            <select class="border border-gray-300 rounded-lg px-4 py-2 text-sm bg-white">
+              <option>Sort by: Featured</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Artist A-Z</option>
+              <option>Limited Edition First</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Type Filter -->
+        <div class="flex flex-wrap items-center gap-2 mb-6">
+          <span class="text-sm font-medium text-gray-700">Type:</span>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-rhythm hover:text-rhythm transition-colors bg-rhythm text-white">All</button>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-rhythm hover:text-rhythm transition-colors">Prints</button>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-rhythm hover:text-rhythm transition-colors">Pins & Badges</button>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-rhythm hover:text-rhythm transition-colors">Piano Art</button>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-rhythm hover:text-rhythm transition-colors">Limited Edition</button>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <!-- Product 1 - Art Print -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100 relative">
+            <img
+              src="/src/images/pianos-stock-1.png"
+              alt="Hope Piano Art Print"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            <div class="absolute top-2 left-2 bg-rhythm text-white text-xs px-2 py-1 rounded-full">Limited</div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Hope Piano Art Print</h3>
+            <p class="text-sm text-gray-600 mb-2">by Maria Rodriguez</p>
+            <p class="text-xs text-gray-500 mb-3">12"x16" Giclée print on archival paper</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$45.00</span>
+              <div class="flex items-center text-yellow-500">
+                <Star className="w-4 h-4 fill-current" />
+                <span class="text-xs ml-1">4.9</span>
+              </div>
+            </div>
+            <button class="w-full btn-rhythm justify-center">
+              <Palette className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 2 - Enamel Pin Set -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/pianos-icon.png"
+              alt="Music Note Enamel Pins"
+              class="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Music Note Enamel Pins</h3>
+            <p class="text-sm text-gray-600 mb-2">by Design Collective</p>
+            <p class="text-xs text-gray-500 mb-3">Set of 3 pins with backing cards</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$12.00</span>
+              <span class="text-xs text-gray-500">Set of 3</span>
+            </div>
+            <button class="w-full btn-rhythm justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 3 - Piano Photography -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/src/images/pianos-stock-1.png"
+              alt="Street Piano Photography"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Street Piano Photography</h3>
+            <p class="text-sm text-gray-600 mb-2">by James Chen</p>
+            <p class="text-xs text-gray-500 mb-3">8"x10" professional print, matted</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$28.00</span>
+              <div class="flex items-center text-yellow-500">
+                <Star className="w-4 h-4 fill-current" />
+                <span class="text-xs ml-1">4.7</span>
+              </div>
+            </div>
+            <button class="w-full btn-rhythm justify-center">
+              <Palette className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 4 - Artist Collaboration Poster -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100 relative">
+            <img
+              src="/src/images/pianos-stock-1.png"
+              alt="Community Harmony Poster"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            <div class="absolute top-2 left-2 bg-melody text-white text-xs px-2 py-1 rounded-full">New</div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Community Harmony Poster</h3>
+            <p class="text-sm text-gray-600 mb-2">by Sarah Kim</p>
+            <p class="text-xs text-gray-500 mb-3">18"x24" offset print on premium paper</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$22.00</span>
+              <div class="flex items-center text-yellow-500">
+                <Star className="w-4 h-4 fill-current" />
+                <span class="text-xs ml-1">5.0</span>
+              </div>
+            </div>
+            <button class="w-full btn-rhythm justify-center">
+              <Palette className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 5 - Collectible Button Set -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/pianos-icon.png"
+              alt="Vintage Music Buttons"
+              class="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Vintage Music Buttons</h3>
+            <p class="text-sm text-gray-600 mb-2">by Retro Revival</p>
+            <p class="text-xs text-gray-500 mb-3">Set of 6 assorted 1.5" buttons</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$8.00</span>
+              <span class="text-xs text-gray-500">Set of 6</span>
+            </div>
+            <button class="w-full btn-rhythm justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 6 - Piano Key Bookmark -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/pianos-icon.png"
+              alt="Piano Key Bookmark Set"
+              class="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Piano Key Bookmark Set</h3>
+            <p class="text-sm text-gray-600 mb-2">by BookArt Studio</p>
+            <p class="text-xs text-gray-500 mb-3">Metal bookmarks with tassel, set of 2</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$14.00</span>
+              <span class="text-xs text-gray-500">Set of 2</span>
+            </div>
+            <button class="w-full btn-rhythm justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 7 - Limited Edition Lithograph -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100 relative">
+            <img
+              src="/src/images/pianos-stock-1.png"
+              alt="Hope Through Music Lithograph"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">Limited</div>
+            <div class="absolute top-2 right-2 bg-black text-white text-xs px-2 py-1 rounded-full">5 left</div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Hope Through Music</h3>
+            <p class="text-sm text-gray-600 mb-2">by Michael Torres</p>
+            <p class="text-xs text-gray-500 mb-3">Limited edition lithograph #/50</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$85.00</span>
+              <div class="flex items-center text-yellow-500">
+                <Star className="w-4 h-4 fill-current" />
+                <span class="text-xs ml-1">4.8</span>
+              </div>
+            </div>
+            <button class="w-full btn-rhythm justify-center">
+              <Palette className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 8 - Sticker Pack -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/pianos-icon.png"
+              alt="Music Sticker Pack"
+              class="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Music Sticker Pack</h3>
+            <p class="text-sm text-gray-600 mb-2">by Various Artists</p>
+            <p class="text-xs text-gray-500 mb-3">10 waterproof vinyl stickers</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$6.00</span>
+              <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Best Seller</span>
+            </div>
+            <button class="w-full btn-rhythm justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Artist Spotlight -->
+      <div class="mt-16 bg-gradient-to-r from-rhythm/10 to-harmony/10 rounded-2xl p-8">
+        <div class="text-center mb-8">
+          <h3 class="text-2xl font-bold text-gray-900 mb-4">Meet Our Artists</h3>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Every collectible is created by artists from our community programs. Your purchase directly supports their creative journey and our arts initiatives.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div class="bg-white rounded-xl p-6">
+            <div class="w-16 h-16 bg-rhythm rounded-full mx-auto mb-4 flex items-center justify-center">
+              <Palette className="w-8 h-8 text-white" />
+            </div>
+            <h4 class="font-semibold text-gray-900 mb-2">Maria Rodriguez</h4>
+            <p class="text-sm text-gray-600">Piano artist & educator</p>
+          </div>
+          
+          <div class="bg-white rounded-xl p-6">
+            <div class="w-16 h-16 bg-harmony rounded-full mx-auto mb-4 flex items-center justify-center">
+              <Star className="w-8 h-8 text-white" />
+            </div>
+            <h4 class="font-semibold text-gray-900 mb-2">James Chen</h4>
+            <p class="text-sm text-gray-600">Street photographer</p>
+          </div>
+          
+          <div class="bg-white rounded-xl p-6">
+            <div class="w-16 h-16 bg-melody rounded-full mx-auto mb-4 flex items-center justify-center">
+              <Package className="w-8 h-8 text-white" />
+            </div>
+            <h4 class="font-semibold text-gray-900 mb-2">Sarah Kim</h4>
+            <p class="text-sm text-gray-600">Graphic designer</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="mt-12 flex justify-center">
+        <nav class="flex items-center space-x-2">
+          <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700">Previous</button>
+          <button class="px-3 py-2 text-sm bg-rhythm text-white rounded">1</button>
+          <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700">2</button>
+          <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700">3</button>
+          <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700">Next</button>
+        </nav>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .btn-rhythm {
+    @apply px-4 py-2 bg-rhythm text-white font-medium rounded-lg hover:bg-opacity-90 transition-colors duration-200 inline-flex items-center;
+  }
+</style>

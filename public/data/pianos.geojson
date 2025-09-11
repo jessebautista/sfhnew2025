@@ -1,0 +1,215 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "1",
+        "title": "Harmony in the Park",
+        "city": "New York City",
+        "state": "NY",
+        "country": "USA",
+        "year": 2024,
+        "artist": "Maria Rodriguez",
+        "program": "Sing for Hope Pianos",
+        "hasArtwork": true,
+        "thumbnail": "https://media.singforhope.org/2023/11/Artist-name-Magic-Moms-Location-Clouet-Gardens-42-scaled.jpg?auto=format&crop=faces%2Ccenter&ixlib=php-3.3.1",
+        "description": "A vibrant piano featuring colorful botanical designs that bring nature's beauty to the urban landscape.",
+        "tags": ["nature", "botanical", "urban", "community"]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.9712, 40.7831]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "2",
+        "title": "Ocean Dreams",
+        "city": "Miami",
+        "state": "FL",
+        "country": "USA",
+        "year": 2024,
+        "artist": "Carlos Santos",
+        "program": "Sing for Hope Pianos",
+        "hasArtwork": true,
+        "thumbnail": "https://media.singforhope.org/2024/06/miami-ocean-piano.jpg",
+        "description": "Ocean-themed artwork with waves and marine life celebrating Miami's coastal identity.",
+        "tags": ["ocean", "marine", "coastal", "blue"]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-80.1918, 25.7617]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "3",
+        "title": "Community Voices",
+        "city": "Chicago",
+        "state": "IL",
+        "country": "USA",
+        "year": 2023,
+        "artist": "Unknown",
+        "program": "Sing for Hope Pianos",
+        "hasArtwork": false,
+        "thumbnail": null,
+        "description": "A piano installed in a community center, awaiting artistic transformation.",
+        "tags": ["community", "pending", "chicago"]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-87.6298, 41.8781]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "4",
+        "title": "Golden Gate Melody",
+        "city": "San Francisco",
+        "state": "CA",
+        "country": "USA",
+        "year": 2024,
+        "artist": "Jennifer Liu",
+        "program": "Sing for Hope Pianos",
+        "hasArtwork": true,
+        "thumbnail": "https://media.singforhope.org/2024/08/sf-golden-gate-piano.jpg",
+        "description": "Inspired by San Francisco's iconic Golden Gate Bridge with warm sunset colors.",
+        "tags": ["bridge", "sunset", "iconic", "golden"]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.4194, 37.7749]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "5",
+        "title": "Liberty Bell Harmony",
+        "city": "Philadelphia",
+        "state": "PA",
+        "country": "USA",
+        "year": 2023,
+        "artist": "Robert Johnson",
+        "program": "Sing for Hope Pianos",
+        "hasArtwork": true,
+        "thumbnail": "https://media.singforhope.org/2023/07/philly-liberty-piano.jpg",
+        "description": "Patriotic design celebrating Philadelphia's rich history and the Liberty Bell.",
+        "tags": ["patriotic", "history", "liberty", "red-white-blue"]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-75.1652, 39.9526]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "6",
+        "title": "Music Therapy Piano",
+        "city": "Boston",
+        "state": "MA",
+        "country": "USA",
+        "year": 2024,
+        "artist": "Sarah Williams",
+        "program": "Healing Arts",
+        "hasArtwork": true,
+        "thumbnail": "https://media.singforhope.org/2024/05/boston-healing-piano.jpg",
+        "description": "Calming blue and green tones designed for a children's hospital music therapy program.",
+        "tags": ["healing", "medical", "children", "therapy", "calm"]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-71.0589, 42.3601]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "7",
+        "title": "Learning Through Music",
+        "city": "Austin",
+        "state": "TX",
+        "country": "USA",
+        "year": 2023,
+        "artist": "Miguel Torres",
+        "program": "Education Outreach",
+        "hasArtwork": true,
+        "thumbnail": "https://media.singforhope.org/2023/09/austin-education-piano.jpg",
+        "description": "Bright, educational design featuring musical notes and learning elements for elementary schools.",
+        "tags": ["education", "school", "learning", "colorful", "notes"]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-97.7431, 30.2672]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "8",
+        "title": "International Harmony",
+        "city": "London",
+        "state": null,
+        "country": "UK",
+        "year": 2024,
+        "artist": "Emma Thompson",
+        "program": "Global Outreach",
+        "hasArtwork": true,
+        "thumbnail": "https://media.singforhope.org/2024/04/london-harmony-piano.jpg",
+        "description": "A multicultural design celebrating London's diverse community and international spirit.",
+        "tags": ["international", "diversity", "multicultural", "london"]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.1278, 51.5074]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "9",
+        "title": "Workplace Wellness Piano",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "USA",
+        "year": 2024,
+        "artist": "David Kim",
+        "program": "Workforce Development",
+        "hasArtwork": false,
+        "thumbnail": null,
+        "description": "Piano installed in corporate wellness center to promote employee mental health.",
+        "tags": ["workplace", "wellness", "corporate", "mental-health"]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-122.3321, 47.6062]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "10",
+        "title": "Cultural Exchange Piano",
+        "city": "Toronto",
+        "state": "ON",
+        "country": "Canada",
+        "year": 2023,
+        "artist": "Priya Sharma",
+        "program": "Cultural Diplomacy",
+        "hasArtwork": true,
+        "thumbnail": "https://media.singforhope.org/2023/10/toronto-cultural-piano.jpg",
+        "description": "Design representing cultural exchange and diplomacy through music, featuring symbols from various cultures.",
+        "tags": ["cultural", "diplomacy", "exchange", "multicultural", "symbols"]
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-79.3832, 43.6532]
+      }
+    }
+  ]
+}

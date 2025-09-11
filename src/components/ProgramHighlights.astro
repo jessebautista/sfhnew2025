@@ -1,0 +1,170 @@
+---
+import { t, getLocalizedPath } from '../lib/i18n';
+
+// Accept props from parent component
+const { currentLang, translations } = Astro.props;
+---
+
+<section class="py-16 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="lg:text-center">
+      <h2 class="text-base text-melody font-semibold tracking-wide uppercase">{t("home.programs_title", translations)}</h2>
+      <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+        {t("home.programs_subtitle", translations)}
+      </p>
+      <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+        {t("home.programs_description", translations)}
+      </p>
+    </div>
+
+    <div class="mt-16">
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Sing for Hope Pianos -->
+        <div class="relative group">
+          <div class="relative h-48 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:h-64 lg:h-80">
+            <img
+              src="/src/images/singforhopepianos.jpg"
+              alt="Colorfully painted piano in public space"
+              class="h-full w-full object-cover object-center"
+            />
+          </div>
+          <h3 class="mt-6 text-xl font-medium text-gray-900">
+            <a href={getLocalizedPath("/pianos", currentLang)} class="focus:outline-none">
+              <span class="absolute inset-0" aria-hidden="true"></span>
+              {t("programs.pianos_title", translations)}
+            </a>
+          </h3>
+          <p class="text-base text-gray-500">
+            {t("programs.pianos_description", translations)}
+          </p>
+          <div class="mt-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-harmony text-white">
+              {t("programs.pianos_tag", translations)}
+            </span>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div class="relative group">
+          <div class="relative h-48 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:h-64 lg:h-80">
+            <img
+              src="/src/images/singforhope.jpg"
+              alt="Students engaged in music education"
+              class="h-full w-full object-cover object-center"
+            />
+          </div>
+          <h3 class="mt-6 text-xl font-medium text-gray-900">
+            <a href={getLocalizedPath("/education", currentLang)} class="focus:outline-none">
+              <span class="absolute inset-0" aria-hidden="true"></span>
+              {t("programs.education_title", translations)}
+            </a>
+          </h3>
+          <p class="text-base text-gray-500">
+            {t("programs.education_description", translations)}
+          </p>
+          <div class="mt-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-rhythm text-white">
+              {t("programs.education_tag", translations)}
+            </span>
+          </div>
+        </div>
+
+        <!-- Public Health & Wellness -->
+        <div class="relative group">
+          <div class="relative h-48 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:h-64 lg:h-80">
+            <img
+              src="/src/images/partner-1.png"
+              alt="Healthcare workers and patients enjoying music therapy"
+              class="h-full w-full object-cover object-center"
+            />
+          </div>
+          <h3 class="mt-6 text-xl font-medium text-gray-900">
+            <a href={getLocalizedPath("/health", currentLang)} class="focus:outline-none">
+              <span class="absolute inset-0" aria-hidden="true"></span>
+              {t("programs.health_title", translations)}
+            </a>
+          </h3>
+          <p class="text-base text-gray-500">
+            {t("programs.health_description", translations)}
+          </p>
+          <div class="mt-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-sonata text-gray-900">
+              {t("programs.health_tag", translations)}
+            </span>
+          </div>
+        </div>
+
+        <!-- Arts Diplomacy -->
+        <div class="relative group">
+          <div class="relative h-48 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:h-64 lg:h-80">
+            <img
+              src="/src/images/partner-2.png"
+              alt="International arts collaboration"
+              class="h-full w-full object-cover object-center"
+            />
+          </div>
+          <h3 class="mt-6 text-xl font-medium text-gray-900">
+            <a href={getLocalizedPath("/diplomacy", currentLang)} class="focus:outline-none">
+              <span class="absolute inset-0" aria-hidden="true"></span>
+              {t("programs.diplomacy_title", translations)}
+            </a>
+          </h3>
+          <p class="text-base text-gray-500">
+            {t("programs.diplomacy_description", translations)}
+          </p>
+          <div class="mt-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-melody text-white">
+              {t("programs.diplomacy_tag", translations)}
+            </span>
+          </div>
+        </div>
+
+        <!-- Workforce Development -->
+        <div class="relative group">
+          <div class="relative h-48 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:h-64 lg:h-80">
+            <img
+              src="/src/images/piano-process.png"
+              alt="Adults in arts training program"
+              class="h-full w-full object-cover object-center"
+            />
+          </div>
+          <h3 class="mt-6 text-xl font-medium text-gray-900">
+            <a href={getLocalizedPath("/workforce", currentLang)} class="focus:outline-none">
+              <span class="absolute inset-0" aria-hidden="true"></span>
+              {t("programs.workforce_title", translations)}
+            </a>
+          </h3>
+          <p class="text-base text-gray-500">
+            {t("programs.workforce_description", translations)}
+          </p>
+          <div class="mt-4">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-symphony text-white">
+              {t("programs.workforce_tag", translations)}
+            </span>
+          </div>
+        </div>
+
+        <!-- Call to Action Card -->
+        <div class="relative bg-melody rounded-lg p-6 text-white group hover:bg-melodydark transition-colors duration-200">
+          <div class="h-full flex flex-col justify-center">
+            <h3 class="text-xl font-bold mb-4">{t("home.get_involved", translations)}</h3>
+            <p class="text-melody-100 mb-6">
+              {t("home.get_involved_description", translations)}
+            </p>
+            <div class="space-y-3">
+              <a
+                href={getLocalizedPath("/contact", currentLang)}
+                class="inline-flex items-center text-white hover:text-melody-100 font-medium transition-colors"
+              >
+                {t("home.contact_us", translations)}
+                <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

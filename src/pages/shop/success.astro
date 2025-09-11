@@ -1,0 +1,242 @@
+---
+import Base from '../../layouts/Base.astro';
+import { CheckCircle, Heart, Share2, ShoppingBag } from 'lucide-react';
+---
+
+<Base
+  title="Order Complete - Sing for Hope Shop"
+  description="Thank you for your purchase! Your order has been confirmed and will be processed shortly."
+>
+  <div class="min-h-screen bg-gray-50 flex items-center justify-center py-12">
+    <div class="max-w-2xl mx-auto px-4 text-center">
+      <!-- Success Icon -->
+      <div class="flex justify-center mb-8">
+        <div class="relative">
+          <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center">
+            <CheckCircle className="w-12 h-12 text-green-600" />
+          </div>
+          <div class="absolute -top-2 -right-2 w-8 h-8 bg-harmony rounded-full flex items-center justify-center">
+            <Heart className="w-4 h-4 text-white" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Message -->
+      <div class="mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Order Complete!</h1>
+        <p class="text-xl text-gray-600 mb-2">
+          Thank you for your purchase and for supporting the arts!
+        </p>
+        <p class="text-gray-500">
+          Order #SFH-2024-001234 • Confirmation email sent to your inbox
+        </p>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="bg-white rounded-2xl shadow-sm p-8 mb-8 text-left">
+        <h2 class="text-lg font-semibold text-gray-900 mb-6">Order Summary</h2>
+        
+        <div class="space-y-4 mb-6">
+          <div class="flex items-center space-x-4">
+            <div class="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden">
+              <img
+                src="/src/images/singforhope.jpg"
+                alt="Sing for Hope T-Shirt"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900">Classic Logo T-Shirt</h3>
+              <p class="text-sm text-gray-500">Size: M, Color: Black • Qty: 1</p>
+            </div>
+            <div class="font-medium text-gray-900">$25.00</div>
+          </div>
+          
+          <div class="flex items-center space-x-4">
+            <div class="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden">
+              <img
+                src="/src/images/pianos-stock-1.png"
+                alt="Piano Art Tote"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900">Piano Art Tote Bag</h3>
+              <p class="text-sm text-gray-500">One Size • Qty: 1</p>
+            </div>
+            <div class="font-medium text-gray-900">$18.00</div>
+          </div>
+        </div>
+
+        <div class="border-t pt-6 space-y-2">
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600">Subtotal</span>
+            <span class="text-gray-900">$43.00</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600">Shipping</span>
+            <span class="text-gray-900">Free</span>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600">Tax</span>
+            <span class="text-gray-900">$3.44</span>
+          </div>
+          <div class="flex justify-between text-lg font-semibold pt-3 border-t">
+            <span class="text-gray-900">Total</span>
+            <span class="text-gray-900">$46.44</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- What's Next -->
+      <div class="bg-white rounded-2xl shadow-sm p-8 mb-8 text-left">
+        <h2 class="text-lg font-semibold text-gray-900 mb-6">What's Next?</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="w-12 h-12 bg-harmony/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CheckCircle className="w-6 h-6 text-harmony" />
+            </div>
+            <h3 class="font-medium text-gray-900 mb-2">Order Processing</h3>
+            <p class="text-sm text-gray-600">We'll prepare your items with care</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-12 h-12 bg-melody/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <ShoppingBag className="w-6 h-6 text-melody" />
+            </div>
+            <h3 class="font-medium text-gray-900 mb-2">Shipped</h3>
+            <p class="text-sm text-gray-600">You'll receive tracking information</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-12 h-12 bg-rhythm/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Heart className="w-6 h-6 text-rhythm" />
+            </div>
+            <h3 class="font-medium text-gray-900 mb-2">Delivered</h3>
+            <p class="text-sm text-gray-600">Enjoy your new items!</p>
+          </div>
+        </div>
+        
+        <div class="mt-6 p-4 bg-gray-50 rounded-xl">
+          <p class="text-sm text-gray-600">
+            <strong>Estimated delivery:</strong> 5-7 business days<br>
+            <strong>Shipping address:</strong> 123 Main Street, New York, NY 10001
+          </p>
+        </div>
+      </div>
+
+      <!-- Impact Statement -->
+      <div class="bg-gradient-to-r from-harmony to-melody rounded-2xl p-8 text-white mb-8">
+        <h2 class="text-2xl font-bold mb-4">Your Impact</h2>
+        <p class="text-lg opacity-95 mb-6">
+          Your purchase of $46.44 will contribute approximately $34.83 directly to our arts programs!
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="text-2xl font-bold mb-1">12</div>
+            <div class="text-sm opacity-90">Students reached</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold mb-1">2</div>
+            <div class="text-sm opacity-90">Hours of programming</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl font-bold mb-1">1</div>
+            <div class="text-sm opacity-90">Community partnership</div>
+          </div>
+        </div>
+        
+        <div class="mt-6 text-center">
+          <a href="/about" class="inline-flex items-center text-white hover:underline">
+            Learn more about our impact
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/shop" class="btn-harmony">
+          <ShoppingBag className="w-5 h-5 mr-2" />
+          Continue Shopping
+        </a>
+        
+        <button class="btn-outline-harmony" onclick="shareOrder()">
+          <Share2 className="w-5 h-5 mr-2" />
+          Share Your Support
+        </button>
+      </div>
+
+      <!-- Newsletter Signup -->
+      <div class="mt-12 bg-white rounded-2xl shadow-sm p-8">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Stay Connected</h3>
+        <p class="text-gray-600 mb-6">
+          Get updates on how your purchase is making a difference in communities around the world.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-harmony focus:border-harmony"
+          />
+          <button class="btn-harmony whitespace-nowrap">
+            Subscribe
+          </button>
+        </div>
+        
+        <p class="text-xs text-gray-500 mt-3">
+          We'll only send updates about our programs and impact. Unsubscribe anytime.
+        </p>
+      </div>
+
+      <!-- Support Info -->
+      <div class="mt-8 text-center text-sm text-gray-500">
+        <p class="mb-2">Questions about your order?</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="mailto:shop@singforhope.org" class="hover:text-harmony transition-colors">
+            shop@singforhope.org
+          </a>
+          <a href="tel:+1234567890" class="hover:text-harmony transition-colors">
+            (123) 456-7890
+          </a>
+          <a href="/support" class="hover:text-harmony transition-colors">
+            Help Center
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<script>
+  function shareOrder() {
+    const shareData = {
+      title: 'I just supported Sing for Hope!',
+      text: 'I purchased some amazing items and helped support arts programs in communities, schools, and healthcare settings. Join me in spreading hope through the arts!',
+      url: 'https://singforhope.org/shop'
+    };
+
+    if (navigator.share) {
+      navigator.share(shareData);
+    } else {
+      // Fallback for browsers that don't support Web Share API
+      const text = `${shareData.text} ${shareData.url}`;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Share message copied to clipboard!');
+      });
+    }
+  }
+
+  // Auto-scroll to success message on page load
+  window.addEventListener('load', () => {
+    document.querySelector('h1').scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'center' 
+    });
+  });
+</script>

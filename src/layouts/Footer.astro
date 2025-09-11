@@ -1,0 +1,166 @@
+---
+import { t, getLocalizedPath } from '../lib/i18n';
+
+// Get translations from parent (Base layout)
+const { currentLang, translations = {} } = Astro.props;
+---
+
+<footer class="bg-gray-900">
+  <div class="px-4 py-8 mx-auto lg:pt-16 max-w-7xl">
+    <div class="flex flex-col space-y-8 md:flex-row md:space-x-8 md:space-y-0">
+      <!-- Logo and Contact Info -->
+      <div class="flex flex-col w-full md:w-1/4 items-center md:items-start">
+        <div class="flex flex-row md:flex-col space-x-4 md:space-x-0 items-center md:items-start">
+          <div class="flex items-center space-x-3 md:space-x-0 md:flex-col md:items-start">
+            <img
+              class="w-12 h-12"
+              src="/logo.svg"
+              alt="Sing for Hope Logo"
+              width="48"
+              height="48"
+            />
+            <div>
+              <a
+                class="font-semibold text-gray-200 text-lg hover:text-white transition-colors"
+                href="/"
+                aria-label="Sing for Hope Home"
+              >
+                Sing for Hope
+              </a>
+              <div class="text-xs text-gray-300 mt-1">
+                99 Wall Street #1812<br />
+                New York, NY 10005
+              </div>
+            </div>
+          </div>
+          
+          <!-- Badges -->
+          <div class="flex flex-wrap gap-2 mt-4">
+            <a href="https://www.guidestar.org/profile/shared/27a3476f-b2c9-49f5-81e3-ca1260c7f6a3" class="block">
+              <img
+                class="w-12 h-12 rounded"
+                src="https://widgets.guidestar.org/TransparencySeal/6796063"
+                alt="GuideStar Transparency Seal"
+              />
+            </a>
+            <img
+              class="w-12 h-12 rounded"
+              src="https://app.singforhope.org/storage/v1/object/public/uploads/public/uploads/Four-Star%20Rating%20Badge%20-%20Full%20Color%20(1).png"
+              alt="Four Star Rating Badge"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <div class="w-full md:w-1/4">
+        <h4 class="mb-4 font-semibold text-white">{t("footer.quick_links", translations) || "Quick Links"}</h4>
+        <div class="grid gap-2">
+          <a href={getLocalizedPath("/about", currentLang)} class="text-gray-300 hover:text-white transition-colors text-sm">{t("footer.about", translations) || "About"}</a>
+          <a href={getLocalizedPath("/programs", currentLang)} class="text-gray-300 hover:text-white transition-colors text-sm">{t("footer.programs", translations) || "Programs"}</a>
+          <a href={getLocalizedPath("/pianos", currentLang)} class="text-gray-300 hover:text-white transition-colors text-sm">{t("footer.pianos", translations) || "Pianos"}</a>
+          <a href={getLocalizedPath("/education", currentLang)} class="text-gray-300 hover:text-white transition-colors text-sm">{t("footer.education", translations) || "Education"}</a>
+          <a href={getLocalizedPath("/health", currentLang)} class="text-gray-300 hover:text-white transition-colors text-sm">{t("footer.health", translations) || "Public Health & Wellness"}</a>
+          <a href={getLocalizedPath("/diplomacy", currentLang)} class="text-gray-300 hover:text-white transition-colors text-sm">{t("footer.diplomacy", translations) || "Arts Diplomacy"}</a>
+          <a href={getLocalizedPath("/workforce", currentLang)} class="text-gray-300 hover:text-white transition-colors text-sm">{t("footer.workforce", translations) || "Workforce Development"}</a>
+          <a href={getLocalizedPath("/news", currentLang)} class="text-gray-300 hover:text-white transition-colors text-sm">{t("footer.news", translations) || "News"}</a>
+          <a href={getLocalizedPath("/shop", currentLang)} class="text-gray-300 hover:text-white transition-colors text-sm">{t("footer.shop", translations) || "Shop"}</a>
+          <a href={getLocalizedPath("/donate", currentLang)} class="text-melody hover:text-melodydark transition-colors text-sm font-medium">{t("footer.donate", translations) || "Donate"}</a>
+        </div>
+      </div>
+
+      <!-- Founders Circle -->
+      <div class="w-full md:w-1/4">
+        <h4 class="mb-4 font-semibold text-white">{t("footer.founders_circle", translations) || "Founders Circle"}</h4>
+        <div class="grid gap-1">
+          <span class="text-gray-300 text-xs leading-relaxed border-b border-gray-800 pb-1">
+            The International Foundation for Arts and Culture (Dr. Haruhisa Handa, Chairman, Sing for Hope Global Patron)
+          </span>
+          <span class="text-gray-300 text-xs leading-relaxed border-b border-gray-800 pb-1">
+            The Arnhold Foundation in loving memory of Sissy and Henry Arnhold
+          </span>
+          <span class="text-gray-300 text-xs leading-relaxed border-b border-gray-800 pb-1">
+            The Thea Petschek Iervolino Foundation
+          </span>
+          <span class="text-gray-300 text-xs leading-relaxed border-b border-gray-800 pb-1">
+            The Anna-Maria & Stephen Kellen Foundation
+          </span>
+          <span class="text-gray-300 text-xs leading-relaxed border-b border-gray-800 pb-1">
+            Jacqueline Novogratz and Chris Anderson
+          </span>
+          <span class="text-gray-300 text-xs leading-relaxed border-b border-gray-800 pb-1">
+            Pershing Square Philanthropies
+          </span>
+          <span class="text-gray-300 text-xs leading-relaxed border-b border-gray-800 pb-1">
+            The Seedlings Foundation
+          </span>
+          <span class="text-gray-300 text-xs leading-relaxed">
+            Ann Ziff
+          </span>
+        </div>
+      </div>
+
+      <!-- Support Statement and Partners -->
+      <div class="w-full md:w-1/4">
+        <div class="bg-[#0e2342] rounded-xl p-4 mb-4">
+          <span class="text-xs text-white leading-tight opacity-90">
+            Sing for Hope is supported, in part, by the New York State Council on the Arts with the support of the Office of the Governor and the New York State Legislature, by public funds from the New York City Department of Cultural Affairs in partnership with the City Council, the New York City Department of Education, and donors like you.
+          </span>
+        </div>
+        
+        <!-- Partner Logos -->
+        <div class="grid grid-cols-2 gap-3">
+          <a href="https://ifac-global.org/" class="block">
+            <img
+              class="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity"
+              src="https://sfhmedia.nyc3.digitaloceanspaces.com/2022/06/Untitled-1.png"
+              alt="IFAC"
+            />
+          </a>
+          <a href="https://arts.ny.gov/" class="block">
+            <img
+              class="h-8 w-auto opacity-60 hover:opacity-100 transition-opacity"
+              src="https://sfhmedia.nyc3.digitaloceanspaces.com/2022/09/2_new-york-state-of-opportunity-1-300x68-1.png"
+              alt="NY Council on the Arts"
+            />
+          </a>
+          <a href="https://www1.nyc.gov/site/dcla/index.page" class="block">
+            <img
+              class="h-6 w-auto opacity-60 hover:opacity-100 transition-opacity"
+              src="https://sfhmedia.nyc3.digitaloceanspaces.com/2022/09/3_nyc-cultural-affairs-300x54-1.png"
+              alt="NYC Cultural Affairs"
+            />
+          </a>
+          <a href="https://www.schools.nyc.gov/" class="block">
+            <img
+              class="h-10 w-auto opacity-60 hover:opacity-100 transition-opacity"
+              src="https://app.singforhope.org/storage/v1/object/public/uploads/Mask%20group.png"
+              alt="NYC Department of Education"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legal Info and Links -->
+    <div class="mt-8 pt-8 border-t border-gray-800">
+      <div class="text-xs text-gray-300 leading-relaxed mb-4">
+        Sing for Hope is a registered 501(c)(3) charitable organization (EIN 01-0856384). A copy of our most recently filed financial report is available from the Charities Registry on the New York State Attorney General's website (www.charitiesnys.com) or, upon request, by contacting the New York State Attorney General, Charities Bureau, 28 Liberty Street, New York, NY 10005, or Sing for Hope at 99 Wall Street #1812, New York, NY 10005.
+      </div>
+      
+      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+        <p class="text-xs text-gray-300">
+          Copyright ©2025 Sing for Hope, Inc. All rights reserved.
+        </p>
+        
+        <div class="text-xs text-gray-300">
+          <a href="/policy/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
+          <span class="mx-1">|</span>
+          <a href="/policy/terms" class="hover:text-white transition-colors">Terms of Use</a>
+          <span class="mx-1">|</span>
+          <a href="/contact" class="hover:text-white transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

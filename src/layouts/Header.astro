@@ -1,0 +1,79 @@
+---
+import Logo from '../components/Logo.astro';
+import Navigation from '../components/Navigation.astro';
+import DonateButton from '../components/DonateButton.astro';
+import ShopButton from '../components/ShopButton.astro';
+import CartButton from '../components/CartButton.tsx';
+import MobileMenu from '../components/MobileMenu.astro';
+import Search from '../components/Search.tsx';
+import MobileSearch from '../components/MobileSearch.tsx';
+import AccessibilityButton from '../components/accessibility/AccessibilityButton.tsx';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import { t } from '../lib/i18n';
+
+// Get translations and language from Base layout props
+const { currentLang, translations } = Astro.props;
+
+// Check if we're on a shop page
+const isShopPage = Astro.url.pathname.startsWith('/shop');
+---
+
+<header
+  id="main-header"
+  class="fixed top-0 inset-x-0 z-50 bg-white border-b border-gray-200 shadow-sm"
+>
+  <div class="px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <Logo />
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:block">
+        <Navigation currentLang={currentLang} translations={translations} />
+      </div>
+
+      <!-- Search (Desktop & Mobile) -->
+      <div class="flex-1 max-w-md mx-4 hidden sm:block">
+        <Search 
+          client:load
+          placeholder={t("nav.search_placeholder", translations)}
+          className="w-full"
+        />
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-4">
+        <!-- Mobile Search Button -->
+        <MobileSearch client:load />
+        
+        <!-- Language Switcher -->
+        <div class="hidden sm:block">
+          <LanguageSwitcher />
+        </div>
+        
+        <!-- Accessibility Button -->
+        <AccessibilityButton client:load />
+        
+        <!-- Shop/Cart Button (Mobile & Desktop) -->
+        {isShopPage ? (
+          <CartButton client:load translations={translations} />
+        ) : (
+          <ShopButton currentLang={currentLang} translations={translations} />
+        )}
+        
+        <!-- Donate Button (Mobile & Desktop) -->
+        <DonateButton translations={translations} />
+
+        <!-- Mobile Menu Button -->
+        <div class="lg:hidden">
+          <MobileMenu currentLang={currentLang} translations={translations} />
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Header spacer -->
+<div class="h-16 lg:h-20"></div>

@@ -1,0 +1,457 @@
+---
+import Base from '../layouts/Base.astro';
+import { getLanguageFromURL, loadTranslations } from '../lib/i18n';
+
+// Load translations for this page
+const currentLang = getLanguageFromURL(Astro.url.pathname);
+const translations = await loadTranslations(currentLang);
+---
+
+<Base
+  title="Concept - Interactive Program Experience"
+  description="Discover our programs through an interactive split-screen experience showcasing Sing for Hope Pianos, Education, Public Health & Wellness, Arts Diplomacy, and Workforce Development."
+>
+  <div class="concept-container min-h-screen bg-white transition-all duration-1000 ease-out overflow-hidden">
+    <!-- Navigation -->
+    <div class="absolute top-4 left-4 z-50">
+      <a href="/" class="flex items-center px-4 py-2 bg-black/10 backdrop-blur-md rounded-full text-gray-800 hover:bg-black/20 transition-colors">
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        Back to Home
+      </a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex min-h-screen">
+      <!-- Left Side - Programs List -->
+      <div class="w-full lg:w-1/2 flex flex-col justify-center px-8 lg:px-16 py-16 relative z-20">
+        <!-- Header -->
+        <div class="mb-16">
+          <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight">
+            Our Programs
+          </h1>
+          <p class="text-xl text-gray-600 max-w-md">
+            Discover how we transform communities through the power of arts
+          </p>
+        </div>
+
+        <!-- Programs Navigation -->
+        <nav class="space-y-1">
+          <div 
+            class="program-item cursor-pointer px-6 py-8 rounded-2xl transition-all duration-500 border border-transparent hover:border-white/30"
+            data-program="pianos"
+            data-color="#339933"
+          >
+            <h2 class="text-2xl lg:text-4xl font-bold mb-2 transition-all duration-300 hover:translate-x-2 text-harmony">
+              Sing for Hope Pianos
+            </h2>
+            <p class="text-gray-500 text-sm lg:text-base">Artist-designed pianos in communities worldwide</p>
+          </div>
+
+          <div 
+            class="program-item cursor-pointer px-6 py-8 rounded-2xl transition-all duration-500 border border-transparent hover:border-white/30"
+            data-program="education"
+            data-color="#54749E"
+          >
+            <h2 class="text-2xl lg:text-4xl font-bold mb-2 transition-all duration-300 hover:translate-x-2 text-rhythm">
+              Education
+            </h2>
+            <p class="text-gray-500 text-sm lg:text-base">Arts education from pre-K through high school</p>
+          </div>
+
+          <div 
+            class="program-item cursor-pointer px-6 py-8 rounded-2xl transition-all duration-500 border border-transparent hover:border-white/30"
+            data-program="health"
+            data-color="#FDD05E"
+          >
+            <h2 class="text-2xl lg:text-4xl font-bold mb-2 transition-all duration-300 hover:translate-x-2 text-sonata">
+              Public Health & Wellness
+            </h2>
+            <p class="text-gray-500 text-sm lg:text-base">Creative interventions promoting wellness</p>
+          </div>
+
+          <div 
+            class="program-item cursor-pointer px-6 py-8 rounded-2xl transition-all duration-500 border border-transparent hover:border-white/30"
+            data-program="diplomacy"
+            data-color="#DA4680"
+          >
+            <h2 class="text-2xl lg:text-4xl font-bold mb-2 transition-all duration-300 hover:translate-x-2 text-melody">
+              Cultural Diplomacy
+            </h2>
+            <p class="text-gray-500 text-sm lg:text-base">Arts for global peace and policy integration</p>
+          </div>
+
+          <div 
+            class="program-item cursor-pointer px-6 py-8 rounded-2xl transition-all duration-500 border border-transparent hover:border-white/30"
+            data-program="workforce"
+            data-color="#3A3F42"
+          >
+            <h2 class="text-2xl lg:text-4xl font-bold mb-2 transition-all duration-300 hover:translate-x-2 text-symphony">
+              Creative Workforce Development
+            </h2>
+            <p class="text-gray-500 text-sm lg:text-base">Innovative public-private partnerships</p>
+          </div>
+        </nav>
+
+        <!-- Instructions (Mobile) -->
+        <div class="lg:hidden mt-16 text-center">
+          <p class="text-gray-500 text-sm">Tap on any program above to learn more</p>
+        </div>
+      </div>
+
+      <!-- Right Side - Content Panel -->
+      <div class="hidden lg:flex w-1/2 relative">
+        <!-- Content Panel -->
+        <div id="content-panel" class="absolute inset-0 flex items-center justify-center p-16 opacity-0 transform translate-x-8 transition-all duration-700 ease-out">
+          <div class="content-area max-w-lg">
+            <!-- Default Content -->
+            <div class="program-content active" data-program="default">
+              <div class="text-center text-gray-500">
+                <svg class="w-24 h-24 mx-auto mb-6 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                </svg>
+                <p class="text-xl">Hover over a program to discover more</p>
+              </div>
+            </div>
+
+            <!-- Program Contents -->
+            <div class="program-content" data-program="pianos">
+              <div class="mb-6">
+                <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-4">
+                  <svg class="w-4 h-4 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7" />
+                  </svg>
+                  <span class="text-white font-medium text-sm">Public Art Initiative</span>
+                </div>
+                <h3 class="text-3xl font-bold text-white mb-4">Sing for Hope Pianos</h3>
+                <p class="text-white/90 text-lg leading-relaxed mb-6">
+                  Artist-designed pianos bringing music, joy, and community connection to public spaces, healthcare facilities, and neighborhoods around the world.
+                </p>
+              </div>
+              
+              <div class="space-y-4 text-white/80">
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 mt-0.5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p>Artist-designed pianos placed worldwide</p>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 mt-0.5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p>Free public access in communities</p>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 mt-0.5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p>Creating connections through music</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="program-content" data-program="education">
+              <div class="mb-6">
+                <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-4">
+                  <svg class="w-4 h-4 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                  <span class="text-white font-medium text-sm">Pre-K to High School</span>
+                </div>
+                <h3 class="text-3xl font-bold text-white mb-4">Education Programs</h3>
+                <p class="text-white/90 text-lg leading-relaxed mb-6">
+                  Comprehensive arts education programs serving students from pre-K through high school with innovative curriculum, performances, and community engagement.
+                </p>
+              </div>
+              
+              <div class="space-y-4 text-white/80">
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 mt-0.5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p>HandaHarmony global community programs</p>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 mt-0.5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p>School programs & youth chorus</p>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 mt-0.5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p>Careers in arts & artivism curriculum</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="program-content" data-program="health">
+              <div class="mb-6">
+                <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-4">
+                  <svg class="w-5 h-5 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                  <span class="text-white font-medium text-sm">Healing Through Arts</span>
+                </div>
+                <h3 class="text-3xl font-bold text-white mb-4">Public Health & Wellness</h3>
+                <p class="text-white/90 text-lg leading-relaxed mb-6">
+                  Research-based creative interventions, performances, and curated cultural experiences that promote wellness and connection in healthcare settings.
+                </p>
+              </div>
+              
+              <div class="space-y-4 text-white/80">
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 mt-0.5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p>Research-based creative interventions</p>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 mt-0.5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p>Performances in healthcare settings</p>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 mt-0.5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p>Promoting wellness & connection</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="program-content" data-program="diplomacy">
+              <div class="mb-6">
+                <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-4">
+                  <svg class="w-5 h-5 text-white mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span class="text-white font-medium text-sm">Arts for Global Peace</span>
+                </div>
+                <h3 class="text-3xl font-bold text-white mb-4">Cultural Diplomacy</h3>
+                <p class="text-white/90 text-lg leading-relaxed mb-6">
+                  Creative advocacy, leadership, and program design that drive the integration of the arts in policy, peace-building, and global convenings on social change.
+                </p>
+              </div>
+              
+              <div class="space-y-4 text-white/80">
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 mt-0.5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p>Creative advocacy & leadership</p>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 mt-0.5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p>Arts integration in policy</p>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 mt-0.5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p>Global peace-building initiatives</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="program-content" data-program="workforce">
+              <div class="mb-6">
+                <div class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full mb-4">
+                  <svg class="w-5 h-5 text-white mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                  <span class="text-white font-medium text-sm">Empowering Creative Communities</span>
+                </div>
+                <h3 class="text-3xl font-bold text-white mb-4">Creative Workforce Development</h3>
+                <p class="text-white/90 text-lg leading-relaxed mb-6">
+                  Reframing the value proposition of the arts with innovative public-private partnerships that extend our creative industry beyond traditional models.
+                </p>
+              </div>
+              
+              <div class="space-y-4 text-white/80">
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 mt-0.5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p>Public-private partnerships</p>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 mt-0.5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p>Creative industry expansion</p>
+                </div>
+                <div class="flex items-start">
+                  <svg class="w-5 h-5 mt-0.5 mr-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                  </svg>
+                  <p>Reframing arts value proposition</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decorative Elements -->
+        <div class="absolute inset-0 pointer-events-none">
+          <!-- Geometric shapes that fade in with content -->
+          <div class="decorative-element absolute top-1/4 right-16 w-32 h-32 border border-white/20 rotate-45 opacity-0 transition-opacity duration-700"></div>
+          <div class="decorative-element absolute bottom-1/4 right-32 w-16 h-16 bg-white/10 rounded-full opacity-0 transition-opacity duration-700"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Content Panel -->
+    <div id="mobile-content" class="lg:hidden fixed inset-0 bg-black/95 backdrop-blur-md z-40 opacity-0 pointer-events-none transition-all duration-500">
+      <div class="flex items-center justify-center min-h-screen p-8">
+        <div class="max-w-lg">
+          <button id="mobile-close" class="absolute top-4 right-4 text-white/60 hover:text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+          <div id="mobile-content-area"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .concept-container {
+      transition: background 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .program-content {
+      display: none;
+    }
+
+    .program-content.active {
+      display: block;
+    }
+
+    .program-item {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Hover states for program items */
+    .program-item:hover h2 {
+      color: white !important;
+    }
+
+    .program-item:hover p {
+      color: rgba(255, 255, 255, 0.8) !important;
+    }
+
+    .program-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Show decorative elements when content is visible */
+    .concept-container.has-content .decorative-element {
+      opacity: 1;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const programItems = document.querySelectorAll('.program-item');
+      const contentPanel = document.getElementById('content-panel');
+      const programContents = document.querySelectorAll('.program-content');
+      const container = document.querySelector('.concept-container');
+      const mobileContent = document.getElementById('mobile-content');
+      const mobileContentArea = document.getElementById('mobile-content-area');
+      const mobileClose = document.getElementById('mobile-close');
+
+      // Helper function to create gradient from program color
+      function createGradient(color, direction = '135deg') {
+        // Convert hex to RGB for manipulation
+        const hex = color.replace('#', '');
+        const r = parseInt(hex.substr(0, 2), 16);
+        const g = parseInt(hex.substr(2, 2), 16);
+        const b = parseInt(hex.substr(4, 2), 16);
+        
+        // Create a lighter version for gradient
+        const lighten = (val) => Math.min(255, val + 30);
+        const darken = (val) => Math.max(0, val - 20);
+        
+        const lightColor = `rgb(${lighten(r)}, ${lighten(g)}, ${lighten(b)})`;
+        const darkColor = `rgb(${darken(r)}, ${darken(g)}, ${darken(b)})`;
+        
+        return `linear-gradient(${direction}, ${color} 0%, ${lightColor} 50%, ${darkColor} 100%)`;
+      }
+
+      // Desktop hover interactions
+      programItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+          const programId = this.dataset.program;
+          const programColor = this.dataset.color;
+          
+          // Change background with smooth gradient
+          const gradient = createGradient(programColor);
+          container.style.background = gradient;
+          container.classList.add('has-content');
+          
+          // Show content panel
+          contentPanel.style.opacity = '1';
+          contentPanel.style.transform = 'translateX(0)';
+          
+          // Hide all content, show relevant content
+          programContents.forEach(content => content.classList.remove('active'));
+          const activeContent = document.querySelector(`.program-content[data-program="${programId}"]`);
+          if (activeContent) {
+            activeContent.classList.add('active');
+          }
+        });
+
+        item.addEventListener('mouseleave', function() {
+          // Reset background to white
+          container.style.background = 'white';
+          container.classList.remove('has-content');
+          
+          // Hide content panel
+          contentPanel.style.opacity = '0';
+          contentPanel.style.transform = 'translateX(2rem)';
+          
+          // Show default content
+          programContents.forEach(content => content.classList.remove('active'));
+          document.querySelector('.program-content[data-program="default"]').classList.add('active');
+        });
+
+        // Mobile click interactions
+        item.addEventListener('click', function() {
+          if (window.innerWidth < 1024) {
+            const programId = this.dataset.program;
+            const programColor = this.dataset.color;
+            const activeContent = document.querySelector(`.program-content[data-program="${programId}"]`);
+            
+            if (activeContent) {
+              // Apply the program color to mobile modal background
+              mobileContent.style.background = `linear-gradient(135deg, ${programColor}dd 0%, ${programColor}cc 100%)`;
+              mobileContentArea.innerHTML = activeContent.innerHTML;
+              mobileContent.style.opacity = '1';
+              mobileContent.style.pointerEvents = 'auto';
+              document.body.style.overflow = 'hidden';
+            }
+          }
+        });
+      });
+
+      // Mobile close button
+      mobileClose.addEventListener('click', function() {
+        mobileContent.style.opacity = '0';
+        mobileContent.style.pointerEvents = 'none';
+        document.body.style.overflow = '';
+      });
+
+      // Initialize default state
+      document.querySelector('.program-content[data-program="default"]').classList.add('active');
+    });
+  </script>
+</Base>

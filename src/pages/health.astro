@@ -1,0 +1,559 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Public Health & Wellness - Sing for Hope"
+  description="Sing for Hope's Public Health and Wellbeing program produces research-based creative interventions, performances, and curated cultural experiences that promote wellness and connection."
+>
+  <div class="bg-white">
+    <!-- Skip Link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:p-4 focus:bg-white focus:text-black">
+      Skip to main content
+    </a>
+
+    <!-- Modern Hero Section -->
+    <main id="main-content" class="relative overflow-hidden">
+      <!-- Background gradient -->
+      <div class="absolute inset-0 bg-gradient-to-br from-rhythm via-rhythm/90 to-rhythmdark"></div>
+      <div class="absolute inset-0 bg-[url('/src/images/medical-pattern.svg')] opacity-10"></div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
+        <div class="text-center">
+          <!-- Breadcrumb -->
+          <nav class="flex justify-center mb-8" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2 text-sm text-blue-100">
+              <li><a href="/" class="hover:text-white transition-colors">Sing for Hope</a></li>
+              <li><span class="mx-2">/</span></li>
+              <li class="text-white font-medium">Public Health & Wellbeing</li>
+            </ol>
+          </nav>
+          
+          <!-- Main heading with modern typography -->
+          <div class="space-y-6">
+            <div class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+              <svg class="w-5 h-5 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              <span class="text-white text-sm font-medium">Healing Through Arts</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight">
+              Public Health &
+              <span class="block bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">
+                Wellbeing
+              </span>
+            </h1>
+            
+            <p class="max-w-3xl mx-auto text-xl text-blue-100 leading-relaxed">
+              Research-based creative interventions that promote wellness and connection in healthcare centers, communities, and public spaces worldwide.
+            </p>
+          </div>
+          
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+            <button
+              type="button"
+              id="health-hero-donate-button"
+              class="bg-white text-rhythm px-8 py-4 rounded-2xl font-semibold hover:bg-gray-50 transition-all duration-300 hover:scale-105 shadow-lg"
+            >
+              Support Our Mission
+            </button>
+            <button
+              type="button"
+              id="health-video-button"
+              class="group bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/20 transition-all duration-300"
+            >
+              <span class="flex items-center">
+                <svg class="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H15" />
+                </svg>
+                Watch Our Impact
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Stats Overview -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center group">
+            <div class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1">
+              <div class="w-16 h-16 bg-gradient-to-br from-rhythm to-rhythmdark rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Healthcare Centers</h3>
+              <p class="text-gray-600">Bringing healing arts directly to patients, staff, and caregivers</p>
+            </div>
+          </div>
+          
+          <div class="text-center group">
+            <div class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1">
+              <div class="w-16 h-16 bg-gradient-to-br from-harmony to-harmonydark rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Public Spaces</h3>
+              <p class="text-gray-600">Transforming commutes and community spaces through creative placemaking</p>
+            </div>
+          </div>
+          
+          <div class="text-center group">
+            <div class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1">
+              <div class="w-16 h-16 bg-gradient-to-br from-melody to-melodydark rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Crisis Response</h3>
+              <p class="text-gray-600">Supporting communities through creative arts during challenging times</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modern Accordion-Style Program Categories -->
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Health & Wellness Programs</h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Three comprehensive programs designed to promote wellness and connection through the transformative power of the arts.
+          </p>
+        </div>
+
+        <!-- Modern Accordion -->
+        <div class="space-y-6">
+          <!-- Healing Arts -->
+          <div class="group border border-gray-200 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:border-rhythm/30">
+            <button 
+              class="accordion-trigger w-full p-8 text-left focus:outline-none focus:ring-2 focus:ring-rhythm/20 focus:ring-inset"
+              data-target="healing-arts-content"
+              aria-expanded="false"
+            >
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-6">
+                  <div class="flex-shrink-0">
+                    <div class="w-16 h-16 bg-gradient-to-br from-rhythm to-rhythmdark rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 group-hover:text-rhythm transition-colors">Healing Arts</h3>
+                    <p class="text-gray-600 mt-1">Arts activations in healthcare centers and elder care facilities</p>
+                  </div>
+                </div>
+                <svg class="accordion-icon w-6 h-6 text-gray-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </button>
+            
+            <div id="healing-arts-content" class="accordion-content hidden">
+              <div class="px-8 pb-8">
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                  <div class="space-y-6">
+                    <div class="prose prose-lg text-gray-600">
+                      <p>
+                        Sing for Hope's Healing Arts program produces arts activations in diverse genres and formats presented with rigorous safety protocols for patients, staff, and caregivers in healthcare centers and elder care facilities. Our programming is curated to reflect each partner's specific interests, needs, and health challenges.
+                      </p>
+                    </div>
+                    
+                    <!-- Features Grid -->
+                    <div class="grid sm:grid-cols-2 gap-4">
+                      <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-rhythm rounded-full"></div>
+                        <span class="text-sm text-gray-600">Rigorous safety protocols</span>
+                      </div>
+                      <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-rhythm rounded-full"></div>
+                        <span class="text-sm text-gray-600">Diverse artistic genres</span>
+                      </div>
+                      <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-rhythm rounded-full"></div>
+                        <span class="text-sm text-gray-600">Curated programming</span>
+                      </div>
+                      <div class="flex items-center space-x-3">
+                        <div class="w-2 h-2 bg-rhythm rounded-full"></div>
+                        <span class="text-sm text-gray-600">Community-specific</span>
+                      </div>
+                    </div>
+                    
+                    <a href="/contact" class="inline-flex items-center px-6 py-3 bg-rhythm text-white rounded-2xl font-medium hover:bg-rhythmdark transition-colors duration-300">
+                      Learn More
+                      <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  </div>
+                  
+                  <div class="relative">
+                    <img class="w-full rounded-2xl shadow-lg" src="https://sfhmedia.nyc3.digitaloceanspaces.com/2023/09/IMG_4310.jpg" alt="SFH Artist Partner Anna Tonna performing at Maimonides Medical Center" />
+                    <div class="mt-4 text-sm text-gray-500">
+                      SFH Artist Partner Anna Tonna performs classic boleros with the Sing for Hope "Fab 5" quintet for visitors, staff, and patients at Maimonides Medical Center in Brooklyn.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Creative Placemaking -->
+          <div class="group border border-gray-200 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:border-harmony/30">
+            <button 
+              class="accordion-trigger w-full p-8 text-left focus:outline-none focus:ring-2 focus:ring-harmony/20 focus:ring-inset"
+              data-target="placemaking-content"
+              aria-expanded="false"
+            >
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-6">
+                  <div class="flex-shrink-0">
+                    <div class="w-16 h-16 bg-gradient-to-br from-harmony to-harmonydark rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 group-hover:text-harmony transition-colors">Creative Placemaking</h3>
+                    <p class="text-gray-600 mt-1">Transforming public spaces through arts experiences</p>
+                  </div>
+                </div>
+                <svg class="accordion-icon w-6 h-6 text-gray-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </button>
+            
+            <div id="placemaking-content" class="accordion-content hidden">
+              <div class="px-8 pb-8">
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                  <div class="lg:order-2">
+                    <img class="w-full rounded-2xl shadow-lg" src="https://sfhmedia.nyc3.digitaloceanspaces.com/2023/09/IMG-3253-1-1024x768.jpg" alt="Sing for Hope Fab 5 quintet at Moynihan Train Hall" />
+                    <div class="mt-4 text-sm text-gray-500">
+                      Sing for Hope "Fab 5" quintet at Moynihan Train Hall
+                    </div>
+                  </div>
+                  
+                  <div class="lg:order-1 space-y-6">
+                    <div class="prose prose-lg text-gray-600">
+                      <p>
+                        Our Creative Placemaking program leverages the power of the arts to drive social cohesion, public health, and wellbeing. Our Quality of Commute program reaches thousands daily at partner sites including Union Station, Port Authority Bus Terminal, Oculus World Trade Center, Newark Liberty International Airport, and Moynihan Train Hall.
+                      </p>
+                    </div>
+                    
+                    <!-- Impact highlight -->
+                    <div class="bg-harmony/5 border border-harmony/20 rounded-2xl p-6">
+                      <h4 class="font-semibold text-harmony mb-2">Artist Employment Impact</h4>
+                      <p class="text-sm text-gray-600">
+                        Building upon our pandemic-era role as one of the country's leading employers of freelance musicians, we shift the landscape for artist employment through innovative public-private funding models.
+                      </p>
+                    </div>
+                    
+                    <a href="/contact" class="inline-flex items-center px-6 py-3 bg-harmony text-white rounded-2xl font-medium hover:bg-harmonydark transition-colors duration-300">
+                      Learn More
+                      <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Creative Crisis Response -->
+          <div class="group border border-gray-200 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:border-melody/30">
+            <button 
+              class="accordion-trigger w-full p-8 text-left focus:outline-none focus:ring-2 focus:ring-melody/20 focus:ring-inset"
+              data-target="crisis-content"
+              aria-expanded="false"
+            >
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-6">
+                  <div class="flex-shrink-0">
+                    <div class="w-16 h-16 bg-gradient-to-br from-melody to-melodydark rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 group-hover:text-melody transition-colors">Creative Crisis Response</h3>
+                    <p class="text-gray-600 mt-1">Using arts to heal and support communities in crisis</p>
+                  </div>
+                </div>
+                <svg class="accordion-icon w-6 h-6 text-gray-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </button>
+            
+            <div id="crisis-content" class="accordion-content hidden">
+              <div class="px-8 pb-8">
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                  <div class="space-y-6">
+                    <div class="prose prose-lg text-gray-600">
+                      <p>
+                        Our Creative Crisis Response program uses the creative arts to heal, soothe, and inspire individuals affected by crises. Our Creative Hope for Refugees program was launched in 2018 at Skaramagas Camp in Athens, Greece, in partnership with El Sistema Greece.
+                      </p>
+                    </div>
+                    
+                    <!-- Research foundation -->
+                    <div class="bg-melody/5 border border-melody/20 rounded-2xl p-6">
+                      <h4 class="font-semibold text-melody mb-2">Research Foundation</h4>
+                      <p class="text-sm text-gray-600">
+                        Grounded in International Rescue Committee research showing that refugees, particularly youth, benefit from creative arts access during readjustment and recovery. Creative arts programming counters the effects of prolonged stress and suffering.
+                      </p>
+                    </div>
+                    
+                    <a href="/contact" class="inline-flex items-center px-6 py-3 bg-melody text-white rounded-2xl font-medium hover:bg-melodydark transition-colors duration-300">
+                      Learn More
+                      <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
+                  </div>
+                  
+                  <div class="relative">
+                    <img class="w-full rounded-2xl shadow-lg" src="https://app.singforhope.org/storage/v1/object/public/content/crisis-hero%20(1).png" alt="Youth participants in Creative Hope for Refugees programming" />
+                    <div class="mt-4 text-sm text-gray-500">
+                      Youth participants work collaboratively in Sing for Hope Creative Hope for Refugees programming.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">See Our Impact in Action</h2>
+          <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+            Watch how our programs transform lives and communities through the healing power of the arts.
+          </p>
+        </div>
+        
+        <div class="relative max-w-4xl mx-auto">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+            <video controls class="w-full" id="myVideo" poster="/src/images/video-poster.jpg">
+              <source src="https://sfhmedia.nyc3.digitaloceanspaces.com/CBS%20This%20Morning_%20Sing%20for%20Hope.mp4" type="video/mp4" />
+              Sorry, your browser doesn't support embedded videos.
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recognition Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">Recognized Excellence</h2>
+          <p class="text-xl text-gray-600">Celebrating our commitment to inclusive and impactful programming</p>
+        </div>
+        
+        <div class="bg-white rounded-3xl shadow-lg p-8 lg:p-12">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+              <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-rhythm/10 to-rhythm/5 rounded-full">
+                <svg class="w-5 h-5 text-rhythm mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                </svg>
+                <span class="text-sm font-medium text-rhythm">2024 Recognition</span>
+              </div>
+              
+              <h3 class="text-3xl font-bold text-gray-900">
+                Avetta Diversity Leader
+              </h3>
+              
+              <p class="text-lg text-gray-600 leading-relaxed">
+                Sing for Hope is proud to be named an Avetta 2024 Diversity Leader, recognizing our commitment to fostering inclusive and impactful arts programming across communities.
+              </p>
+              
+              <div class="flex items-center space-x-4 pt-4">
+                <div class="flex items-center space-x-2">
+                  <div class="w-3 h-3 bg-rhythm rounded-full"></div>
+                  <span class="text-sm text-gray-600">Inclusive Programming</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <div class="w-3 h-3 bg-harmony rounded-full"></div>
+                  <span class="text-sm text-gray-600">Community Impact</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative">
+              <div class="absolute inset-0 bg-gradient-to-br from-rhythm/20 to-harmony/20 rounded-3xl transform rotate-3"></div>
+              <img class="relative w-full rounded-3xl shadow-xl" src="https://app.singforhope.org/storage/v1/object/public/uploads/public/uploads/avetta.png?t=2024-11-21T13%3A17%3A34.265Z" alt="Avetta 2024 Diversity Leader Award" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-br from-rhythm via-rhythm to-rhythmdark relative overflow-hidden">
+      <!-- Background pattern -->
+      <div class="absolute inset-0 bg-[url('/src/images/pattern-health.svg')] opacity-10"></div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <div class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8">
+            <svg class="w-5 h-5 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+            <span class="text-white text-sm font-medium">Make a Difference Today</span>
+          </div>
+          
+          <h2 class="text-4xl sm:text-5xl font-bold text-white mb-6">
+            Support Public Health &
+            <span class="block bg-gradient-to-r from-blue-200 to-white bg-clip-text text-transparent">
+              Wellness Through Arts
+            </span>
+          </h2>
+          
+          <p class="text-xl text-blue-100 mb-12 max-w-4xl mx-auto leading-relaxed">
+            Help us continue providing healing arts experiences and creative interventions that promote wellness and connection in communities worldwide. Your support directly impacts lives in healthcare centers, public spaces, and crisis response efforts.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-6 justify-center max-w-lg mx-auto">
+            <button
+              type="button"
+              id="health-cta-donate-button"
+              class="group bg-white text-rhythm px-8 py-4 rounded-2xl font-semibold hover:bg-gray-50 transition-all duration-300 hover:scale-105 shadow-xl"
+            >
+              <span class="flex items-center justify-center">
+                Support Our Mission
+                <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </button>
+            
+            <a
+              href="/contact"
+              class="group bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/20 transition-all duration-300 hover:scale-105"
+            >
+              <span class="flex items-center justify-center">
+                Partner with Us
+                <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const healthHeroDonateButton = document.getElementById('health-hero-donate-button');
+    const healthCtaDonateButton = document.getElementById('health-cta-donate-button');
+    const healthVideoButton = document.getElementById('health-video-button');
+    
+    const handleDonateClick = function(e: Event) {
+      e.preventDefault();
+      
+      try {
+        if (window.Funraise) {
+          window.Funraise.popup();
+        } else {
+          window.location.href = '/donate';
+        }
+      } catch (error) {
+        console.warn('Funraise popup failed, redirecting to fallback', error);
+        window.location.href = '/donate';
+      }
+    };
+    
+    if (healthHeroDonateButton) {
+      healthHeroDonateButton.addEventListener('click', handleDonateClick);
+    }
+    
+    if (healthCtaDonateButton) {
+      healthCtaDonateButton.addEventListener('click', handleDonateClick);
+    }
+    
+    if (healthVideoButton) {
+      healthVideoButton.addEventListener('click', function() {
+        const video = document.getElementById('myVideo') as HTMLVideoElement;
+        if (video) {
+          video.scrollIntoView({ behavior: 'smooth' });
+          setTimeout(() => video.play(), 500);
+        }
+      });
+    }
+    
+    // Modern Accordion Functionality
+    const accordionTriggers = document.querySelectorAll('.accordion-trigger');
+    
+    accordionTriggers.forEach(trigger => {
+      trigger.addEventListener('click', function(this: HTMLElement) {
+        const targetId = this.getAttribute('data-target');
+        const content = document.getElementById(targetId!);
+        const icon = this.querySelector('.accordion-icon') as HTMLElement;
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        
+        // Close all other accordions
+        accordionTriggers.forEach(otherTrigger => {
+          if (otherTrigger !== trigger) {
+            const otherTargetId = (otherTrigger as HTMLElement).getAttribute('data-target');
+            const otherContent = document.getElementById(otherTargetId!);
+            const otherIcon = (otherTrigger as HTMLElement).querySelector('.accordion-icon') as HTMLElement;
+            
+            (otherTrigger as HTMLElement).setAttribute('aria-expanded', 'false');
+            if (otherContent) {
+              otherContent.classList.add('hidden');
+            }
+            if (otherIcon) {
+              otherIcon.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+        
+        // Toggle current accordion
+        if (!isExpanded) {
+          this.setAttribute('aria-expanded', 'true');
+          if (content) {
+            content.classList.remove('hidden');
+            // Smooth scroll to accordion after expansion
+            setTimeout(() => {
+              this.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+          }
+          if (icon) {
+            icon.style.transform = 'rotate(180deg)';
+          }
+        } else {
+          this.setAttribute('aria-expanded', 'false');
+          if (content) {
+            content.classList.add('hidden');
+          }
+          if (icon) {
+            icon.style.transform = 'rotate(0deg)';
+          }
+        }
+      });
+    });
+  });
+</script>

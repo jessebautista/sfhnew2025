@@ -1,0 +1,88 @@
+---
+import { fetchPianos } from '../lib/supabase';
+
+// Fetch a selection of recent pianos to highlight
+const pianos = await fetchPianos(6);
+
+function stripHtml(html: string) {
+  return html.replace(/<[^>]*>/g, '');
+}
+---
+
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-extrabold text-gray-900">Featured Pianos</h2>
+      <p class="mt-4 text-xl text-gray-500">
+        Discover some of our beautiful artist-designed pianos from around the world
+      </p>
+    </div>
+
+    {pianos.length > 0 ? (
+      <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {pianos.map((piano) => (
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-200">
+            <div class="aspect-square overflow-hidden">
+              <img
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
+                src={piano.piano_image}
+                alt={stripHtml(piano.piano_title)}
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex items-center mb-2">
+                {piano.piano_year && (
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-harmony text-white">
+                    {piano.piano_year}
+                  </span>
+                )}
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                <Fragment set:html={piano.piano_title} />
+              </h3>
+              {piano.artist_name && (
+                <p class="text-gray-600 mb-4">
+                  Artist: {piano.artist_name}
+                </p>
+              )}
+              <a
+                href={`/piano/${piano.piano_url}`}
+                class="inline-flex items-center text-melody hover:text-melodydark font-medium transition-colors duration-200"
+              >
+                View Details
+                <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <!-- Fallback if no pianos found -->
+      <div class="text-center py-12">
+        <div class="max-w-md mx-auto">
+          <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+          </svg>
+          <h3 class="mt-2 text-sm font-medium text-gray-900">No pianos to display</h3>
+          <p class="mt-1 text-sm text-gray-500">Check back soon for our latest piano placements.</p>
+        </div>
+      </div>
+    )}
+
+    <!-- Link to full piano gallery -->
+    <div class="text-center mt-12">
+      <a
+        href="/pianos/gallery"
+        class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-harmony hover:bg-harmonydark transition-colors duration-200"
+      >
+        View Full Piano Gallery
+        <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>

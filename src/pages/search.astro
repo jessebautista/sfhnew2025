@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import SearchResults from '../components/SearchResults.tsx';
+---
+
+<Base
+  title="Search Results - Sing for Hope"
+  description="Search through our pianos, news, programs, and more to find what you're looking for."
+>
+  <div class="min-h-screen bg-gray-50">
+    <!-- Hero Section -->
+    <div class="bg-white border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="text-center">
+          <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl">
+            Search Results
+          </h1>
+          <p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+            Find pianos, news, programs, and more across our entire site.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Results -->
+    <SearchResults client:load />
+  </div>
+</Base>

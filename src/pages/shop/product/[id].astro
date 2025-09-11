@@ -1,0 +1,481 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { Heart, Share2, ShoppingCart, Truck, Award, Shield, ArrowLeft } from 'lucide-react';
+
+// Mock product data - in production this would come from API/database
+const { id } = Astro.params;
+
+// Sample product data
+const products = {
+  '1': {
+    id: 1,
+    name: 'Sing for Hope Classic T-Shirt',
+    price: 2500,
+    originalPrice: 3000,
+    description: 'Our signature comfortable cotton t-shirt featuring the iconic Sing for Hope logo. Made from 100% organic cotton with a relaxed fit that\'s perfect for everyday wear.',
+    longDescription: 'This classic t-shirt represents more than just comfortable clothing—it\'s a statement of support for arts programs that transform communities. Crafted from premium 100% organic cotton, this shirt features our signature logo prominently displayed on the front. The relaxed fit ensures comfort throughout your day, whether you\'re attending a concert, volunteering in your community, or simply enjoying life.\n\nEvery purchase directly supports our mission to spread hope through the arts. The shirt is pre-shrunk and features reinforced seams for durability. Available in a range of sizes and colors to suit every supporter of the arts.',
+    images: [
+      '/src/images/singforhope.jpg',
+      '/src/images/singforhope.jpg',
+      '/src/images/singforhope.jpg',
+      '/src/images/singforhope.jpg'
+    ],
+    variants: [
+      { id: 'tshirt-xs-black', size: 'XS', color: 'Black', inStock: true },
+      { id: 'tshirt-s-black', size: 'S', color: 'Black', inStock: true },
+      { id: 'tshirt-m-black', size: 'M', color: 'Black', inStock: true },
+      { id: 'tshirt-l-black', size: 'L', color: 'Black', inStock: true },
+      { id: 'tshirt-xl-black', size: 'XL', color: 'Black', inStock: false },
+      { id: 'tshirt-s-white', size: 'S', color: 'White', inStock: true },
+      { id: 'tshirt-m-white', size: 'M', color: 'White', inStock: true },
+      { id: 'tshirt-l-white', size: 'L', color: 'White', inStock: true },
+    ],
+    colors: ['Black', 'White', 'Gray'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    rating: 4.8,
+    reviewCount: 127,
+    category: 'Apparel',
+    tags: ['cotton', 'organic', 'comfort', 'everyday'],
+    artist: 'Official Design',
+    specs: {
+      'Material': '100% Organic Cotton',
+      'Fit': 'Relaxed',
+      'Care': 'Machine wash cold, tumble dry low',
+      'Origin': 'Made in USA',
+      'Features': 'Pre-shrunk, reinforced seams'
+    },
+    shipping: {
+      standard: 'Free shipping on orders over $50',
+      express: '$9.99 - 2-3 business days',
+      overnight: '$19.99 - 1 business day'
+    }
+  }
+};
+
+const product = products[id as string];
+
+if (!product) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Product not found'
+  });
+}
+
+const formatPrice = (cents: number) => {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+  }).format(cents / 100);
+};
+---
+
+<Base
+  title={`${product.name} - Sing for Hope Shop`}
+  description={product.description}
+>
+  <div class="min-h-screen bg-gray-50">
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b">
+      <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+        <nav class="flex" aria-label="Breadcrumb">
+          <ol class="flex items-center space-x-4">
+            <li>
+              <a href="/" class="text-gray-400 hover:text-gray-500">Home</a>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <svg class="flex-shrink-0 h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                </svg>
+                <a href="/shop" class="ml-4 text-gray-400 hover:text-gray-500">Shop</a>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <svg class="flex-shrink-0 h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                </svg>
+                <a href={`/shop/category/${product.category.toLowerCase()}`} class="ml-4 text-gray-400 hover:text-gray-500">{product.category}</a>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <svg class="flex-shrink-0 h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                </svg>
+                <span class="ml-4 text-gray-900 font-medium">{product.name}</span>
+              </div>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Back Button -->
+    <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+      <button onclick="history.back()" class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors">
+        <ArrowLeft className="w-4 h-4 mr-2" />
+        Back to Products
+      </button>
+    </div>
+
+    <!-- Product Details -->
+    <div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Product Images -->
+        <div class="space-y-4">
+          <div class="aspect-square bg-white rounded-2xl shadow-sm overflow-hidden">
+            <img
+              id="main-image"
+              src={product.images[0]}
+              alt={product.name}
+              class="w-full h-full object-cover"
+            />
+          </div>
+          
+          <!-- Thumbnail Images -->
+          <div class="grid grid-cols-4 gap-4">
+            {product.images.map((image, index) => (
+              <button 
+                class="aspect-square bg-white rounded-lg shadow-sm overflow-hidden border-2 border-transparent hover:border-harmony transition-colors"
+                onclick={`document.getElementById('main-image').src = '${image}'`}
+              >
+                <img
+                  src={image}
+                  alt={`${product.name} view ${index + 1}`}
+                  class="w-full h-full object-cover"
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Product Info -->
+        <div class="space-y-6">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <h1 class="text-3xl font-bold text-gray-900">{product.name}</h1>
+              <button class="p-2 text-gray-400 hover:text-red-500 transition-colors">
+                <Heart className="w-6 h-6" />
+              </button>
+            </div>
+            
+            <div class="flex items-center space-x-4 mb-4">
+              <div class="flex items-center">
+                <div class="flex text-yellow-400">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg key={i} class={`w-4 h-4 ${i < Math.floor(product.rating) ? 'fill-current' : 'fill-none stroke-current'}`} viewBox="0 0 24 24">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                  ))}
+                </div>
+                <span class="ml-2 text-sm text-gray-600">
+                  {product.rating} ({product.reviewCount} reviews)
+                </span>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-4 mb-6">
+              <span class="text-3xl font-bold text-gray-900">
+                {formatPrice(product.price)}
+              </span>
+              {product.originalPrice && product.originalPrice > product.price && (
+                <span class="text-xl text-gray-500 line-through">
+                  {formatPrice(product.originalPrice)}
+                </span>
+              )}
+            </div>
+
+            <p class="text-gray-600 leading-relaxed">
+              {product.description}
+            </p>
+          </div>
+
+          <!-- Product Options -->
+          <div class="space-y-6">
+            <!-- Color Selection -->
+            <div>
+              <h3 class="text-sm font-medium text-gray-900 mb-3">Color</h3>
+              <div class="flex space-x-3">
+                {product.colors.map((color) => (
+                  <button 
+                    class="w-8 h-8 rounded-full border-2 border-gray-300 focus:border-harmony focus:outline-none"
+                    style={`background-color: ${color.toLowerCase()}`}
+                    title={color}
+                  >
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <!-- Size Selection -->
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-sm font-medium text-gray-900">Size</h3>
+                <button class="text-sm text-harmony hover:underline">Size Guide</button>
+              </div>
+              <div class="grid grid-cols-3 gap-2">
+                {product.sizes.map((size) => (
+                  <button class="py-3 px-4 text-sm border border-gray-300 rounded-lg hover:border-harmony hover:text-harmony focus:border-harmony focus:outline-none transition-colors">
+                    {size}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <!-- Quantity -->
+            <div>
+              <h3 class="text-sm font-medium text-gray-900 mb-3">Quantity</h3>
+              <div class="flex items-center space-x-3">
+                <button class="w-10 h-10 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-50">
+                  -
+                </button>
+                <span class="w-12 text-center">1</span>
+                <button class="w-10 h-10 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-50">
+                  +
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="space-y-4">
+            <button class="w-full btn-harmony py-4 text-lg">
+              <ShoppingCart className="w-5 h-5 mr-2" />
+              Add to Cart
+            </button>
+            
+            <div class="flex space-x-4">
+              <button class="flex-1 btn-outline-harmony py-3">
+                Buy Now
+              </button>
+              <button class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                <Share2 className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          <!-- Shipping Info -->
+          <div class="border-t pt-6">
+            <h3 class="text-lg font-medium text-gray-900 mb-4">Shipping & Returns</h3>
+            <div class="space-y-3 text-sm">
+              <div class="flex items-center">
+                <Truck className="w-5 h-5 text-green-600 mr-3" />
+                <span>{product.shipping.standard}</span>
+              </div>
+              <div class="flex items-center">
+                <Award className="w-5 h-5 text-harmony mr-3" />
+                <span>30-day hassle-free returns</span>
+              </div>
+              <div class="flex items-center">
+                <Shield className="w-5 h-5 text-blue-600 mr-3" />
+                <span>Secure payment processing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Tabs -->
+      <div class="mt-16">
+        <div class="border-b border-gray-200">
+          <nav class="-mb-px flex space-x-8">
+            <button class="tab-btn active py-4 px-1 border-b-2 border-harmony font-medium text-sm text-harmony" data-tab="description">
+              Description
+            </button>
+            <button class="tab-btn py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="specifications">
+              Specifications
+            </button>
+            <button class="tab-btn py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="shipping">
+              Shipping
+            </button>
+            <button class="tab-btn py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="reviews">
+              Reviews ({product.reviewCount})
+            </button>
+          </nav>
+        </div>
+
+        <div class="py-8">
+          <!-- Description Tab -->
+          <div id="description" class="tab-content">
+            <div class="prose max-w-none">
+              <h3 class="text-lg font-medium text-gray-900 mb-4">About This Product</h3>
+              <div class="text-gray-600 leading-relaxed whitespace-pre-line">
+                {product.longDescription}
+              </div>
+              
+              <div class="mt-8 p-6 bg-harmony/5 rounded-xl">
+                <h4 class="font-medium text-gray-900 mb-2">Impact Statement</h4>
+                <p class="text-gray-600">
+                  Your purchase of this item directly supports Sing for Hope's arts programs in communities, schools, and healthcare settings. 75% of proceeds fund program operations, artist stipends, and community partnerships.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Specifications Tab -->
+          <div id="specifications" class="tab-content hidden">
+            <h3 class="text-lg font-medium text-gray-900 mb-6">Product Specifications</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {Object.entries(product.specs).map(([key, value]) => (
+                <div class="flex justify-between py-2 border-b border-gray-200">
+                  <span class="font-medium text-gray-900">{key}:</span>
+                  <span class="text-gray-600">{value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Shipping Tab -->
+          <div id="shipping" class="tab-content hidden">
+            <h3 class="text-lg font-medium text-gray-900 mb-6">Shipping Information</h3>
+            <div class="space-y-4">
+              <div class="p-4 border rounded-lg">
+                <h4 class="font-medium text-gray-900 mb-2">Standard Shipping</h4>
+                <p class="text-gray-600">{product.shipping.standard}</p>
+                <p class="text-sm text-gray-500 mt-1">5-7 business days</p>
+              </div>
+              <div class="p-4 border rounded-lg">
+                <h4 class="font-medium text-gray-900 mb-2">Express Shipping</h4>
+                <p class="text-gray-600">{product.shipping.express}</p>
+              </div>
+              <div class="p-4 border rounded-lg">
+                <h4 class="font-medium text-gray-900 mb-2">Overnight Shipping</h4>
+                <p class="text-gray-600">{product.shipping.overnight}</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reviews Tab -->
+          <div id="reviews" class="tab-content hidden">
+            <div class="space-y-6">
+              <div class="flex items-center justify-between">
+                <h3 class="text-lg font-medium text-gray-900">Customer Reviews</h3>
+                <button class="btn-outline-harmony">Write a Review</button>
+              </div>
+              
+              <!-- Review Summary -->
+              <div class="bg-gray-50 rounded-xl p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div class="text-center">
+                    <div class="text-4xl font-bold text-gray-900 mb-2">{product.rating}</div>
+                    <div class="flex justify-center mb-2">
+                      <div class="flex text-yellow-400">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <svg key={i} class={`w-5 h-5 ${i < Math.floor(product.rating) ? 'fill-current' : 'fill-none stroke-current'}`} viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                          </svg>
+                        ))}
+                      </div>
+                    </div>
+                    <div class="text-sm text-gray-600">{product.reviewCount} reviews</div>
+                  </div>
+                  <div class="space-y-2">
+                    {[5, 4, 3, 2, 1].map((stars) => (
+                      <div class="flex items-center space-x-2">
+                        <span class="text-sm text-gray-600 w-8">{stars}★</span>
+                        <div class="flex-1 bg-gray-200 rounded-full h-2">
+                          <div class="bg-yellow-400 h-2 rounded-full" style={`width: ${stars === 5 ? '78%' : stars === 4 ? '15%' : '4%'}`}></div>
+                        </div>
+                        <span class="text-sm text-gray-500 w-8">{stars === 5 ? '78%' : stars === 4 ? '15%' : '4%'}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sample Reviews -->
+              <div class="space-y-6">
+                <div class="border-b pb-6">
+                  <div class="flex items-center space-x-4 mb-4">
+                    <div class="w-10 h-10 bg-harmony rounded-full flex items-center justify-center">
+                      <span class="text-white font-medium">JS</span>
+                    </div>
+                    <div>
+                      <h4 class="font-medium text-gray-900">Jessica S.</h4>
+                      <div class="flex items-center space-x-2">
+                        <div class="flex text-yellow-400">
+                          {Array.from({ length: 5 }).map((_, i) => (
+                            <svg key={i} class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                          ))}
+                        </div>
+                        <span class="text-sm text-gray-500">2 weeks ago</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-gray-600">
+                    Love this t-shirt! The quality is excellent and it feels great to support such a meaningful cause. The fit is perfect and the logo design is beautiful.
+                  </p>
+                </div>
+
+                <div class="border-b pb-6">
+                  <div class="flex items-center space-x-4 mb-4">
+                    <div class="w-10 h-10 bg-melody rounded-full flex items-center justify-center">
+                      <span class="text-white font-medium">MR</span>
+                    </div>
+                    <div>
+                      <h4 class="font-medium text-gray-900">Mike R.</h4>
+                      <div class="flex items-center space-x-2">
+                        <div class="flex text-yellow-400">
+                          {Array.from({ length: 4 }).map((_, i) => (
+                            <svg key={i} class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </svg>
+                          ))}
+                        </div>
+                        <span class="text-sm text-gray-500">1 month ago</span>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-gray-600">
+                    Great shirt, very comfortable and well-made. Ordered a medium and it fits true to size. Shipping was fast too!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<script>
+  // Tab functionality
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const targetTab = button.getAttribute('data-tab');
+      
+      // Remove active states
+      tabButtons.forEach(btn => {
+        btn.classList.remove('active', 'border-harmony', 'text-harmony');
+        btn.classList.add('border-transparent', 'text-gray-500');
+      });
+      
+      tabContents.forEach(content => {
+        content.classList.add('hidden');
+      });
+      
+      // Add active state to clicked button
+      button.classList.add('active', 'border-harmony', 'text-harmony');
+      button.classList.remove('border-transparent', 'text-gray-500');
+      
+      // Show target content
+      const targetContent = document.getElementById(targetTab);
+      if (targetContent) {
+        targetContent.classList.remove('hidden');
+      }
+    });
+  });
+</script>
+
+<style>
+  .tab-btn.active {
+    @apply border-harmony text-harmony;
+  }
+</style>

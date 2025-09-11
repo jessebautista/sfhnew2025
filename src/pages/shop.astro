@@ -1,0 +1,333 @@
+---
+import Base from '../layouts/Base.astro';
+import { ShoppingBag, Heart, Award, Truck } from 'lucide-react';
+---
+
+<Base
+  title="Shop - Sing for Hope"
+  description="Support Sing for Hope by purchasing artist-designed merchandise. Every purchase helps fund our arts programs in communities, schools, and healthcare settings."
+>
+  <div class="min-h-screen bg-white">
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-br from-melody/10 to-harmony/10 overflow-hidden">
+      <div class="absolute inset-0 bg-[url('/piano-pattern.svg')] opacity-5"></div>
+      <div class="relative max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+              Shop for a 
+              <span class="text-harmony">Cause</span>
+            </h1>
+            <p class="mt-6 text-xl text-gray-600 leading-relaxed">
+              Beautiful artist-designed merchandise that supports our mission. Every purchase helps fund arts programming in communities, schools, and healthcare settings worldwide.
+            </p>
+            
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a href="/shop/products" class="btn-harmony group">
+                <ShoppingBag className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+                Shop All Products
+              </a>
+              <a href="#featured" class="btn-outline-harmony">
+                View Featured
+              </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="mt-12 grid grid-cols-3 gap-8 text-center lg:text-left">
+              <div>
+                <div class="text-2xl font-bold text-harmony">50K+</div>
+                <div class="text-sm text-gray-600">Lives Touched</div>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-melody">100+</div>
+                <div class="text-sm text-gray-600">Products</div>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-rhythm">15</div>
+                <div class="text-sm text-gray-600">Countries</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="aspect-square rounded-2xl overflow-hidden shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
+              <img
+                src="/src/images/singforhope.jpg"
+                alt="Sing for Hope merchandise"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-lg p-4 flex items-center space-x-3">
+              <Heart className="w-6 h-6 text-red-500" />
+              <span class="text-sm font-medium">Made with Love</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Banner -->
+    <section class="bg-gray-50 py-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div class="flex items-center justify-center md:justify-start space-x-3">
+            <Truck className="w-5 h-5 text-harmony" />
+            <span class="text-sm font-medium text-gray-700">Free Shipping Over $50</span>
+          </div>
+          <div class="flex items-center justify-center md:justify-start space-x-3">
+            <Award className="w-5 h-5 text-melody" />
+            <span class="text-sm font-medium text-gray-700">Artist Designed</span>
+          </div>
+          <div class="flex items-center justify-center md:justify-start space-x-3">
+            <Heart className="w-5 h-5 text-rhythm" />
+            <span class="text-sm font-medium text-gray-700">Supports Arts Programs</span>
+          </div>
+          <div class="flex items-center justify-center md:justify-start space-x-3">
+            <ShoppingBag className="w-5 h-5 text-green-600" />
+            <span class="text-sm font-medium text-gray-700">Secure Checkout</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="featured" class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Featured Products</h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Handpicked items that celebrate the power of arts to transform communities
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <!-- Featured Product 1 -->
+          <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border">
+            <div class="aspect-square overflow-hidden bg-gray-100">
+              <img
+                src="/src/images/singforhope.jpg"
+                alt="Signature T-Shirt"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="font-semibold text-gray-900 mb-2">Signature T-Shirt</h3>
+              <p class="text-sm text-gray-600 mb-3">Comfortable cotton featuring our logo</p>
+              <div class="flex items-center justify-between">
+                <span class="text-lg font-bold text-harmony">$25.00</span>
+                <button class="btn-sm-harmony">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured Product 2 -->
+          <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border">
+            <div class="aspect-square overflow-hidden bg-gray-100">
+              <img
+                src="/src/images/pianos-stock-1.png"
+                alt="Piano Art Tote"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="font-semibold text-gray-900 mb-2">Piano Art Tote</h3>
+              <p class="text-sm text-gray-600 mb-3">Canvas bag with beautiful piano artwork</p>
+              <div class="flex items-center justify-between">
+                <span class="text-lg font-bold text-harmony">$18.00</span>
+                <button class="btn-sm-harmony">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured Product 3 -->
+          <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border">
+            <div class="aspect-square overflow-hidden bg-gray-100">
+              <img
+                src="/logo.svg"
+                alt="Harmony Mug"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="font-semibold text-gray-900 mb-2">Harmony Mug</h3>
+              <p class="text-sm text-gray-600 mb-3">Ceramic mug with inspiring quotes</p>
+              <div class="flex items-center justify-between">
+                <span class="text-lg font-bold text-harmony">$15.00</span>
+                <button class="btn-sm-harmony">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Featured Product 4 -->
+          <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border">
+            <div class="aspect-square overflow-hidden bg-gray-100">
+              <img
+                src="/pianos-icon.png"
+                alt="Music Pin Set"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="font-semibold text-gray-900 mb-2">Music Pin Set</h3>
+              <p class="text-sm text-gray-600 mb-3">Enamel pins with musical notes</p>
+              <div class="flex items-center justify-between">
+                <span class="text-lg font-bold text-harmony">$12.00</span>
+                <button class="btn-sm-harmony">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <a href="/shop/products" class="btn-outline-harmony">
+            View All Products
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">Shop by Category</h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Discover our carefully curated collections
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Apparel Category -->
+          <a href="/shop/category/apparel" class="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <div class="aspect-[4/3] overflow-hidden bg-gradient-to-br from-harmony/20 to-melody/20">
+              <img
+                src="/src/images/singforhope.jpg"
+                alt="Apparel Collection"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
+            </div>
+            <div class="absolute inset-0 flex items-end">
+              <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Apparel</h3>
+                <p class="text-white/90">T-shirts, hoodies, and more</p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Home & Office Category -->
+          <a href="/shop/category/home-office" class="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <div class="aspect-[4/3] overflow-hidden bg-gradient-to-br from-melody/20 to-rhythm/20">
+              <img
+                src="/logo.svg"
+                alt="Home & Office Collection"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
+            </div>
+            <div class="absolute inset-0 flex items-end">
+              <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Home & Office</h3>
+                <p class="text-white/90">Mugs, notebooks, and decor</p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Art & Collectibles Category -->
+          <a href="/shop/category/art-collectibles" class="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <div class="aspect-[4/3] overflow-hidden bg-gradient-to-br from-rhythm/20 to-harmony/20">
+              <img
+                src="/src/images/pianos-stock-1.png"
+                alt="Art & Collectibles Collection"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
+            </div>
+            <div class="absolute inset-0 flex items-end">
+              <div class="p-6 text-white">
+                <h3 class="text-2xl font-bold mb-2">Art & Collectibles</h3>
+                <p class="text-white/90">Prints, pins, and unique items</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-900 mb-6">Your Purchase Makes a Difference</h2>
+            <p class="text-lg text-gray-600 mb-8">
+              Every item you buy directly supports our arts programs in communities, schools, and healthcare settings. Together, we're spreading hope through the transformative power of the arts.
+            </p>
+            
+            <div class="grid grid-cols-2 gap-8 mb-8">
+              <div class="text-center">
+                <div class="text-3xl font-bold text-harmony mb-2">75%</div>
+                <div class="text-sm text-gray-600">of proceeds fund programs</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold text-melody mb-2">500+</div>
+                <div class="text-sm text-gray-600">community partnerships</div>
+              </div>
+            </div>
+
+            <a href="/about" class="btn-outline-harmony">
+              Learn About Our Impact
+            </a>
+          </div>
+
+          <div class="relative">
+            <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
+              <img
+                src="/src/images/pianos-stock-1.png"
+                alt="Community arts program"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="absolute -bottom-4 -right-4 bg-melody text-white rounded-xl p-4 shadow-lg">
+              <div class="text-lg font-bold">50,000+</div>
+              <div class="text-sm opacity-90">Lives touched annually</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-harmony to-melody">
+      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold text-white mb-4">Ready to Shop for Hope?</h2>
+        <p class="text-xl text-white/90 mb-8">
+          Join thousands of supporters who are making a difference through their purchases
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="/shop/products" class="btn-white">
+            <ShoppingBag className="w-5 h-5 mr-2" />
+            Start Shopping
+          </a>
+          <a href="/donate" class="btn-outline-white">
+            Make a Donation
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .btn-sm-harmony {
+    @apply px-3 py-1.5 bg-harmony text-white text-sm font-medium rounded-lg hover:bg-harmonydark transition-colors duration-200;
+  }
+  
+  .btn-white {
+    @apply px-6 py-3 bg-white text-harmony font-semibold rounded-lg hover:bg-gray-50 transition-colors duration-200 inline-flex items-center;
+  }
+  
+  .btn-outline-white {
+    @apply px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-harmony transition-colors duration-200 inline-flex items-center;
+  }
+</style>

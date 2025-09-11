@@ -1,0 +1,503 @@
+---
+import Base from '../layouts/Base.astro';
+const navItems = [
+	{ path: '#handaharmony', label: 'HandaHarmony' },
+	{ path: '#classes', label: 'Schools Programs' },
+	{ path: '#youth-chorus', label: 'Youth Chorus' },
+	{ path: '#productions', label: 'SFH Productions' },
+	{ path: '#careers', label: 'Careers in the Arts' },
+	{ path: '#artivism', label: 'Artivism' },
+	{ path: '#curriculum', label: 'Curriculum' },
+	{ path: '#clubs', label: 'Clubs' },
+];
+---
+
+<Base
+  title="Education Programs - Sing for Hope"
+  description="Comprehensive arts education programs serving students from pre-K through high school with innovative curriculum, performances, and community engagement."
+>
+  <div class="bg-white">
+    <!-- Skip Link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:p-4 focus:bg-white focus:text-black">
+      Skip to main content
+    </a>
+    
+    <!-- Modern Hero Section -->
+    <main id="main-content" class="relative overflow-hidden">
+      <!-- Dynamic gradient background -->
+      <div class="absolute inset-0 bg-gradient-to-br from-melody via-melody/95 to-melodydark"></div>
+      <div class="absolute inset-0 bg-[url('/src/images/music-notes-pattern.svg')] opacity-10"></div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
+        <div class="text-center">
+          <!-- Floating badges -->
+          <div class="flex flex-wrap justify-center gap-3 mb-8">
+            <div class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+              <svg class="w-4 h-4 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+              </svg>
+              <span class="text-white text-sm font-medium">Pre-K to High School</span>
+            </div>
+            <div class="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+              <svg class="w-4 h-4 text-white mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+              <span class="text-white text-sm font-medium">Global Community</span>
+            </div>
+          </div>
+          
+          <!-- Main heading with modern typography -->
+          <div class="space-y-6">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight">
+              Arts
+              <span class="block bg-gradient-to-r from-pink-200 to-white bg-clip-text text-transparent">
+                Education
+              </span>
+              <span class="block text-3xl sm:text-4xl lg:text-5xl font-normal">
+                That Transforms Lives
+              </span>
+            </h1>
+            
+            <p class="max-w-3xl mx-auto text-xl text-pink-100 leading-relaxed">
+              Empowering youth and communities through transformative arts education, Global Goals curriculum, and creative service learning that cultivates positive change worldwide.
+            </p>
+          </div>
+          
+          <!-- Interactive stats -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mt-12">
+            <div class="group bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
+              <div class="text-3xl font-bold text-white mb-1 group-hover:scale-110 transition-transform">50,000+</div>
+              <div class="text-pink-100 text-sm">Students Served</div>
+            </div>
+            <div class="group bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
+              <div class="text-3xl font-bold text-white mb-1 group-hover:scale-110 transition-transform">200+</div>
+              <div class="text-pink-100 text-sm">Partner Schools</div>
+            </div>
+            <div class="group bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
+              <div class="text-3xl font-bold text-white mb-1 group-hover:scale-110 transition-transform">15+</div>
+              <div class="text-pink-100 text-sm">Years of Impact</div>
+            </div>
+          </div>
+          
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-6 justify-center mt-12 max-w-lg mx-auto">
+            <button
+              type="button"
+              id="education-hero-donate-button"
+              class="group bg-white text-melody px-8 py-4 rounded-2xl font-semibold hover:bg-gray-50 transition-all duration-300 hover:scale-105 shadow-xl"
+            >
+              <span class="flex items-center justify-center">
+                Support Students
+                <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </button>
+            
+            <button
+              type="button"
+              id="education-video-button"
+              class="group bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/20 transition-all duration-300 hover:scale-105"
+            >
+              <span class="flex items-center justify-center">
+                <svg class="mr-2 w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H15M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Watch Our Story
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Modern Program Navigation -->
+    <section class="py-16 bg-gradient-to-b from-gray-50 to-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">Explore Our Programs</h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            From UN partnerships to local communities, discover how we're transforming education through the arts.
+          </p>
+        </div>
+        
+        <!-- Program Navigation Cards -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+          {
+            navItems.map((item, index) => {
+              const colors = ['from-melody to-melodydark', 'from-rhythm to-rhythmdark', 'from-harmony to-harmonydark', 'from-sonata to-sonatadark'];
+              const colorClass = colors[index % colors.length];
+              return (
+                <button
+                  class={`group program-nav-btn bg-gradient-to-br ${colorClass} text-white p-6 rounded-2xl hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-left`}
+                  data-target={item.path.replace('#', '')}
+                >
+                  <div class="text-sm font-medium opacity-90 mb-2">Program {index + 1}</div>
+                  <div class="font-semibold text-sm leading-tight">{item.label}</div>
+                </button>
+              );
+            })
+          }
+        </div>
+        
+        <!-- Key Features Overview -->
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="text-center group">
+            <div class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
+              <div class="w-16 h-16 bg-gradient-to-br from-melody to-melodydark rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">Global Goals Curriculum</h3>
+              <p class="text-gray-600">
+                Artistic expression aligned with UN Global Goals, promoting peace and prosperity through creative learning.
+              </p>
+            </div>
+          </div>
+          
+          <div class="text-center group">
+            <div class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
+              <div class="w-16 h-16 bg-gradient-to-br from-rhythm to-rhythmdark rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">Dynamic Arts Education</h3>
+              <p class="text-gray-600">
+                Comprehensive classes and workshops that engage students while supporting educators in arts integration.
+              </p>
+            </div>
+          </div>
+          
+          <div class="text-center group">
+            <div class="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:-translate-y-2">
+              <div class="w-16 h-16 bg-gradient-to-br from-harmony to-harmonydark rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">Global Partnerships</h3>
+              <p class="text-gray-600">
+                Collaborations with NYC DOE, international schools, and Sing for Hope Lab at Amani Public Charter School.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modern Tabbed Program Details -->
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Program Content Display -->
+        <div id="program-content" class="hidden">
+          <!-- Content will be dynamically inserted here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Showcase -->
+    <section class="py-20 bg-gradient-to-br from-gray-900 to-gray-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">Our Story in Motion</h2>
+          <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+            Watch how we're transforming lives through arts education and creative service learning.
+          </p>
+        </div>
+        
+        <div class="relative max-w-4xl mx-auto">
+          <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+            <video controls class="w-full" id="myVideo" poster="/src/images/education-video-poster.jpg">
+              <source src="https://nyc3.digitaloceanspaces.com/sfhmedia/2022/01/262cb2fa-2cae-4251-89b9-a3b87a5a3c19_1615842350156578-1.mp4" type="video/mp4" />
+              Sorry, your browser doesn't support embedded videos.
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Student Impact Stories -->
+    <section class="py-20 bg-gradient-to-br from-melody/5 to-rhythm/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold text-gray-900 mb-4">Student Success Stories</h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Hear from students whose lives have been transformed through our arts education programs.
+          </p>
+        </div>
+        
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="space-y-8">
+            <!-- Main testimonial -->
+            <div class="bg-white rounded-3xl p-8 shadow-xl relative">
+              <div class="absolute -top-4 -left-4 w-8 h-8 bg-melody rounded-full flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <blockquote class="text-xl font-medium text-gray-800 mb-6 leading-relaxed">
+                "Sing for Hope has given me a safe place to go every day where I am free to express myself emotionally, mentally and physically. Without it, I wouldn't be who I am today: a leader in my community with my eyes set on college."
+              </blockquote>
+              <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 bg-gradient-to-br from-melody to-melodydark rounded-full flex items-center justify-center">
+                  <span class="text-white font-bold text-lg">J</span>
+                </div>
+                <div>
+                  <div class="font-semibold text-gray-900">Jhayden</div>
+                  <div class="text-gray-600 text-sm">Student, Age 16</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Additional impact stats -->
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 text-center">
+                <div class="text-2xl font-bold text-melody mb-1">2,000+</div>
+                <div class="text-gray-600 text-sm">Students Reached (Careers Program)</div>
+              </div>
+              <div class="bg-white/70 backdrop-blur-sm rounded-2xl p-6 text-center">
+                <div class="text-2xl font-bold text-rhythm mb-1">Global</div>
+                <div class="text-gray-600 text-sm">International Expansion</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Partnership showcase -->
+          <div class="space-y-8">
+            <div class="bg-white rounded-3xl p-8 shadow-xl">
+              <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Official NYC DOE Partner</h3>
+                <p class="text-gray-600">
+                  Proudly serving as an approved vendor for the New York City Department of Education.
+                </p>
+              </div>
+              <div class="flex items-center justify-center">
+                <img src="https://sfhmedia.nyc3.digitaloceanspaces.com/2022/03/NYC_DOE_Logo-600x372.png" class="h-20 object-contain" alt="NYC Department of Education Logo" />
+              </div>
+            </div>
+            
+            <div class="bg-gradient-to-br from-harmony/10 to-rhythm/10 rounded-3xl p-8">
+              <h4 class="text-xl font-bold text-gray-900 mb-4">Key Partnerships</h4>
+              <div class="space-y-3">
+                <div class="flex items-center space-x-3">
+                  <div class="w-2 h-2 bg-harmony rounded-full"></div>
+                  <span class="text-gray-700 text-sm">Amani Public Charter School</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-2 h-2 bg-melody rounded-full"></div>
+                  <span class="text-gray-700 text-sm">United Nations Partnerships</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-2 h-2 bg-rhythm rounded-full"></div>
+                  <span class="text-gray-700 text-sm">International Schools Network</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                  <div class="w-2 h-2 bg-sonata rounded-full"></div>
+                  <span class="text-gray-700 text-sm">Paul Foundation Grant Recipients</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-melody">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl font-extrabold text-white mb-4">
+          Support Arts Education
+        </h2>
+        <p class="text-xl text-pink-100 mb-8 max-w-3xl mx-auto">
+          Help us continue providing high-quality arts education to students across all communities. Your support makes a direct impact on young lives.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            type="button"
+            id="education-donate-button"
+            class="bg-white text-melody px-8 py-4 rounded-lg font-medium hover:bg-gray-50 transition-colors duration-200"
+          >
+            Support Our Students
+          </button>
+          <a
+            href="/contact"
+            class="bg-white border-2 border-white text-melody px-8 py-4 rounded-lg font-medium hover:bg-gray-50 transition-colors duration-200"
+          >
+            Partner with Us
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  </div>
+</Base>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const educationDonateButton = document.getElementById('education-donate-button');
+    const educationHeroDonateButton = document.getElementById('education-hero-donate-button');
+    const educationVideoButton = document.getElementById('education-video-button');
+    
+    const handleDonateClick = function(e: Event) {
+      e.preventDefault();
+      
+      try {
+        if (window.Funraise) {
+          window.Funraise.popup();
+        } else {
+          window.location.href = '/donate';
+        }
+      } catch (error) {
+        console.warn('Funraise popup failed, redirecting to fallback', error);
+        window.location.href = '/donate';
+      }
+    };
+    
+    if (educationDonateButton) {
+      educationDonateButton.addEventListener('click', handleDonateClick);
+    }
+    
+    if (educationHeroDonateButton) {
+      educationHeroDonateButton.addEventListener('click', handleDonateClick);
+    }
+    
+    if (educationVideoButton) {
+      educationVideoButton.addEventListener('click', function() {
+        const video = document.getElementById('myVideo') as HTMLVideoElement;
+        if (video) {
+          video.play();
+        }
+      });
+    }
+    
+    // Program data for dynamic content
+    const programData = {
+      'handaharmony': {
+        title: 'HandaHarmony at The United Nations',
+        description: 'Launched in 2020, the HandaHarmony Sing for Hope Global Youth Initiative leverages youth creativity to drive the Global Goals by 2030, in alignment with The United Nations Decade of Action.',
+        image: 'https://app.singforhope.org/storage/v1/object/public/content/handaharmony-hero.jpg',
+        caption: 'Official commemoration of the International Day for the Elimination of Violence against Women',
+        details: 'This program is made possible by a transformational 10-year grant to Sing for Hope by The International Foundation for Arts and Culture (Dr. Haruhisa Handa, Sing for Hope Global Patron). HandaHarmony\'s flagship annual event is The United Nations High-Level Political Forum.',
+        color: 'melody'
+      },
+      'classes': {
+        title: 'In-School & After-School Classes',
+        description: 'Sing for Hope\'s classes are designed to inspire, educate, and transform students, teachers, and communities through our dynamic creative-service-learning approach.',
+        image: 'https://app.singforhope.org/storage/v1/object/public/content/classes-hero.png',
+        caption: 'Sing for Hope Lab students at Amani Public Charter School participate in our Global Goals arts curriculum.',
+        details: 'Classes are offered in a variety of disciplines, levels, and languages, reflecting our partner communities\' culture and needs. Our approach integrates arts education with community service and global awareness.',
+        color: 'rhythm'
+      },
+      'youth-chorus': {
+        title: 'Sing for Hope Youth Chorus',
+        description: 'Our musical ensemble provides creative service learning through rehearsal and performance for children and youth ages 8-18 via an innovative multi-age model.',
+        image: 'https://app.singforhope.org/storage/v1/object/public/content/youth-chorus%20(1).png',
+        caption: 'Youth Chorus members performing at a community event',
+        details: 'At once global and hyperlocal, The Sing for Hope Youth Chorus centers a core group of young singers from across the New York Metropolitan area. Performing subset groups include Girls\' Chorus, Gospel Choir, and more.',
+        color: 'harmony'
+      },
+      'productions': {
+        title: 'Sing for Hope Productions',
+        description: 'A host of activations and productions including innovative operas, cabarets, and musicals that address contemporary social issues.',
+        image: 'https://sfhmedia.nyc3.digitaloceanspaces.com/Sm6VAaWJ-scene%201.png',
+        caption: 'Scene from a Sing for Hope Productions performance',
+        details: 'Productions include Pauline García Viardot\'s 1867 "eco-feminist opera" The Last Sorcerer, Cabaret Weimar: The Wanderer, our CDC Foundation-funded vaccine confidence musical Don\'t Throw Away Your Shot!, and more.',
+        color: 'sonata'
+      },
+      'careers': {
+        title: 'Careers in the Arts',
+        description: 'Launched during the pandemic, our series brings students directly into conversation with arts leaders, expanding their understanding of creative career paths.',
+        image: 'https://app.singforhope.org/storage/v1/object/public/content/careers-hero.png',
+        caption: 'Students participating in a virtual Careers in the Arts session',
+        details: 'The program has reached over 2,000 students and employed artists across music, theater, television production, visual art, stage management, and lighting design. In FY23, expanded internationally to serve students at Shanti Bhavan in India.',
+        color: 'melody'
+      },
+      'artivism': {
+        title: 'Artivism: Power of Art for Social Transformation',
+        description: 'An interdisciplinary collaboration fostering dialogue and encouraging positive social change through arts between universities and Sing for Hope.',
+        image: 'https://sfhmedia.nyc3.digitaloceanspaces.com/sfhawards.png',
+        caption: 'Artivism program participants and recognition awards',
+        details: 'With weekly multi-modal events offered free of charge and open to all, Artivism presents diverse artists, activists, academics, and creative practitioners from around the world in conversations, workshops, and performances.',
+        color: 'rhythm'
+      },
+      'curriculum': {
+        title: 'Global Goals Arts Curriculum',
+        description: 'Our comprehensive curriculum uses artistic expression to raise awareness and encourage action on the UN\'s Global Goals for sustainable development.',
+        image: 'https://app.singforhope.org/storage/v1/object/public/content/classes-hero.png',
+        caption: 'Students working with Global Goals curriculum materials',
+        details: 'This curriculum promotes a global vision for peace and prosperity through creative learning and artistic expression, integrated across all our educational programming.',
+        color: 'harmony'
+      },
+      'clubs': {
+        title: 'Sing for Hope School Clubs',
+        description: 'Student-led clubs in partner schools that promote grassroots innovation and peer-to-peer arts education and activism.',
+        image: 'https://app.singforhope.org/storage/v1/object/public/content/youth-chorus%20(1).png',
+        caption: 'School club members collaborating on a project',
+        details: 'These clubs empower students to take leadership roles in their communities, organizing events, performances, and service projects that align with our mission.',
+        color: 'sonata'
+      }
+    };
+    
+    // Program navigation functionality
+    const programNavButtons = document.querySelectorAll('.program-nav-btn');
+    const programContent = document.getElementById('program-content');
+    
+    programNavButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const target = this.getAttribute('data-target');
+        const data = programData[target as keyof typeof programData];
+        
+        if (data && programContent) {
+          // Remove active state from all buttons
+          programNavButtons.forEach(btn => btn.classList.remove('ring-4', 'ring-white/30'));
+          // Add active state to clicked button
+          this.classList.add('ring-4', 'ring-white/30');
+          
+          // Show content
+          programContent.classList.remove('hidden');
+          programContent.innerHTML = `
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+              <div class="space-y-6">
+                <div class="inline-flex items-center px-4 py-2 bg-${data.color}/10 rounded-full border border-${data.color}/20">
+                  <span class="text-${data.color} text-sm font-medium">Featured Program</span>
+                </div>
+                <h2 class="text-4xl font-bold text-gray-900">${data.title}</h2>
+                <p class="text-xl text-gray-600 leading-relaxed">${data.description}</p>
+                <div class="bg-gray-50 rounded-2xl p-6">
+                  <p class="text-gray-700">${data.details}</p>
+                </div>
+                <a href="/contact" class="inline-flex items-center px-6 py-3 bg-${data.color} text-white rounded-2xl font-medium hover:scale-105 transition-all duration-300">
+                  Learn More
+                  <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </a>
+              </div>
+              <div class="relative">
+                <div class="absolute inset-0 bg-gradient-to-br from-${data.color}/20 to-${data.color}/5 rounded-3xl transform rotate-3"></div>
+                <img class="relative w-full rounded-3xl shadow-xl" src="${data.image}" alt="${data.title}" />
+                <div class="mt-4 text-sm text-gray-500">${data.caption}</div>
+              </div>
+            </div>
+          `;
+          
+          // Scroll to content
+          programContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .program-nav-btn {
+    transition: all 0.3s ease;
+  }
+  
+  .program-nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+</style>

@@ -1,0 +1,166 @@
+---
+import { t, getLocalizedPath } from '../lib/i18n';
+
+// Accept props from parent (Header)
+const { currentLang, translations } = Astro.props;
+---
+
+<!-- Mobile menu button -->
+<button
+  type="button"
+  id="mobile-menu-button"
+  class="inline-flex items-center justify-center p-2 text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-harmony"
+  aria-expanded="false"
+  aria-label="{t('common.menu', translations) || 'Toggle mobile menu'}"
+>
+  <!-- Hamburger icon -->
+  <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+  <!-- Close icon -->
+  <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+  </svg>
+</button>
+
+<!-- Mobile menu overlay -->
+<div
+  id="mobile-menu-overlay"
+  class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"
+  aria-hidden="true"
+></div>
+
+<!-- Mobile menu panel -->
+<div
+  id="mobile-menu"
+  class="fixed top-0 right-0 h-full w-80 max-w-sm bg-white shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 border-l border-gray-200"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="mobile-menu-title"
+  style="background-color: white !important;"
+>
+  <div class="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
+    <h2 id="mobile-menu-title" class="text-lg font-semibold text-gray-900">{t('common.menu', translations) || 'Menu'}</h2>
+    <button
+      type="button"
+      id="mobile-menu-close"
+      class="p-2 text-gray-400 hover:text-gray-600"
+      aria-label="Close menu"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <nav class="flex-1 px-4 py-6 overflow-y-auto bg-white">
+    <!-- About Section -->
+    <div class="mb-6">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3">{t('nav.about', translations) || 'About'}</h3>
+      <div class="space-y-2">
+        <a href="/about#our-mission" class="block text-gray-700 hover:text-gray-900 text-sm font-medium">Our Mission</a>
+        <a href="/about#our-programming" class="block text-gray-700 hover:text-gray-900 text-sm font-medium">Our Programming</a>
+        <a href="/about#board" class="block text-gray-700 hover:text-gray-900 text-sm font-medium">Board of Directors</a>
+        <a href="/about#leadership" class="block text-gray-700 hover:text-gray-900 text-sm font-medium">Our Leadership</a>
+        <a href="/about#reports" class="block text-gray-700 hover:text-gray-900 text-sm font-medium">Annual Reports</a>
+        <a href="/press" class="block text-gray-700 hover:text-gray-900 text-sm font-medium">Press</a>
+      </div>
+    </div>
+
+    <!-- Programs Section -->
+    <div class="mb-6">
+      <h3 class="text-sm font-semibold text-gray-900 mb-3">{t('nav.programs', translations) || 'Programs'}</h3>
+      <div class="space-y-2">
+        <a href="/pianos" class="block text-gray-700 hover:text-gray-900 text-sm font-medium">Sing for Hope Pianos</a>
+        <a href="/education" class="block text-gray-700 hover:text-gray-900 text-sm font-medium">Education</a>
+        <a href="/health" class="block text-gray-700 hover:text-gray-900 text-sm font-medium">Public Health & Wellness</a>
+        <a href="/diplomacy" class="block text-gray-700 hover:text-gray-900 text-sm font-medium">Arts Diplomacy</a>
+        <a href="/workforce" class="block text-gray-700 hover:text-gray-900 text-sm font-medium">Workforce Development</a>
+        <div class="border-t border-gray-200 my-2"></div>
+        <a href="/concept" class="block text-melody hover:text-melodydark text-sm font-medium">🚀 3D Experience</a>
+      </div>
+    </div>
+
+    <!-- Other Links -->
+    <div class="space-y-4">
+      <a href="/explore" class="block text-gray-900 font-medium">Explore</a>
+      <a href="/news" class="block text-gray-900 font-medium">News</a>
+      <a href="/shop" class="block text-gray-900 font-medium">Shop</a>
+      <a href="/contact" class="block text-gray-600 hover:text-gray-900">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Mobile menu footer -->
+  <div class="border-t border-gray-200 p-4 bg-white">
+    <button
+      type="button"
+      id="mobile-donate-button"
+      class="w-full btn-melody justify-center"
+    >
+      Donate
+    </button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuButton = document.getElementById('mobile-menu-button');
+    const menuOverlay = document.getElementById('mobile-menu-overlay');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuClose = document.getElementById('mobile-menu-close');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const mobileDonateButton = document.getElementById('mobile-donate-button');
+
+    function openMenu() {
+      menuOverlay?.classList.remove('hidden');
+      mobileMenu?.classList.remove('translate-x-full');
+      menuIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      menuButton?.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      mobileMenu?.classList.add('translate-x-full');
+      setTimeout(() => {
+        menuOverlay?.classList.add('hidden');
+      }, 300);
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      menuButton?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    // Event listeners
+    menuButton?.addEventListener('click', openMenu);
+    menuClose?.addEventListener('click', closeMenu);
+    menuOverlay?.addEventListener('click', closeMenu);
+
+    // Mobile donate button
+    mobileDonateButton?.addEventListener('click', function(e) {
+      e.preventDefault();
+      closeMenu();
+      
+      setTimeout(() => {
+        try {
+          if (window.Funraise) {
+            window.Funraise.popup();
+          } else {
+            window.location.href = '/donate';
+          }
+        } catch (error) {
+          console.warn('Funraise popup failed, redirecting to fallback', error);
+          window.location.href = '/donate';
+        }
+      }, 300);
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && !mobileMenu?.classList.contains('translate-x-full')) {
+        closeMenu();
+      }
+    });
+  });
+</script>

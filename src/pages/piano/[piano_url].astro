@@ -1,0 +1,318 @@
+---
+import Base from '../../layouts/Base.astro';
+import { supabase } from '../../lib/supabase';
+
+async function fetchPianoItem(piano_url: string) {
+  const { data: pianoItemData, error } = await supabase
+    .from('pianos')
+    .select('*')
+    .eq('piano_url', piano_url)
+    .single();
+
+  if (error) {
+    console.error(error);
+    return null;
+  }
+
+  if (pianoItemData && pianoItemData.piano_program) {
+    const { data: activationData, error: activationError } = await supabase
+      .from('piano_activations')
+      .select('act_title')
+      .eq('id', pianoItemData.piano_program)
+      .single();
+
+    if (activationError) {
+      console.error('Error fetching activation data:', activationError);
+    } else {
+      pianoItemData.piano_activations = activationData;
+    }
+  }
+
+  return pianoItemData;
+}
+
+// Extracting the URL slug from the route
+const piano_url = Astro.params.piano_url;
+
+const pianoItem = await fetchPianoItem(piano_url || '');
+
+// Return 404 if piano not found
+if (!pianoItem) {
+  return Astro.redirect('/404');
+}
+
+async function fetchPianoItems(piano_program: string) {
+  const { data: pianoItemsData, error } = await supabase
+    .from('pianos')
+    .select('*')
+    .eq('piano_program', piano_program)
+    .order('id', { ascending: true })
+    .limit(10);
+
+  if (error) {
+    console.error(error);
+  }
+  return pianoItemsData || [];
+}
+const pianoItems = await fetchPianoItems(pianoItem.piano_program);
+
+async function fetchPianoSites(piano_site: string) {
+  const { data: pianoSitesData, error } = await supabase
+    .from('piano_sites')
+    .select('*')
+    .eq('id', piano_site);
+
+  if (error) {
+    console.error(error);
+  }
+  return pianoSitesData;
+}
+
+// Fetch piano sites that match the 'piano_site' of the current piano item
+const pianoSites = pianoItem.piano_site ? await fetchPianoSites(pianoItem.piano_site) : [];
+const pianoSite = JSON.stringify(pianoSites);
+---
+
+<Base 
+  title={pianoItem ? `${pianoItem.piano_title} - Sing for Hope Pianos` : 'Piano Not Found'}
+  description={pianoItem ? `${pianoItem.piano_title} by ${pianoItem.artist_name}. ${pianoItem.piano_statement || ''}` : 'Piano not found'}
+>
+  <div class="bg-white min-h-screen">
+    <!-- Hidden data for map -->
+    <div class="hidden" id="pianoSite">
+      {pianoSite}
+    </div>
+
+    <!-- Hero Section -->
+    <div class="relative bg-gradient-to-br from-harmony via-harmony/90 to-harmonydark">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-white">
+          <h1 class="text-4xl md:text-5xl font-bold mb-2">
+            {pianoItem.piano_title}
+          </h1>
+          <div class="flex items-center gap-4 text-lg">
+            <span class="bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full">
+              {pianoItem.piano_year}
+            </span>
+            {pianoItem.piano_activations?.act_title && (
+              <span class="opacity-90">
+                {pianoItem.piano_activations.act_title}
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Left Column - Piano Image and Statement -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <div class="relative">
+              <div class="absolute top-4 left-4 z-10">
+                <span class="bg-melody text-white px-4 py-2 rounded-full font-bold text-sm">
+                  {pianoItem.piano_year}
+                </span>
+              </div>
+              <img
+                src={pianoItem.piano_image}
+                alt={pianoItem.piano_title}
+                class="w-full h-auto object-cover"
+                onerror="this.onerror=null; this.src='/singforhopepianos.jpg';"
+              />
+            </div>
+            {pianoItem.piano_statement && (
+              <div class="p-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Artist Statement</h3>
+                <p class="text-gray-700 leading-relaxed">
+                  {pianoItem.piano_statement}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <!-- Right Column - Info Cards -->
+        <div class="space-y-6">
+          
+          <!-- Public Location Card -->
+          {pianoItem.public_location_name && (
+            <div class="bg-gray-50 rounded-2xl shadow-sm border border-gray-200 p-6">
+              <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                <svg class="w-5 h-5 mr-2 text-harmony" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Public Location
+              </h3>
+              <p class="text-gray-700">{pianoItem.public_location_name}</p>
+              
+              {pianoSites && pianoSites.length > 0 && pianoSites.map((site: any) => (
+                <div key={site.id} class="mt-4">
+                  <h4 class="font-semibold text-gray-900">{site.site_title}</h4>
+                  <p class="text-sm text-gray-600">{site.site_description}</p>
+                  <p class="text-xs text-gray-500 mt-1">{site.site_location}</p>
+                  <div id="map-site" class="mt-3 rounded-lg" style="width: 100%; height: 200px;"></div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <!-- Artist Info Card -->
+          <div class="bg-gray-50 rounded-2xl shadow-sm border border-gray-200 p-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+              <svg class="w-5 h-5 mr-2 text-melody" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              About the Artist
+            </h3>
+            <div class="flex items-start gap-4">
+              <img
+                class="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
+                src={pianoItem.artist_photo || '/singforhope.jpg'}
+                alt={pianoItem.artist_name}
+                onerror="this.onerror=null; this.src='/singforhope.jpg';"
+              />
+              <div class="flex-1">
+                <h4 class="text-xl font-semibold text-gray-900">
+                  {pianoItem.artist_name}
+                </h4>
+                
+                {(pianoItem.artist_website_url || pianoItem.artist_instagram_url) && (
+                  <div class="flex gap-3 mt-2">
+                    {pianoItem.artist_website_url && (
+                      <a
+                        href={pianoItem.artist_website_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-harmony hover:text-harmonydark font-medium text-sm"
+                      >
+                        Website
+                      </a>
+                    )}
+                    {pianoItem.artist_instagram_url && (
+                      <a
+                        href={pianoItem.artist_instagram_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-harmony hover:text-harmonydark font-medium text-sm"
+                      >
+                        Instagram
+                      </a>
+                    )}
+                  </div>
+                )}
+                
+                {pianoItem.piano_artist_bio && (
+                  <p class="mt-3 text-sm text-gray-600 leading-relaxed">
+                    {pianoItem.piano_artist_bio}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <!-- Permanent Home Card -->
+          {pianoItem.permanent_home_name && (
+            <div class="bg-gray-50 rounded-2xl shadow-sm border border-gray-200 p-6">
+              <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                <svg class="w-5 h-5 mr-2 text-rhythm" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                Permanent Home
+              </h3>
+              <p class="text-gray-700">{pianoItem.permanent_home_name}</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <!-- Related Pianos Section -->
+      {pianoItems && pianoItems.length > 1 && (
+        <div class="mt-12">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">
+            More Pianos from this Program
+          </h2>
+          <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            {pianoItems.filter((p: any) => p.id !== pianoItem.id).map((piano: any) => (
+              <a
+                href={`/piano/${piano.piano_url}`}
+                class="group bg-white rounded-lg shadow-sm hover:shadow-lg transition-all duration-200"
+              >
+                <div class="relative overflow-hidden rounded-t-lg h-40 bg-gray-100">
+                  <div class="absolute top-2 left-2 z-10">
+                    <span class="bg-melody text-white px-2 py-1 rounded-full text-xs font-bold">
+                      {piano.piano_year}
+                    </span>
+                  </div>
+                  <img
+                    src={piano.piano_image}
+                    alt={piano.piano_title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                    loading="lazy"
+                    onerror="this.onerror=null; this.src='/singforhopepianos.jpg'; this.style.objectFit='contain';"
+                  />
+                </div>
+                <div class="p-3">
+                  <h4 class="font-semibold text-gray-900 text-sm mb-2 line-clamp-2">
+                    {piano.piano_title}
+                  </h4>
+                  <div class="flex items-center gap-2">
+                    <img
+                      src={piano.artist_photo || '/singforhope.jpg'}
+                      alt={piano.artist_name}
+                      class="w-6 h-6 rounded-full object-cover"
+                    />
+                    <span class="text-xs text-gray-600 truncate">
+                      {piano.artist_name}
+                    </span>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+</Base>
+
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.js"></script>
+<link
+  href="https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css"
+  rel="stylesheet"
+/>
+
+<script is:inline type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    mapboxgl.accessToken = import.meta.env.PUBLIC_MAPBOX_TOKEN;
+
+    // Get piano site data
+    const pianoSiteData = JSON.parse(
+      document.getElementById('pianoSite')?.textContent || '[]'
+    );
+
+    // Access the first item in the array, if it exists
+    const pianoSite = pianoSiteData.length > 0 ? pianoSiteData[0] : null;
+
+    if (pianoSite && pianoSite.lat && pianoSite.lon) {
+      const mapElement = document.getElementById('map-site');
+      if (mapElement) {
+        const map = new mapboxgl.Map({
+          container: 'map-site',
+          style: 'mapbox://styles/mapbox/streets-v12',
+          center: [pianoSite.lon, pianoSite.lat],
+          zoom: 14,
+        });
+
+        map.addControl(new mapboxgl.NavigationControl());
+        new mapboxgl.Marker({ color: '#339933' })
+          .setLngLat([pianoSite.lon, pianoSite.lat])
+          .addTo(map);
+      }
+    }
+  });
+</script>

@@ -1,0 +1,603 @@
+---
+import Base from '../layouts/Base.astro';
+import PianoHighlights from '../components/PianoHighlights.astro';
+import PianoMapFallback from '../components/PianoMapFallback.astro';
+---
+
+<Base
+  title="Sing for Hope Pianos - Sing for Hope"
+  description="Artist-designed pianos placed in public spaces and healthcare facilities worldwide. Learn about our signature program that brings music directly to communities."
+>
+  <div class="bg-white">
+    <!-- Modern Hero Section -->
+    <div class="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-harmony via-harmony/95 to-harmonydark"></div>
+      <div class="absolute inset-0 bg-[url('/src/images/musical-notes-pattern.svg')] opacity-10"></div>
+      
+      <!-- Floating Elements -->
+      <div class="absolute top-20 left-20 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-32 right-16 w-96 h-96 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div class="absolute top-1/2 left-10 w-32 h-32 bg-white/15 rounded-full blur-2xl animate-pulse delay-500"></div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="backdrop-blur-sm bg-white/10 rounded-3xl p-12 border border-white/20 shadow-2xl">
+          <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
+            <span class="block">Sing for Hope</span>
+            <span class="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+              Pianos
+            </span>
+          </h1>
+          <p class="mt-8 text-xl md:text-2xl text-gray-100 max-w-4xl mx-auto leading-relaxed">
+            Artist-designed pianos bringing music, joy, and community connection to public spaces, healthcare facilities, and neighborhoods around the world.
+          </p>
+          
+          <div class="mt-12 flex flex-col sm:flex-row gap-6 justify-center">
+            <a
+              href="#discover-pianos"
+              class="group bg-white text-harmony px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+            >
+              <span class="flex items-center gap-3">
+                <svg class="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+                Find Pianos Near You
+              </span>
+            </a>
+            <button
+              type="button"
+              id="hero-donate-button"
+              class="group bg-white/20 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-white/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+            >
+              <span class="flex items-center gap-3">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+                Support the Program
+              </span>
+            </button>
+          </div>
+          
+          <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="group">
+              <div class="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">700+</div>
+              <div class="text-gray-200 font-medium">Pianos Placed</div>
+            </div>
+            <div class="group">
+              <div class="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">25+</div>
+              <div class="text-gray-200 font-medium">Cities Worldwide</div>
+            </div>
+            <div class="group">
+              <div class="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">14</div>
+              <div class="text-gray-200 font-medium">Years of Impact</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div class="animate-bounce">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Program Overview -->
+    <section class="py-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-white via-gray-50/50 to-white"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div class="order-2 lg:order-1">
+            <div class="backdrop-blur-sm bg-white/60 rounded-3xl p-8 shadow-xl border border-gray-200/50">
+              <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-8">
+                <span class="bg-gradient-to-r from-harmony to-harmonydark bg-clip-text text-transparent">
+                  Music for Everyone,
+                </span>
+                <span class="block text-gray-900">Everywhere</span>
+              </h2>
+              <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+                Since 2010, Sing for Hope Pianos has placed over 700 artist-designed pianos in public spaces across New York City and beyond. Each piano is a work of art, created by talented artists and available for anyone to play.
+              </p>
+              <p class="text-lg text-gray-600 mb-10 leading-relaxed">
+                From parks and plazas to hospitals and healthcare facilities, these pianos serve as catalysts for community connection, creative expression, and moments of unexpected joy in everyday life.
+              </p>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div class="group bg-gradient-to-br from-harmony to-harmonydark text-white p-8 rounded-2xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                  <div class="text-4xl font-bold mb-3 group-hover:scale-110 transition-transform duration-300">700+</div>
+                  <div class="text-lg opacity-90">Pianos Placed</div>
+                  <div class="mt-2 text-sm opacity-75">Bringing joy worldwide</div>
+                </div>
+                <div class="group bg-gradient-to-br from-rhythm to-rhythmdark text-white p-8 rounded-2xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                  <div class="text-4xl font-bold mb-3 group-hover:scale-110 transition-transform duration-300">25+</div>
+                  <div class="text-lg opacity-90">Cities Worldwide</div>
+                  <div class="mt-2 text-sm opacity-75">Global impact</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="order-1 lg:order-2">
+            <div class="relative">
+              <div class="absolute -inset-4 bg-gradient-to-r from-melody to-rhythm rounded-3xl blur opacity-20"></div>
+              <img
+                class="relative rounded-3xl shadow-2xl"
+                src="/src/images/piano-process.png"
+                alt="Artist painting a Sing for Hope Piano"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100"></div>
+      <div class="absolute inset-0 bg-[url('/src/images/process-pattern.svg')] opacity-5"></div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+            <span class="bg-gradient-to-r from-harmony via-harmonydark to-rhythm bg-clip-text text-transparent">
+              How It Works
+            </span>
+          </h2>
+          <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">From artist studios to community spaces</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="group relative">
+            <div class="bg-gradient-to-br from-harmony to-harmonydark rounded-3xl p-8 text-white hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div class="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <span class="text-3xl font-bold text-white">1</span>
+              </div>
+              <h3 class="text-2xl font-semibold mb-4">Artist Creation</h3>
+              <p class="text-lg leading-relaxed opacity-90">
+                Professional and emerging artists design and paint each piano, creating unique works of art that reflect community themes and cultural diversity.
+              </p>
+              
+              <!-- Decorative Arrow -->
+              <div class="hidden md:block absolute -right-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="group relative">
+            <div class="bg-gradient-to-br from-rhythm to-rhythmdark rounded-3xl p-8 text-white hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div class="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <span class="text-3xl font-bold text-white">2</span>
+              </div>
+              <h3 class="text-2xl font-semibold mb-4">Community Placement</h3>
+              <p class="text-lg leading-relaxed opacity-90">
+                Pianos are strategically placed in high-traffic areas including parks, plazas, hospitals, schools, and community centers where they can reach the most people.
+              </p>
+              
+              <!-- Decorative Arrow -->
+              <div class="hidden md:block absolute -right-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="group">
+            <div class="bg-gradient-to-br from-melody to-melodydark rounded-3xl p-8 text-white hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+              <div class="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <span class="text-3xl font-bold text-white">3</span>
+              </div>
+              <h3 class="text-2xl font-semibold mb-4">Public Engagement</h3>
+              <p class="text-lg leading-relaxed opacity-90">
+                Anyone can play the pianos, creating spontaneous concerts, community gatherings, and moments of connection that bring neighborhoods together.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Discover Pianos Map -->
+    <section id="discover-pianos" class="py-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-harmony via-harmony/95 to-harmonydark"></div>
+      <div class="absolute inset-0 bg-[url('/src/images/map-pattern.svg')] opacity-10"></div>
+      
+      <!-- Floating Elements -->
+      <div class="absolute top-20 right-20 w-48 h-48 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-32 left-16 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+            <span class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
+              Find Pianos Near You
+            </span>
+          </h2>
+          <p class="text-xl md:text-2xl text-gray-800 max-w-4xl mx-auto mb-12">
+            Explore our interactive map to discover piano locations worldwide
+          </p>
+          <div class="flex flex-col sm:flex-row gap-6 justify-center">
+            <a
+              href="/discover"
+              class="group bg-gradient-to-r from-gray-900 to-gray-800 text-white px-10 py-5 rounded-2xl font-semibold text-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+            >
+              <span class="flex items-center gap-3">
+                <svg class="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+                Open Full Map Experience
+              </span>
+            </a>
+            <button
+              type="button"
+              class="group bg-white/20 backdrop-blur-sm text-gray-900 border-2 border-white/30 px-10 py-5 rounded-2xl font-semibold text-lg hover:bg-white/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+            >
+              <span class="flex items-center gap-3">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                Find Nearby Pianos
+              </span>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Embedded Map Preview -->
+        <div class="backdrop-blur-sm bg-white/10 rounded-3xl p-2 border border-white/20 shadow-2xl">
+          <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <PianoMapFallback />
+          </div>
+        </div>
+        
+        <!-- Quick Stats -->
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div class="group">
+            <div class="text-3xl font-bold text-gray-900 mb-2 group-hover:scale-110 transition-transform duration-300">NYC</div>
+            <div class="text-gray-700 font-medium">Started Here</div>
+          </div>
+          <div class="group">
+            <div class="text-3xl font-bold text-gray-900 mb-2 group-hover:scale-110 transition-transform duration-300">700+</div>
+            <div class="text-gray-700 font-medium">Locations</div>
+          </div>
+          <div class="group">
+            <div class="text-3xl font-bold text-gray-900 mb-2 group-hover:scale-110 transition-transform duration-300">25+</div>
+            <div class="text-gray-700 font-medium">Cities</div>
+          </div>
+          <div class="group">
+            <div class="text-3xl font-bold text-gray-900 mb-2 group-hover:scale-110 transition-transform duration-300">∞</div>
+            <div class="text-gray-700 font-medium">Connections</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Piano Highlights from Supabase -->
+    <PianoHighlights />
+
+    <!-- FAQ Section with Accordion -->
+    <section class="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+            <span class="bg-gradient-to-r from-harmony via-harmonydark to-rhythm bg-clip-text text-transparent">
+              Frequently Asked Questions
+            </span>
+          </h2>
+          <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
+            Everything you need to know about Sing for Hope Pianos
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+          <div class="space-y-4" id="faq-accordion">
+            <div class="faq-item bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <button class="faq-question w-full px-8 py-6 text-left hover:bg-gray-50 transition-colors duration-200 flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-gray-900">Can anyone play the pianos?</h3>
+                <svg class="faq-icon w-6 h-6 text-harmony transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="faq-answer px-8 pb-6 hidden">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  Yes! All Sing for Hope Pianos are free and available for anyone to play. No permission or reservation is required – simply sit down and make music. The pianos are placed specifically to encourage spontaneous musical moments and community connection.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <button class="faq-question w-full px-8 py-6 text-left hover:bg-gray-50 transition-colors duration-200 flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-gray-900">How long do the pianos stay in their locations?</h3>
+                <svg class="faq-icon w-6 h-6 text-harmony transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="faq-answer px-8 pb-6 hidden">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  Typically, pianos remain in public spaces for 2-3 weeks during our annual Sing for Hope Pianos festival. After this period, they are donated to schools, community centers, healthcare facilities, and other organizations where they can continue to bring music to communities year-round.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <button class="faq-question w-full px-8 py-6 text-left hover:bg-gray-50 transition-colors duration-200 flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-gray-900">How are the artists selected?</h3>
+                <svg class="faq-icon w-6 h-6 text-harmony transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="faq-answer px-8 pb-6 hidden">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  We work with a diverse group of professional and emerging artists, including visual artists, muralists, and community groups. Artists are selected through an application process and partnerships with local arts organizations. We prioritize diversity, artistic excellence, and community representation.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <button class="faq-question w-full px-8 py-6 text-left hover:bg-gray-50 transition-colors duration-200 flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-gray-900">What happens to the pianos after the festival?</h3>
+                <svg class="faq-icon w-6 h-6 text-harmony transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="faq-answer px-8 pb-6 hidden">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  After their time in public spaces, pianos find permanent homes at schools, hospitals, community centers, senior facilities, and other organizations. This extends their impact far beyond the festival, bringing music to communities throughout the year. Recipients are carefully selected based on their commitment to making music accessible.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <button class="faq-question w-full px-8 py-6 text-left hover:bg-gray-50 transition-colors duration-200 flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-gray-900">How can my organization get a piano?</h3>
+                <svg class="faq-icon w-6 h-6 text-harmony transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="faq-answer px-8 pb-6 hidden">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  Organizations interested in receiving a piano can apply through our partnership program. We look for organizations that demonstrate a commitment to community engagement and making music accessible. Applications typically open several months before our annual festival.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <button class="faq-question w-full px-8 py-6 text-left hover:bg-gray-50 transition-colors duration-200 flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-gray-900">Are the pianos weatherproof?</h3>
+                <svg class="faq-icon w-6 h-6 text-harmony transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="faq-answer px-8 pb-6 hidden">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  Yes, our pianos are specially prepared for outdoor placement with weather-resistant treatments and protective coverings when needed. However, in severe weather conditions, pianos may be temporarily covered or relocated to protect both the instruments and public safety.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <button class="faq-question w-full px-8 py-6 text-left hover:bg-gray-50 transition-colors duration-200 flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-gray-900">Can I request a specific location for a piano?</h3>
+                <svg class="faq-icon w-6 h-6 text-harmony transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="faq-answer px-8 pb-6 hidden">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  While we can't guarantee specific locations, we welcome suggestions from community members. Piano placement is determined by factors including foot traffic, safety, accessibility, and partnerships with local organizations and businesses.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partner Information -->
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-harmony rounded-2xl p-8 text-center">
+          <h2 class="text-3xl font-extrabold text-white mb-4">
+            Bring Sing for Hope Pianos to Your Community
+          </h2>
+          <p class="text-xl text-white opacity-95 mb-8 max-w-3xl mx-auto">
+            Create the Sing for Hope Pianos program in your community. Partner with us to bring artist-designed pianos and the joy of music to your city or organization.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+            <a
+              href="/contact"
+              class="bg-white text-harmony px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors duration-200 flex-1 text-center"
+            >
+              Partner with Us
+            </a>
+            <a
+              href="/apply"
+              class="bg-white border-2 border-white text-harmony px-6 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors duration-200 flex-1 text-center"
+            >
+              Apply for a Piano
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Stories -->
+    <section class="py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-extrabold text-gray-900">Impact Stories</h2>
+          <p class="mt-4 text-xl text-gray-500">Real moments, real connections</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <blockquote class="text-xl italic text-gray-600 mb-6">
+              "I was having the worst day, and then I heard someone playing 'Imagine' on the piano in the park. It completely changed my mood and reminded me of the beauty in the world."
+            </blockquote>
+            <cite class="text-sm text-gray-500">- Sarah, Brooklyn resident</cite>
+            
+            <blockquote class="text-xl italic text-gray-600 mb-6 mt-8">
+              "The piano in our hospital lobby has brought so much joy to patients, families, and staff. It's amazing how music can heal in ways medicine can't touch."
+            </blockquote>
+            <cite class="text-sm text-gray-500">- Dr. Martinez, Mount Sinai Hospital</cite>
+            
+            <blockquote class="text-xl italic text-gray-600 mb-6 mt-8">
+              "Every morning I walk past the piano on my way to work. Today a little girl was playing 'Twinkle Twinkle Little Star' and her grandmother was singing along. It's these moments that make our city feel like a community."
+            </blockquote>
+            <cite class="text-sm text-gray-500">- Michael, Manhattan commuter</cite>
+          </div>
+          
+          <div class="space-y-4">
+            <img
+              class="rounded-lg shadow-lg"
+              src="/src/images/singforhopepianos.jpg"
+              alt="Community members gathered around a Sing for Hope Piano"
+            />
+            <div class="bg-gray-50 p-6 rounded-lg">
+              <div class="grid grid-cols-2 gap-4 text-center">
+                <div>
+                  <div class="text-2xl font-bold text-harmony">700+</div>
+                  <div class="text-sm text-gray-600">Pianos Placed</div>
+                </div>
+                <div>
+                  <div class="text-2xl font-bold text-rhythm">25+</div>
+                  <div class="text-sm text-gray-600">Cities Worldwide</div>
+                </div>
+                <div>
+                  <div class="text-2xl font-bold text-melody">14</div>
+                  <div class="text-sm text-gray-600">Years Running</div>
+                </div>
+                <div>
+                  <div class="text-2xl font-bold text-sonata">∞</div>
+                  <div class="text-sm text-gray-600">Musical Moments</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Get Involved -->
+    <section class="py-16 bg-harmony">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h2 class="text-3xl font-extrabold text-white mb-4">
+            Get Involved
+          </h2>
+          <p class="text-xl text-white opacity-95 mb-8 max-w-3xl mx-auto">
+            Help us bring more music to communities around the world. Whether you're an artist, organization, or music lover, there's a way for you to contribute.
+          </p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <a
+              href="/contact"
+              class="bg-white text-harmony px-6 py-4 rounded-lg font-medium hover:bg-gray-50 transition-colors duration-200 text-center"
+            >
+              Partner with Us
+            </a>
+            <a
+              href="/contact"
+              class="bg-white text-harmony px-6 py-4 rounded-lg font-medium hover:bg-gray-50 transition-colors duration-200 text-center"
+            >
+              Become an Artist
+            </a>
+            <button
+              type="button"
+              id="pianos-donate-button"
+              class="bg-melody text-white px-6 py-4 rounded-lg font-medium hover:bg-melodydark transition-colors duration-200"
+            >
+              Fund a Piano
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // FAQ Accordion functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach((item) => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+      
+      if (question && answer && icon) {
+        question.addEventListener('click', function() {
+          const isOpen = !answer.classList.contains('hidden');
+          
+          // Close all other FAQ items
+          faqItems.forEach((otherItem) => {
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            const otherIcon = otherItem.querySelector('.faq-icon');
+            if (otherAnswer && otherIcon && otherItem !== item) {
+              otherAnswer.classList.add('hidden');
+              (otherIcon as HTMLElement).style.transform = 'rotate(0deg)';
+            }
+          });
+          
+          // Toggle current item
+          if (isOpen) {
+            answer.classList.add('hidden');
+            (icon as HTMLElement).style.transform = 'rotate(0deg)';
+          } else {
+            answer.classList.remove('hidden');
+            (icon as HTMLElement).style.transform = 'rotate(180deg)';
+          }
+        });
+      }
+    });
+
+    // Smooth scrolling for anchor links
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    anchorLinks.forEach((link) => {
+      link.addEventListener('click', function(e: Event) {
+        e.preventDefault();
+        const href = (this as HTMLAnchorElement).getAttribute('href');
+        if (href) {
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+          }
+        }
+      });
+    });
+    
+    // Donate button functionality
+    const donateButtons = [
+      document.getElementById('hero-donate-button'),
+      document.getElementById('pianos-donate-button')
+    ];
+    
+    donateButtons.forEach((button) => {
+      if (button) {
+        button.addEventListener('click', function(e: Event) {
+          e.preventDefault();
+          
+          try {
+            if (window.Funraise) {
+              window.Funraise.popup();
+            } else {
+              window.location.href = '/donate';
+            }
+          } catch (error) {
+            console.warn('Funraise popup failed, redirecting to fallback', error);
+            window.location.href = '/donate';
+          }
+        });
+      }
+    });
+  });
+</script>

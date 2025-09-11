@@ -1,0 +1,240 @@
+---
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import AuthProvider from '../lib/auth.tsx';
+import '../global.css';
+import { SEO } from 'astro-seo';
+import { getLanguageFromURL, loadTranslations, t, LANGUAGES, getLocalizedPath } from '../lib/i18n';
+
+// Get current language and translations
+const currentLang = getLanguageFromURL(Astro.url.pathname);
+const translations = await loadTranslations(currentLang);
+const currentLanguage = LANGUAGES[currentLang];
+
+const {
+  title = t('site.title', translations) || 'Sing for Hope',
+  description = t('site.description', translations) || 'Sing for Hope harnesses the power of the arts to create a better world.',
+  ogImage = '/singforhope.jpg',
+  ogType = 'website',
+  ogTitle,
+  twitterCard = 'summary_large_image',
+  canonicalUrl,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={currentLang} dir={currentLanguage.dir}>
+  <head>
+    <!-- Funraise script for donations -->
+    <script>
+      (function(f,u,n,r,a,i,s,e){var data={window:window,document:document,tag:"script",data:"funraise",orgId:f,uri:u,common:n,client:r,script:a};var scripts=document.getElementsByTagName("script")[0];var funraiseScript=document.createElement("script");funraiseScript.id="funraise-script";funraiseScript.src="https://assets.funraise.org/widgets/"+a+".js";funraiseScript.async=true;funraiseScript.onload=funraiseScript.onreadystatechange=function(){var rs=this.readyState;if(rs&&rs!="complete"&&rs!="loaded")return;try{new window.Funraise(data)}catch(e){console.warn(e.message)}};scripts.parentNode.insertBefore(funraiseScript,scripts)})(
+        "01234567-89ab-cdef-0123-456789abcdef", // Replace with actual Funraise Org ID
+        "https://assets.funraise.org/",
+        "https://assets.funraise.org/",
+        "2.0",
+        "funraise-2.0"
+      );
+    </script>
+
+    <!-- Google Tag Manager - Head Code -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js',
+        });
+        var f = d.getElementsByTagName(s)[0];
+        var j = d.createElement(s);
+        var dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-M65JZXJL');
+    </script>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <SEO
+      title={title}
+      description={description}
+      extend={{
+        link: [
+          { rel: 'icon', href: '/favicon.ico' },
+          ...(canonicalUrl ? [{ rel: 'canonical', href: canonicalUrl }] : []),
+          // Add hreflang links for all supported languages
+          ...Object.entries(LANGUAGES).map(([langCode, lang]) => ({
+            rel: 'alternate',
+            hreflang: langCode,
+            href: `https://singforhope.org${getLocalizedPath(Astro.url.pathname.replace(/^\/(en|es|fr|ar|zh)/, ''), langCode as keyof typeof LANGUAGES)}`
+          })),
+          {
+            rel: 'alternate',
+            hreflang: 'x-default',
+            href: `https://singforhope.org${Astro.url.pathname.replace(/^\/(en|es|fr|ar|zh)/, '') || '/'}`
+          }
+        ],
+        meta: [
+          {
+            property: 'og:title',
+            content: ogTitle || title,
+          },
+          {
+            property: 'og:description',
+            content: description,
+          },
+          {
+            property: 'og:image',
+            content: ogImage,
+          },
+          {
+            property: 'og:type',
+            content: ogType,
+          },
+          {
+            property: 'og:url',
+            content: canonicalUrl || `https://singforhope.org${Astro.url.pathname}`,
+          },
+          {
+            property: 'og:site_name',
+            content: 'Sing for Hope',
+          },
+          {
+            property: 'og:locale',
+            content: currentLang === 'en' ? 'en_US' : 
+                    currentLang === 'es' ? 'es_ES' :
+                    currentLang === 'fr' ? 'fr_FR' :
+                    currentLang === 'ar' ? 'ar' : 'zh_CN',
+          },
+          {
+            name: 'twitter:card',
+            content: twitterCard,
+          },
+          {
+            name: 'twitter:image',
+            content: ogImage,
+          },
+          {
+            name: 'twitter:title',
+            content: ogTitle || title,
+          },
+          {
+            name: 'twitter:description',
+            content: description,
+          },
+        ],
+      }}
+    />
+  </head>
+  <body class="antialiased">
+    <!-- Skip to main content link -->
+    <a href="#main-content" class="skip-to-content">
+      {t('site.skip_to_content', translations) || 'Skip to main content'}
+    </a>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-M65JZXJL"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      ></iframe>
+    </noscript>
+
+    <AuthProvider client:load>
+      <Header currentLang={currentLang} translations={translations} />
+      <main id="main-content">
+        <slot />
+      </main>
+      <Footer currentLang={currentLang} translations={translations} />
+    </AuthProvider>
+
+    <!-- Scripts -->
+    <script>
+      // Mobile header hide/show behavior
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+      const header = document.querySelector('#main-header');
+      const scrollThreshold = 100;
+
+      function updateHeader() {
+        const currentScrollY = window.scrollY;
+        
+        // Only apply scroll behavior on mobile and if user hasn't disabled motion
+        if (window.innerWidth < 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          if (currentScrollY > scrollThreshold) {
+            if (currentScrollY > lastScrollY) {
+              // Scrolling down
+              header?.classList.add('header-hide');
+              header?.classList.remove('header-show');
+            } else if (lastScrollY - currentScrollY > 50) {
+              // Scrolling up significantly
+              header?.classList.add('header-show');
+              header?.classList.remove('header-hide');
+            }
+          } else {
+            // At top of page
+            header?.classList.add('header-show');
+            header?.classList.remove('header-hide');
+          }
+        }
+        
+        lastScrollY = currentScrollY;
+        ticking = false;
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          requestAnimationFrame(updateHeader);
+          ticking = true;
+        }
+      }
+
+      // Throttled scroll listener
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      // Handle resize to reset header state on desktop
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) {
+          header?.classList.remove('header-hide', 'header-show');
+        }
+      });
+
+      // Initialize accessibility settings on page load
+      function initializeAccessibilitySettings() {
+        const savedSettings = localStorage.getItem('accessibility-settings');
+        if (savedSettings) {
+          const settings = JSON.parse(savedSettings);
+          const root = document.documentElement;
+          
+          if (settings.fontSize) {
+            root.style.fontSize = `${settings.fontSize}%`;
+          }
+          
+          if (settings.highContrast) {
+            document.body.classList.add('high-contrast');
+          }
+          
+          if (settings.reduceMotion) {
+            document.body.classList.add('reduce-motion');
+          }
+          
+          if (settings.screenReader) {
+            document.body.classList.add('screen-reader-mode');
+          }
+        }
+      }
+
+      // Initialize on DOM content loaded
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeAccessibilitySettings);
+      } else {
+        initializeAccessibilitySettings();
+      }
+    </script>
+  </body>
+</html>

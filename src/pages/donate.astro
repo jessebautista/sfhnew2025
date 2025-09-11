@@ -1,0 +1,329 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<script is:inline>
+  (function (f, u, n, r, a, i, s, e) {
+    var data = {
+      window: window,
+      document: document,
+      tag: 'script',
+      data: 'funraise',
+      orgId: f,
+      uri: u,
+      common: n,
+      client: r,
+      script: a,
+    };
+    var scripts;
+    var funraiseScript;
+    data.window[data.data] = data.window[data.data] || [];
+    if (
+      data.window[data.data].scriptIsLoading ||
+      data.window[data.data].scriptIsLoaded
+    )
+      return;
+    data.window[data.data].loading = true;
+    data.window[data.data].push('init', data);
+    scripts = data.document.getElementsByTagName(data.tag)[0];
+    funraiseScript = data.document.createElement(data.tag);
+    funraiseScript.async = true;
+    funraiseScript.src =
+      data.uri + data.common + data.script + '?orgId=' + data.orgId;
+    scripts.parentNode.insertBefore(funraiseScript, scripts);
+  })(
+    'e7e8612d-7928-4352-934e-95d5525e9d60',
+    'https://assets.funraise.io',
+    '/widget/common/2.0',
+    '/widget/client',
+    '/inject-form.js'
+  );
+</script>
+<script is:inline>
+  window.funraise = window.funraise || [];
+  window.funraise.push(
+    'create',
+    { form: 5413 },
+    {
+      selector: '#fr-placed-form-container-5413',
+      type: 'grow_contained',
+    }
+  );
+</script>
+
+<Base
+  title="Donate - Sing for Hope"
+  description="Support Sing for Hope's mission to bring art to all communities. Your donation helps fund programs in healthcare, education, and public spaces worldwide."
+>
+  <div class="bg-white">
+    <!-- Hero Section -->
+    <div class="relative bg-harmony">
+      <div class="absolute inset-0 bg-gradient-to-r from-harmony to-harmonydark"></div>
+      <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            Make Art Possible for All
+          </h1>
+          <p class="mt-6 text-xl text-white opacity-95 max-w-3xl mx-auto">
+            Your generosity brings transformative arts programming to communities, healthcare settings, schools, and beyond. Every donation makes a real difference in someone's life.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Impact Stats -->
+    <div class="bg-gray-50 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-extrabold text-gray-900">Your Impact</h2>
+          <p class="mt-4 text-xl text-gray-500">See how your donation creates positive change</p>
+        </div>
+        
+        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="text-center">
+            <div class="text-4xl font-bold text-melody mb-2">500+</div>
+            <div class="text-gray-600">Pianos Placed</div>
+            <div class="text-sm text-gray-500 mt-1">In communities worldwide</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold text-rhythm mb-2">50K+</div>
+            <div class="text-gray-600">Students Reached</div>
+            <div class="text-sm text-gray-500 mt-1">Through education programs</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold text-harmony mb-2">100+</div>
+            <div class="text-gray-600">Healthcare Facilities</div>
+            <div class="text-sm text-gray-500 mt-1">Served with healing arts</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl font-bold text-sonata mb-2">25+</div>
+            <div class="text-gray-600">Countries</div>
+            <div class="text-sm text-gray-500 mt-1">With international programs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Donation Form Section -->
+    <div class="py-16 bg-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-extrabold text-gray-900">Choose Your Donation</h2>
+          <p class="mt-4 text-lg text-gray-500">
+            100% of your donation goes directly to our programs. We're a registered 501(c)(3) nonprofit.
+          </p>
+        </div>
+
+        <!-- Funraise Widget -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="text-sm text-gray-600 italic mb-4 text-center">
+            <p>Note: Apple Pay is available when using Safari on Apple devices.</p>
+          </div>
+          
+          <div class="border-b border-gray-200 bg-white">
+            <nav
+              class="flex items-center space-x-2 justify-center"
+              aria-label="Tabs"
+              role="tablist"
+            >
+              <button
+                type="button"
+                class="hs-tab-active:font-semibold hs-tab-active:border-harmony hs-tab-active:text-harmony py-4 px-4 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-harmony disabled:opacity-50 disabled:pointer-events-none active"
+                id="basic-tabs-item-1"
+                data-hs-tab="#basic-tabs-1"
+                aria-controls="basic-tabs-1"
+                role="tab"
+              >
+                Credit/Debit
+              </button>
+              <button
+                type="button"
+                class="hs-tab-active:font-semibold hs-tab-active:border-harmony hs-tab-active:text-harmony py-4 px-4 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-harmony disabled:opacity-50 disabled:pointer-events-none"
+                id="basic-tabs-item-2"
+                data-hs-tab="#basic-tabs-2"
+                aria-controls="basic-tabs-2"
+                role="tab"
+              >
+                PayPal
+              </button>
+              <button
+                type="button"
+                class="hs-tab-active:font-semibold hs-tab-active:border-harmony hs-tab-active:text-harmony py-4 px-4 inline-flex items-center gap-x-2 border-b-2 border-transparent text-sm whitespace-nowrap text-gray-500 hover:text-harmony disabled:opacity-50 disabled:pointer-events-none"
+                id="basic-tabs-item-3"
+                data-hs-tab="#basic-tabs-3"
+                aria-controls="basic-tabs-3"
+                role="tab"
+              >
+                Mail a Check
+              </button>
+            </nav>
+          </div>
+
+          <div class="mt-6">
+            <div
+              id="basic-tabs-1"
+              role="tabpanel"
+              class="flex flex-col items-center"
+              aria-labelledby="basic-tabs-item-1"
+            >
+              <div
+                id="fr-placed-form-container-5413"
+                style="min-height: 600px; width: 100%;"
+              >
+              </div>
+            </div>
+            <div
+              id="basic-tabs-2"
+              class="hidden"
+              role="tabpanel"
+              aria-labelledby="basic-tabs-item-2"
+            >
+              <div class="flex justify-center py-8">
+                <div id="donate-button-container" style="max-width: 180px;">
+                  <div id="donate-button"></div>
+                  <script
+                    is:inline
+                    src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js"
+                    charset="UTF-8"
+                    data-uid-auto="f8788dd414_mta6mzu6mdu"></script>
+                  <script is:inline>
+                    PayPal.Donation.Button({
+                      env: 'production',
+                      hosted_button_id: '6YWZCXLLFHUHS',
+                      image: {
+                        src: 'https://sfhmedia.nyc3.digitaloceanspaces.com/2022/09/paypal-donate-button.png',
+                        alt: 'Donate with PayPal button',
+                        title: 'PayPal - The safer, easier way to pay online!',
+                      },
+                    }).render('#donate-button');
+                  </script>
+                </div>
+              </div>
+            </div>
+            <div
+              id="basic-tabs-3"
+              class="hidden py-8"
+              role="tabpanel"
+              aria-labelledby="basic-tabs-item-3"
+            >
+              <div class="text-center">
+                <h3
+                  class="text-xl text-gray-800 font-bold mb-4"
+                >
+                  Mail a Check
+                </h3>
+                <div class="bg-gray-50 rounded-lg p-6 text-left inline-block">
+                  <p class="text-gray-700">
+                    Please send your donation to:<br />
+                    <strong>Sing for Hope</strong><br />
+                    c/o CliftonLarsonAllen LLP<br />
+                    50 Tice Boulevard, Suite 175<br />
+                    Woodcliff Lake, NJ 07677
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Impact Examples -->
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 mb-8">
+          <div class="bg-harmonylight rounded-lg p-6">
+            <div class="text-harmony font-bold text-lg mb-2">$50</div>
+            <div class="text-gray-700">
+              Provides art supplies for 10 students in our education programs
+            </div>
+          </div>
+          <div class="bg-rhythmlight rounded-lg p-6">
+            <div class="text-rhythm font-bold text-lg mb-2">$100</div>
+            <div class="text-gray-700">
+              Funds one healing arts session for healthcare workers
+            </div>
+          </div>
+          <div class="bg-melodylight rounded-lg p-6">
+            <div class="text-melodydark font-bold text-lg mb-2">$250</div>
+            <div class="text-gray-700">
+              Sponsors an artist to paint a Sing for Hope Piano
+            </div>
+          </div>
+          <div class="bg-sonatalight rounded-lg p-6">
+            <div class="text-sonatadark font-bold text-lg mb-2">$500</div>
+            <div class="text-gray-700">
+              Supports a full piano placement including delivery and setup
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="text-center space-y-4">
+          <div class="flex items-center justify-center space-x-8">
+            <img
+              src="https://widgets.guidestar.org/TransparencySeal/6796063"
+              alt="GuideStar Transparency Seal"
+              class="h-16"
+            />
+            <img
+              src="https://app.singforhope.org/storage/v1/object/public/uploads/public/uploads/Four-Star%20Rating%20Badge%20-%20Full%20Color%20(1).png"
+              alt="Four Star Rating"
+              class="h-16"
+            />
+          </div>
+          
+          <div class="text-sm text-gray-500 max-w-2xl mx-auto">
+            <p class="mb-2">
+              <strong>Tax-deductible:</strong> Sing for Hope is a registered 501(c)(3) nonprofit organization (EIN: 01-0856384).
+            </p>
+            <p>
+              <strong>Secure:</strong> Your donation is processed securely through our trusted payment partners.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .donation-amount-btn {
+    @apply w-full py-3 px-4 border border-gray-300 rounded-lg text-lg font-medium text-gray-700 bg-white hover:bg-melody hover:text-white hover:border-melody focus:outline-none focus:ring-2 focus:ring-melody focus:border-melody transition-all duration-200;
+  }
+  
+  .donation-amount-btn.selected {
+    @apply bg-melody text-white border-melody;
+  }
+</style>
+
+<script is:inline>
+  // Tab functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const tabButtons = document.querySelectorAll('[data-hs-tab]');
+    const tabPanels = document.querySelectorAll('[role="tabpanel"]');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-hs-tab');
+        const targetPanel = document.querySelector(targetId);
+
+        // Remove active classes from all buttons
+        tabButtons.forEach(btn => {
+          btn.classList.remove('hs-tab-active:font-semibold', 'hs-tab-active:border-harmony', 'hs-tab-active:text-harmony');
+          btn.classList.add('text-gray-500');
+        });
+
+        // Add active classes to clicked button
+        this.classList.add('hs-tab-active:font-semibold', 'hs-tab-active:border-harmony', 'hs-tab-active:text-harmony');
+        this.classList.remove('text-gray-500');
+
+        // Hide all panels
+        tabPanels.forEach(panel => {
+          panel.classList.add('hidden');
+        });
+
+        // Show target panel
+        if (targetPanel) {
+          targetPanel.classList.remove('hidden');
+        }
+      });
+    });
+  });
+</script>

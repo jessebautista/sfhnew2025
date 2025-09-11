@@ -1,0 +1,26 @@
+---
+import { redirectIfAuthenticated } from '../../lib/auth-utils';
+import Base from '../../layouts/Base.astro';
+import AuthPage from '../../components/auth/AuthPage.tsx';
+import AuthProvider from '../../lib/auth.tsx';
+
+// Redirect if already logged in
+const redirectResult = redirectIfAuthenticated(Astro);
+if (redirectResult) {
+  return redirectResult;
+}
+
+const error = Astro.url.searchParams.get('error');
+const redirect = Astro.url.searchParams.get('redirect');
+---
+
+<Base
+  title="Sign In - Sing for Hope"
+  description="Sign in to your Sing for Hope account to access applications, dashboard, and more."
+>
+  <div class="min-h-screen bg-gray-50">
+    <AuthProvider client:load>
+      <AuthPage client:load mode="login" error={error} redirect={redirect} />
+    </AuthProvider>
+  </div>
+</Base>

@@ -1,0 +1,335 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { Coffee, Home, Package } from 'lucide-react';
+---
+
+<Base
+  title="Home & Office - Sing for Hope Shop"
+  description="Browse our collection of home and office items including mugs, notebooks, and desk accessories that support arts programs."
+>
+  <div class="min-h-screen bg-gray-50">
+    <!-- Breadcrumb -->
+    <div class="bg-white border-b">
+      <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+        <nav class="flex" aria-label="Breadcrumb">
+          <ol class="flex items-center space-x-4">
+            <li>
+              <a href="/" class="text-gray-400 hover:text-gray-500">Home</a>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <svg class="flex-shrink-0 h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                </svg>
+                <a href="/shop" class="ml-4 text-gray-400 hover:text-gray-500">Shop</a>
+              </div>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <svg class="flex-shrink-0 h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5.555 17.776l8-16 .894.448-8 16-.894-.448z" />
+                </svg>
+                <span class="ml-4 text-gray-900 font-medium">Home & Office</span>
+              </div>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Category Hero -->
+    <div class="relative bg-gradient-to-r from-melody/10 to-rhythm/10 overflow-hidden">
+      <div class="absolute inset-0 bg-[url('/piano-pattern.svg')] opacity-5"></div>
+      <div class="relative max-w-7xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div class="flex items-center mb-6">
+              <Home className="w-8 h-8 text-melody mr-3" />
+              <h1 class="text-4xl font-bold text-gray-900">Home & Office</h1>
+            </div>
+            <p class="text-xl text-gray-600 mb-8">
+              Bring inspiration to your daily life with our carefully curated home and office essentials. Each item combines functionality with beautiful design to support your creative journey.
+            </p>
+            
+            <div class="grid grid-cols-2 gap-6 text-center lg:text-left">
+              <div>
+                <div class="text-2xl font-bold text-melody mb-1">30+</div>
+                <div class="text-sm text-gray-600">Home Items</div>
+              </div>
+              <div>
+                <div class="text-2xl font-bold text-rhythm mb-1">Premium</div>
+                <div class="text-sm text-gray-600">Quality</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="aspect-square rounded-2xl overflow-hidden shadow-xl bg-white p-8">
+              <img
+                src="/logo.svg"
+                alt="Home & Office Collection"
+                class="w-full h-full object-contain"
+              />
+            </div>
+            <div class="absolute -bottom-4 -right-4 bg-melody text-white rounded-xl p-4 shadow-lg">
+              <div class="text-sm font-medium">Functional Design</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+      <!-- Filter Controls -->
+      <div class="mb-8">
+        <div class="flex flex-wrap items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-gray-900">Browse Home & Office</h2>
+          <div class="flex items-center space-x-4">
+            <select class="border border-gray-300 rounded-lg px-4 py-2 text-sm bg-white">
+              <option>Sort by: Featured</option>
+              <option>Price: Low to High</option>
+              <option>Price: High to Low</option>
+              <option>Newest First</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="flex flex-wrap items-center gap-2 mb-6">
+          <span class="text-sm font-medium text-gray-700">Category:</span>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-melody hover:text-melody transition-colors bg-melody text-white">All</button>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-melody hover:text-melody transition-colors">Drinkware</button>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-melody hover:text-melody transition-colors">Stationery</button>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-melody hover:text-melody transition-colors">Desk Accessories</button>
+          <button class="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:border-melody hover:text-melody transition-colors">Wall Art</button>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <!-- Product 1 - Ceramic Mug -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/logo.svg"
+              alt="Harmony Coffee Mug"
+              class="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Harmony Coffee Mug</h3>
+            <p class="text-sm text-gray-600 mb-3">11oz ceramic mug with inspiring quotes</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$15.00</span>
+              <div class="flex items-center space-x-1">
+                <span class="w-3 h-3 bg-white rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-melody rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-harmony rounded-full border border-gray-300"></span>
+              </div>
+            </div>
+            <button class="w-full btn-melody justify-center">
+              <Coffee className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 2 - Water Bottle -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/logo.svg"
+              alt="Insulated Water Bottle"
+              class="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Insulated Water Bottle</h3>
+            <p class="text-sm text-gray-600 mb-3">24oz stainless steel with SFH logo</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$28.00</span>
+              <div class="flex items-center space-x-1">
+                <span class="w-3 h-3 bg-gray-400 rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-black rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-blue-600 rounded-full border border-gray-300"></span>
+              </div>
+            </div>
+            <button class="w-full btn-melody justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 3 - Notebook -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/logo.svg"
+              alt="Music Notebook"
+              class="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Music Staff Notebook</h3>
+            <p class="text-sm text-gray-600 mb-3">Hardcover with music staff pages</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$12.00</span>
+              <span class="text-xs bg-rhythm text-white px-2 py-1 rounded-full">New</span>
+            </div>
+            <button class="w-full btn-melody justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 4 - Desk Organizer -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/logo.svg"
+              alt="Piano Key Desk Organizer"
+              class="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Piano Key Desk Organizer</h3>
+            <p class="text-sm text-gray-600 mb-3">Bamboo organizer with compartments</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$32.00</span>
+              <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Eco-Friendly</span>
+            </div>
+            <button class="w-full btn-melody justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 5 - Wall Clock -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/logo.svg"
+              alt="Musical Note Wall Clock"
+              class="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Musical Note Wall Clock</h3>
+            <p class="text-sm text-gray-600 mb-3">12" diameter with silent movement</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$38.00</span>
+              <div class="flex items-center space-x-1">
+                <span class="w-3 h-3 bg-white rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-black rounded-full border border-gray-300"></span>
+              </div>
+            </div>
+            <button class="w-full btn-melody justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 6 - Coaster Set -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/logo.svg"
+              alt="Piano Keys Coaster Set"
+              class="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Piano Keys Coaster Set</h3>
+            <p class="text-sm text-gray-600 mb-3">Set of 4 ceramic coasters with holder</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$22.00</span>
+              <span class="text-xs text-gray-500">Set of 4</span>
+            </div>
+            <button class="w-full btn-melody justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 7 - Desk Lamp -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/logo.svg"
+              alt="Harmony LED Desk Lamp"
+              class="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Harmony LED Desk Lamp</h3>
+            <p class="text-sm text-gray-600 mb-3">Adjustable LED with USB charging port</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$58.00</span>
+              <div class="flex items-center space-x-1">
+                <span class="w-3 h-3 bg-white rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-black rounded-full border border-gray-300"></span>
+              </div>
+            </div>
+            <button class="w-full btn-melody justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 8 - Throw Pillow -->
+        <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border group">
+          <div class="aspect-square overflow-hidden bg-gray-100">
+            <img
+              src="/logo.svg"
+              alt="Musical Note Throw Pillow"
+              class="w-full h-full object-contain p-8 group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-semibold text-gray-900 mb-2">Musical Note Throw Pillow</h3>
+            <p class="text-sm text-gray-600 mb-3">18"x18" cotton blend with insert</p>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-lg font-bold text-gray-900">$25.00</span>
+              <div class="flex items-center space-x-1">
+                <span class="w-3 h-3 bg-cream rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-gray-300 rounded-full border border-gray-300"></span>
+                <span class="w-3 h-3 bg-melody rounded-full border border-gray-300"></span>
+              </div>
+            </div>
+            <button class="w-full btn-melody justify-center">
+              <Package className="w-4 h-4 mr-2" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="mt-12 flex justify-center">
+        <nav class="flex items-center space-x-2">
+          <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700">Previous</button>
+          <button class="px-3 py-2 text-sm bg-melody text-white rounded">1</button>
+          <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700">2</button>
+          <button class="px-3 py-2 text-sm text-gray-500 hover:text-gray-700">Next</button>
+        </nav>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .btn-melody {
+    @apply px-4 py-2 bg-melody text-white font-medium rounded-lg hover:bg-opacity-90 transition-colors duration-200 inline-flex items-center;
+  }
+  
+  .cream {
+    background-color: #fef7ed;
+  }
+</style>

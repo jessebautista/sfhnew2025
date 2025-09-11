@@ -1,0 +1,248 @@
+---
+import Base from '../layouts/Base.astro';
+import { fetchNewsPage } from '../lib/supabase';
+import { sanitizeForTitle, truncateText, stripHtml } from '../lib/security';
+import { getLanguageFromURL, getLocalizedPath } from '../lib/i18n';
+
+// Pagination params
+const PAGE_SIZE = 12;
+const pageParam = Astro.url.searchParams.get('page');
+const currentPage = Math.max(1, Number(pageParam) || 1);
+
+// Determine current language for localized links
+const currentLang = getLanguageFromURL(Astro.url.pathname);
+const baseNewsPath = getLocalizedPath('/news', currentLang);
+
+// Fetch paginated news data from Supabase
+const { items: newsItems, total, totalPages } = await fetchNewsPage(currentPage, PAGE_SIZE);
+
+function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+
+// Sort news by date (newest first) - already sorted from Supabase query
+const sortedNews = newsItems;
+
+---
+
+<Base
+  title="News - Sing for Hope"
+  description="Stay updated with the latest news from Sing for Hope. Read about our programs, partnerships, community impact, and upcoming events."
+>
+  <div class="bg-white">
+    <!-- Hero Section -->
+    <div class="bg-gray-50">
+      <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h1 class="text-4xl font-extrabold text-gray-900 sm:text-5xl">
+            Latest News
+          </h1>
+          <p class="mt-4 text-xl text-gray-500 max-w-3xl mx-auto">
+            Stay updated with our latest programs, partnerships, and community impact stories from around the world.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Story (only on first page) -->
+    {currentPage === 1 && sortedNews.length > 0 && (
+      <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div class="flex items-center mb-4">
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-melody text-white">
+                Featured
+              </span>
+              <span class="ml-3 text-sm text-gray-500">
+                {formatDate(sortedNews[0].news_date)}
+              </span>
+            </div>
+            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-4">
+              {sanitizeForTitle(sortedNews[0].news_title)}
+            </h2>
+            <p class="text-xl text-gray-500 mb-6">
+              {truncateText(sortedNews[0].news_title, 200)}
+            </p>
+            <a
+              href={`${baseNewsPath}/${sortedNews[0].news_url}`}
+              class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-harmony hover:bg-harmonydark transition-colors duration-200"
+            >
+              Read Full Story
+              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+          <div>
+            <img
+              class="rounded-lg shadow-lg"
+              src={sortedNews[0].news_image}
+              alt={sanitizeForTitle(sortedNews[0].news_title)}
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+    )}
+
+    <!-- News Grid -->
+    <div class="bg-gray-50 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {(currentPage === 1 ? sortedNews.slice(1) : sortedNews).map((article) => (
+            <article class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200">
+              <div class="aspect-video overflow-hidden">
+                <img
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-200"
+                  src={article.news_image}
+                  alt={sanitizeForTitle(article.news_title)}
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                    News
+                  </span>
+                  <time class="text-sm text-gray-500" datetime={article.news_date}>
+                    {formatDate(article.news_date)}
+                  </time>
+                </div>
+                
+                <h3 class="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
+                  <a href={`${baseNewsPath}/${article.news_url}`} class="hover:text-melody transition-colors duration-200">
+                    {sanitizeForTitle(article.news_title)}
+                  </a>
+                </h3>
+                
+                <p class="text-gray-600 mb-4 line-clamp-3">
+                  {truncateText(article.news_title, 120)}
+                </p>
+                
+                <div class="flex items-center justify-between">
+                  <span class="text-sm text-gray-500">
+                    Sing for Hope
+                  </span>
+                  <a
+                    href={`${baseNewsPath}/${article.news_url}`}
+                    class="inline-flex items-center text-melody hover:text-melodydark font-medium text-sm transition-colors duration-200"
+                  >
+                    Read More
+                    <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <!-- Pagination -->
+        {total > PAGE_SIZE && (
+          <nav class="mt-12 flex items-center justify-between" aria-label="Pagination">
+            <div>
+              {currentPage > 1 ? (
+                <a href={`${baseNewsPath}?page=${currentPage - 1}`} class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                  Previous
+                </a>
+              ) : (
+                <span class="inline-flex items-center px-4 py-2 border border-gray-200 rounded-full text-sm font-medium text-gray-400 bg-gray-50 cursor-not-allowed">
+                  Previous
+                </span>
+              )}
+            </div>
+            <div class="text-sm text-gray-600">
+              Page {currentPage} of {totalPages}
+            </div>
+            <div>
+              {currentPage < totalPages ? (
+                <a href={`${baseNewsPath}?page=${currentPage + 1}`} class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                  Next
+                </a>
+              ) : (
+                <span class="inline-flex items-center px-4 py-2 border border-gray-200 rounded-full text-sm font-medium text-gray-400 bg-gray-50 cursor-not-allowed">
+                  Next
+                </span>
+              )}
+            </div>
+          </nav>
+        )}
+      </div>
+    </div>
+
+    <!-- Newsletter Signup -->
+    <div class="bg-harmony">
+      <div class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h2 class="text-3xl font-extrabold text-white mb-4">
+            Stay Updated
+          </h2>
+          <p class="text-xl text-white mb-8 max-w-2xl mx-auto">
+            Subscribe to our newsletter to get the latest news and program updates delivered to your inbox.
+          </p>
+          
+          <form class="max-w-md mx-auto sm:flex" id="news-newsletter-form">
+            <div class="min-w-0 flex-1">
+              <label for="email-address" class="sr-only">Email address</label>
+              <input
+                id="email-address"
+                type="email"
+                required
+                class="block w-full border-0 rounded-l-full py-3 px-4 text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-harmony sm:text-sm"
+                placeholder="Enter your email"
+              />
+            </div>
+            <div class="mt-4 sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+              <button
+                type="submit"
+                class="w-full bg-white border border-transparent rounded-r-full py-3 px-4 flex items-center justify-center text-base font-medium text-harmony hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-harmony transition-colors duration-200 sm:w-auto"
+              >
+                Subscribe
+              </button>
+            </div>
+          </form>
+          <p class="mt-3 text-sm text-white opacity-90">
+            We respect your privacy. Unsubscribe at any time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Base>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const newsletterForm = document.getElementById('news-newsletter-form');
+    
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email-address').value;
+        
+        // TODO: Integrate with email service
+        console.log('Newsletter signup:', email);
+        
+        // Show success message
+        const submitButton = e.target.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Subscribed!';
+        submitButton.disabled = true;
+        submitButton.classList.remove('bg-white', 'text-harmony', 'hover:bg-gray-50');
+        submitButton.classList.add('bg-green-600', 'text-white');
+        
+        setTimeout(() => {
+          submitButton.textContent = originalText;
+          submitButton.disabled = false;
+          submitButton.classList.add('bg-white', 'text-harmony', 'hover:bg-gray-50');
+          submitButton.classList.remove('bg-green-600', 'text-white');
+          document.getElementById('email-address').value = '';
+        }, 3000);
+      });
+    }
+  });
+</script>

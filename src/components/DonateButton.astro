@@ -1,0 +1,42 @@
+---
+import { t } from '../lib/i18n';
+
+// Get translations from parent (should be passed from Header)
+const { translations = {} } = Astro.props;
+---
+
+<button
+  type="button"
+  id="donate-button"
+  class="btn-melody hover:shadow-lg transform hover:scale-105 transition-all duration-200"
+  aria-label={t("nav.donate", translations)}
+>
+  {t("nav.donate", translations)}
+</button>
+
+<script>
+  // Funraise donation popup integration
+  document.addEventListener('DOMContentLoaded', function() {
+    const donateButton = document.getElementById('donate-button');
+    
+    if (donateButton) {
+      donateButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Try to open Funraise popup
+        try {
+          if (window.Funraise) {
+            window.Funraise.popup();
+          } else {
+            // Fallback: redirect to hosted donation page
+            window.location.href = '/donate';
+          }
+        } catch (error) {
+          console.warn('Funraise popup failed, redirecting to fallback', error);
+          // Fallback: redirect to hosted donation page
+          window.location.href = '/donate';
+        }
+      });
+    }
+  });
+</script>

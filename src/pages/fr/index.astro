@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import ProgramHighlights from '../../components/ProgramHighlights.astro';
+import NewsSection from '../../components/NewsSection.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import { getLanguageFromURL, loadTranslations } from '../../lib/i18n';
+
+// Load translations once for this page
+const currentLang = getLanguageFromURL(Astro.url.pathname);
+const translations = await loadTranslations(currentLang);
+---
+
+<Base
+  title="Sing for Hope - Art pour Tous"
+  description="Sing for Hope exploite le pouvoir des arts pour créer un monde meilleur. Découvrez nos programmes : Pianos Sing for Hope, Éducation, Santé Publique et Bien-être, Diplomatie Artistique, et Développement de la Main-d'œuvre."
+>
+  <Hero />
+  <ProgramHighlights currentLang={currentLang} translations={translations} />
+  <NewsSection currentLang={currentLang} translations={translations} />
+  <CallToAction currentLang={currentLang} translations={translations} />
+</Base>

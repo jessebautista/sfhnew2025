@@ -1,0 +1,40 @@
+---
+import { LANGUAGES, getLanguageFromURL, getLocalizedPath } from '../../lib/i18n';
+
+// Get path parameters
+const { lang, slug } = Astro.params;
+const pathSegments = slug ? slug.split('/') : [];
+
+// Validate language
+if (!lang || !LANGUAGES[lang as keyof typeof LANGUAGES]) {
+  return Astro.redirect('/');
+}
+
+// Map common routes to existing pages (removed non-existent routes)
+const routeMap: { [key: string]: string } = {
+  'about': '/about',
+  'news': '/news',
+  'shop': '/shop',
+  'pianos': '/pianos',
+  'contact': '/contact',
+  'search': '/search',
+  'policy/privacy': '/policy/privacy',
+  'policy/terms': '/policy/terms',
+};
+
+// Build the target route
+const targetPath = pathSegments.join('/');
+const mappedRoute = routeMap[targetPath];
+
+if (mappedRoute) {
+  // Redirect to the proper localized path instead of using query params
+  const localizedPath = getLocalizedPath(mappedRoute, lang as keyof typeof LANGUAGES);
+  return Astro.redirect(localizedPath);
+} else {
+  // For unmapped routes, redirect to home page with language preserved
+  const homeUrl = lang === 'en' ? '/' : `/${lang}/`;
+  return Astro.redirect(homeUrl);
+}
+---
+
+<!-- This file should never render, it only handles redirects -->

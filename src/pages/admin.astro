@@ -1,0 +1,23 @@
+---
+import { requireRole } from '../lib/auth-utils';
+import Base from '../layouts/Base.astro';
+import AdminPanel from '../components/admin/AdminPanel.tsx';
+import AuthProvider from '../lib/auth.tsx';
+
+// Check authentication and admin role
+const authResult = await requireRole(Astro, ['admin', 'editor']);
+if (authResult instanceof Response) {
+  return authResult;
+}
+---
+
+<Base
+  title="Admin Panel - Sing for Hope"
+  description="Content management system for Sing for Hope administrators and editors."
+>
+  <div class="min-h-screen bg-gray-50">
+    <AuthProvider client:load>
+      <AdminPanel client:load />
+    </AuthProvider>
+  </div>
+</Base>

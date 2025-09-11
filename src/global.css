@@ -1,0 +1,228 @@
+/* Import mobile piano map styles */
+@import './styles/mobile-piano-map.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import accessibility styles AFTER Tailwind to ensure proper override */
+@import './styles/accessibility.css';
+
+@layer base {
+  * {
+    @apply border-gray-200;
+  }
+  body {
+    @apply bg-white text-gray-900;
+  }
+}
+
+@layer components {
+  .btn-harmony {
+    @apply inline-flex items-center px-4 py-3 text-sm font-semibold text-white rounded-full shadow-sm bg-harmony hover:bg-harmonydark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-harmony transition-all duration-200;
+  }
+
+  .btn-melody {
+    @apply inline-flex items-center px-4 py-3 text-sm font-semibold text-white rounded-full shadow-sm bg-melody hover:bg-melodydark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-melody transition-all duration-200;
+  }
+
+  .sfh-text {
+    @apply mt-5 text-base font-normal text-gray-600 sm:text-xl;
+  }
+
+  .sfh-h1 {
+    @apply text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl mb-6;
+  }
+
+  .sfh-h2 {
+    @apply mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl;
+  }
+
+  .sfh-h3 {
+    @apply mb-2 text-2xl font-bold text-gray-900;
+  }
+
+  /* Line clamp utilities for truncating text */
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+}
+
+/* Mobile-first header behavior */
+.header-hide {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.header-show {
+  transform: translateY(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .header-hide,
+  .header-show {
+    transition: none;
+  }
+}
+
+/* Hide scrollbar but maintain functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Focus management */
+.no-outline {
+  -webkit-tap-highlight-color: transparent;
+  outline: none !important;
+}
+
+.no-outline:focus {
+  -webkit-focus-ring-color: transparent;
+}
+
+/* Funraise modal styling */
+.funraise-modal {
+  z-index: 9999 !important;
+}
+
+/* Shop loading states */
+.shop-loading {
+  @apply animate-pulse;
+}
+
+.shop-error {
+  @apply text-red-600 bg-red-50 border border-red-200 rounded-lg p-4;
+}
+
+/* Anchor offset for sticky header */
+.anchor-offset {
+  scroll-margin-top: 120px;
+}
+
+/* Aspect ratio utilities for older browsers */
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+/* Fallback for browsers that don't support aspect-ratio */
+@supports not (aspect-ratio: 1 / 1) {
+  .aspect-square {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+  }
+
+  .aspect-square > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .aspect-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 */
+  }
+
+  .aspect-video > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* RTL Support */
+[dir="rtl"] .text-left {
+  text-align: right;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left;
+}
+
+[dir="rtl"] .ml-1 {
+  margin-right: 0.25rem;
+  margin-left: 0;
+}
+
+[dir="rtl"] .mr-2 {
+  margin-left: 0.5rem;
+  margin-right: 0;
+}
+
+[dir="rtl"] .ml-2 {
+  margin-right: 0.5rem;
+  margin-left: 0;
+}
+
+[dir="rtl"] .mr-4 {
+  margin-left: 1rem;
+  margin-right: 0;
+}
+
+[dir="rtl"] .pl-4 {
+  padding-right: 1rem;
+  padding-left: 0;
+}
+
+[dir="rtl"] .pr-6 {
+  padding-left: 1.5rem;
+  padding-right: 0;
+}
+
+[dir="rtl"] .left-0 {
+  right: 0;
+  left: auto;
+}
+
+[dir="rtl"] .right-0 {
+  left: 0;
+  right: auto;
+}
+
+/* RTL-aware chevrons */
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+
+/* Line clamp utilities for truncating text */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

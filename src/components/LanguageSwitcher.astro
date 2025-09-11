@@ -1,0 +1,87 @@
+---
+import { LANGUAGES, getLanguageFromURL, getLocalizedPath, type LanguageCode } from '../lib/i18n';
+
+const currentPath = Astro.url.pathname;
+const currentLang = getLanguageFromURL(currentPath);
+const currentLanguage = LANGUAGES[currentLang];
+const languages = Object.values(LANGUAGES);
+---
+
+<div class="relative group" data-language-switcher>
+  <button 
+    type="button" 
+    class="flex items-center space-x-2 px-3 py-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors border border-white/20"
+    aria-label="Select language"
+    data-toggle-language-menu
+  >
+    <span class="text-sm">{currentLanguage?.flag}</span>
+    <span class="text-sm font-medium hidden sm:block">{currentLanguage?.name}</span>
+    <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </button>
+  
+  <div 
+    class="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
+    data-language-menu
+  >
+    <div class="py-2">
+      {languages.map((language) => {
+        const isActive = language.code === currentLang;
+        const localizedPath = getLocalizedPath(currentPath, language.code as LanguageCode);
+        
+        return (
+          <a
+            href={localizedPath}
+            class={`flex items-center space-x-3 px-4 py-2 text-sm hover:bg-gray-50 transition-colors ${
+              isActive ? 'bg-harmony/10 text-harmony font-medium' : 'text-gray-700'
+            }`}
+            dir={language.dir}
+          >
+            <span class="text-lg">{language.flag}</span>
+            <span>{language.name}</span>
+            {isActive && (
+              <svg class="w-4 h-4 ml-auto" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+            )}
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const languageSwitcher = document.querySelector('[data-language-switcher]');
+    const toggleButton = document.querySelector('[data-toggle-language-menu]');
+    const languageMenu = document.querySelector('[data-language-menu]');
+    
+    if (!languageSwitcher || !toggleButton || !languageMenu) return;
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!languageSwitcher.contains(e.target)) {
+        languageSwitcher.classList.remove('active');
+      }
+    });
+    
+    // Toggle menu on button click
+    toggleButton.addEventListener('click', function(e) {
+      e.stopPropagation();
+      languageSwitcher.classList.toggle('active');
+    });
+  });
+</script>
+
+<style>
+  [data-language-switcher].active [data-language-menu] {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  [data-language-switcher].active [data-toggle-language-menu] svg {
+    transform: rotate(180deg);
+  }
+</style>
