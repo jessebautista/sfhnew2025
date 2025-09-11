@@ -1,5 +1,4 @@
 import { createServerClient } from '@supabase/ssr';
-import type { APIRoute } from 'astro';
 
 export async function onRequest({ locals, cookies, url }: any, next: any) {
   // Require environment variables - never use defaults

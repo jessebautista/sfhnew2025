@@ -121,13 +121,19 @@
     if (newsletterForm) {
       newsletterForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        const email = document.getElementById('email-address').value;
+        const emailElement = document.getElementById('email-address') as HTMLInputElement;
+        if (!emailElement) return;
+        
+        const email = emailElement.value;
         
         // TODO: Integrate with email service (Mailchimp, ConvertKit, etc.)
         console.log('Newsletter signup:', email);
         
         // Show success message
-        const submitButton = e.target.querySelector('button[type="submit"]');
+        const form = e.target as HTMLFormElement;
+        const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+        if (!submitButton) return;
+        
         const originalText = submitButton.textContent;
         submitButton.textContent = 'Subscribed!';
         submitButton.disabled = true;
@@ -139,7 +145,7 @@
           submitButton.disabled = false;
           submitButton.classList.add('bg-harmony', 'hover:bg-harmonydark');
           submitButton.classList.remove('bg-green-600');
-          document.getElementById('email-address').value = '';
+          emailElement.value = '';
         }, 3000);
       });
     }

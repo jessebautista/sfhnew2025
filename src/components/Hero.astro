@@ -234,22 +234,24 @@ const translations = await loadTranslations(currentLang);
     const desktopVideo = document.getElementById('homepage-video');
     const mobileVideo = document.getElementById('homepage-video-mobile');
     
-    function handleVideoError(video, fallbackSrc) {
+    function handleVideoError(video: HTMLVideoElement, fallbackSrc: string) {
       video.addEventListener('error', function() {
         console.warn('Video failed to load, showing fallback image');
         const img = document.createElement('img');
         img.src = fallbackSrc;
         img.alt = 'Sing for Hope artists performing';
         img.className = 'w-full h-full object-cover';
-        video.parentNode.replaceChild(img, video);
+        if (video.parentNode) {
+          video.parentNode.replaceChild(img, video);
+        }
       });
     }
 
-    function optimizeVideoForConnection(video) {
+    function optimizeVideoForConnection(video: HTMLVideoElement) {
       // Check if user prefers reduced data usage
-      if (navigator.connection) {
-        const connection = navigator.connection;
-        if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+      if ('connection' in navigator) {
+        const connection = (navigator as any).connection;
+        if (connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g')) {
           video.preload = 'none';
         }
       }
@@ -273,13 +275,13 @@ const translations = await loadTranslations(currentLang);
     }
 
     if (desktopVideo) {
-      handleVideoError(desktopVideo, '/singforhope.jpg');
-      optimizeVideoForConnection(desktopVideo);
+      handleVideoError(desktopVideo as HTMLVideoElement, '/singforhope.jpg');
+      optimizeVideoForConnection(desktopVideo as HTMLVideoElement);
     }
     
     if (mobileVideo) {
-      handleVideoError(mobileVideo, '/singforhope.jpg');
-      optimizeVideoForConnection(mobileVideo);
+      handleVideoError(mobileVideo as HTMLVideoElement, '/singforhope.jpg');
+      optimizeVideoForConnection(mobileVideo as HTMLVideoElement);
     }
   });
 </script>

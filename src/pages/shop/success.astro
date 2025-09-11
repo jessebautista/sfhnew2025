@@ -234,9 +234,12 @@ import { CheckCircle, Heart, Share2, ShoppingBag } from 'lucide-react';
 
   // Auto-scroll to success message on page load
   window.addEventListener('load', () => {
-    document.querySelector('h1').scrollIntoView({ 
-      behavior: 'smooth', 
-      block: 'center' 
-    });
+    const h1Element = document.querySelector('h1');
+    if (h1Element) {
+      h1Element.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'center' 
+      });
+    }
   });
 </script>

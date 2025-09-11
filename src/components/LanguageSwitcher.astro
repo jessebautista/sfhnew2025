@@ -62,7 +62,7 @@ const languages = Object.values(LANGUAGES);
     
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
-      if (!languageSwitcher.contains(e.target)) {
+      if (e.target && !languageSwitcher.contains(e.target as Node)) {
         languageSwitcher.classList.remove('active');
       }
     });
