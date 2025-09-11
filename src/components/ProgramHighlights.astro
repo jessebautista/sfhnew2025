@@ -1,5 +1,10 @@
 ---
 import { t, getLocalizedPath } from '../lib/i18n';
+import singforhopepianos from '../images/singforhopepianos.jpg';
+import singforhope from '../images/singforhope.jpg';
+import partner1 from '../images/partner-1.png';
+import partner2 from '../images/partner-2.png';
+import pianoProcess from '../images/piano-process.png';
 
 // Accept props from parent component
 const { currentLang, translations } = Astro.props;
@@ -23,7 +28,7 @@ const { currentLang, translations } = Astro.props;
         <div class="relative group">
           <div class="relative h-48 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:h-64 lg:h-80">
             <img
-              src="/src/images/singforhopepianos.jpg"
+              src={singforhopepianos.src}
               alt="Colorfully painted piano in public space"
               class="h-full w-full object-cover object-center"
             />
@@ -48,7 +53,7 @@ const { currentLang, translations } = Astro.props;
         <div class="relative group">
           <div class="relative h-48 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:h-64 lg:h-80">
             <img
-              src="/src/images/singforhope.jpg"
+              src={singforhope.src}
               alt="Students engaged in music education"
               class="h-full w-full object-cover object-center"
             />
@@ -73,7 +78,7 @@ const { currentLang, translations } = Astro.props;
         <div class="relative group">
           <div class="relative h-48 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:h-64 lg:h-80">
             <img
-              src="/src/images/partner-1.png"
+              src={partner1.src}
               alt="Healthcare workers and patients enjoying music therapy"
               class="h-full w-full object-cover object-center"
             />
@@ -98,7 +103,7 @@ const { currentLang, translations } = Astro.props;
         <div class="relative group">
           <div class="relative h-48 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:h-64 lg:h-80">
             <img
-              src="/src/images/partner-2.png"
+              src={partner2.src}
               alt="International arts collaboration"
               class="h-full w-full object-cover object-center"
             />
@@ -123,7 +128,7 @@ const { currentLang, translations } = Astro.props;
         <div class="relative group">
           <div class="relative h-48 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75 sm:h-64 lg:h-80">
             <img
-              src="/src/images/piano-process.png"
+              src={pianoProcess.src}
               alt="Adults in arts training program"
               class="h-full w-full object-cover object-center"
             />
