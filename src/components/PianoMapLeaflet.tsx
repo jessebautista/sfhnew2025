@@ -142,11 +142,11 @@ const PianoMapLeaflet: React.FC<PianoMapProps> = ({
                 {validPianos.map((piano, index) => (
                   <Marker
                     key={`${piano.piano_id || index}-${piano.piano_title}`}
-                    position={[Number(piano.perm_lat), Number(piano.perm_lng)]}
-                    icon={createPianoIcon()}
+                    position={[Number(piano.perm_lat), Number(piano.perm_lng)] as any}
+                    icon={createPianoIcon() as any}
                     eventHandlers={{
                       click: () => handlePianoClick(piano)
-                    }}
+                    } as any}
                   >
                     <Popup>
                       <div className="text-sm">
@@ -165,7 +165,7 @@ const PianoMapLeaflet: React.FC<PianoMapProps> = ({
 
           return (
             <MapContainer
-              center={initialCenter}
+              center={initialCenter as any}
               zoom={initialZoom}
               style={{ height: '100%', width: '100%' }}
               className="rounded-lg overflow-hidden"
@@ -175,7 +175,7 @@ const PianoMapLeaflet: React.FC<PianoMapProps> = ({
             >
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution={'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' as any}
               />
               
               <FitBoundsOnChange pianos={validPianos} />
