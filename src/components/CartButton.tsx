@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart } from '../lib/icons';
 
 interface CartButtonProps {
   translations?: any;

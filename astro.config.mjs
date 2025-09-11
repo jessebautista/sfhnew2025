@@ -11,12 +11,28 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
+  vite: {
+    ssr: {
+      noExternal: ['lucide-react']
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'lucide-react': ['lucide-react']
+          }
+        }
+      }
+    }
+  },
   site: 'https://singforhope.org',
   adapter: vercel({
     webAnalytics: {
       enabled: true,
     },
     imageService: true,
+    functionPerRoute: false,
+    edgeMiddleware: false,
   }),
   integrations: [
     tailwind(),

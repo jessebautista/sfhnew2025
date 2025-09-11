@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Plus, Minus, ShoppingCart, Heart, Trash2 } from 'lucide-react';
+import { X, Plus, Minus, ShoppingCart, Heart, Trash2 } from '../lib/icons';
 import { useCart } from './CartContext';
 import { formatPrice as utilFormatPrice } from '../lib/utils';
 
