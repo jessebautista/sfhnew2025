@@ -17,6 +17,7 @@ export default defineConfig({
       enabled: true,
     },
     imageService: true,
+    runtime: 'nodejs20.x',
   }),
   integrations: [
     tailwind(),
