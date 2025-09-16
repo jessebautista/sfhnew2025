@@ -21,7 +21,7 @@ interface Program {
   act_title: string;
 }
 
-mapboxgl.accessToken = import.meta.env.PUBLIC_MAPBOX_TOKEN || 'pk.eyJ1Ijoic2ZoaXRzdXBwb3J0IiwiYSI6ImNtY203a2hpNTBqcDkya29xNmtyNXNhM3MifQ.M2LsG1ruMjqssy1hOEjLPQ';
+mapboxgl.accessToken = import.meta.env.PUBLIC_MAPBOX_TOKEN;
 
 // Error Boundary Component
 class PianoGalleryErrorBoundary extends React.Component<
