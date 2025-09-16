@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getPrintfulConfig, isPrintfulConfigured, fetchPrintfulProductDTO } from '../../../../lib/printful';
+import { getPrintfulConfig, isPrintfulConfigured, fetchPrintfulProductDTO } from '../../../lib/printful';
 
 export const GET: APIRoute = async ({ params }) => {
   const idParam = params.id as string | undefined;
