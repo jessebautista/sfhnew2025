@@ -1,0 +1,296 @@
+---
+import { fetchFeaturedNews } from '../lib/supabase';
+
+// Fetch featured news items
+const featuredNews = await fetchFeaturedNews();
+
+function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+
+function stripHtml(html: string) {
+  return html.replace(/<[^>]*>/g, '');
+}
+
+function truncateText(text: string, limit: number = 120) {
+  const stripped = stripHtml(text);
+  if (stripped.length <= limit) return stripped;
+  return stripped.substring(0, limit) + '...';
+}
+---
+
+<section class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between mb-12">
+      <div>
+        <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          Featured News
+        </h2>
+        <p class="mt-4 text-xl text-gray-500">
+          Highlights from our latest programs, partnerships, and community impact.
+        </p>
+      </div>
+      <div class="hidden lg:flex items-center space-x-2">
+        <button
+          id="scroll-left"
+          class="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-gray-300 text-gray-400 hover:text-gray-600 hover:border-gray-400 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          aria-label="Scroll left"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          id="scroll-right"
+          class="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-gray-300 text-gray-400 hover:text-gray-600 hover:border-gray-400 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          aria-label="Scroll right"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    {featuredNews.length > 0 ? (
+      <div class="relative">
+        <!-- Scrollable container -->
+        <div
+          id="news-container"
+          class="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory scrollbar-hide -mx-4 px-4"
+          style="scrollbar-width: none; -ms-overflow-style: none;"
+        >
+          {featuredNews.map((item, index) => (
+            <div class="flex-none w-80 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden snap-start">
+              <div class="relative">
+                <img
+                  class="w-full h-48 object-cover"
+                  src={item.news_image}
+                  alt={stripHtml(item.news_title)}
+                  loading={index < 3 ? "eager" : "lazy"}
+                />
+                <div class="absolute top-4 left-4">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-melody text-white">
+                    Featured
+                  </span>
+                </div>
+              </div>
+              <div class="p-6">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                    News
+                  </span>
+                  <time class="text-sm text-gray-500" datetime={item.news_date}>
+                    {formatDate(item.news_date)}
+                  </time>
+                </div>
+                <a href={`/news/${item.news_url}`} class="block group">
+                  <h3 class="text-lg font-semibold text-gray-900 group-hover:text-melody transition-colors duration-200 mb-3 line-clamp-2">
+                    <Fragment set:html={item.news_title} />
+                  </h3>
+                  <p class="text-sm text-gray-600 mb-4 line-clamp-3">
+                    {item.news_excerpt ? truncateText(item.news_excerpt, 120) : truncateText(item.news_title, 120)}
+                  </p>
+                </a>
+                <div class="flex items-center justify-between">
+                  <a
+                    href={`/news/${item.news_url}`}
+                    class="inline-flex items-center text-melody hover:text-melodydark font-medium transition-colors duration-200"
+                  >
+                    Read More
+                    <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Mobile scroll indicators -->
+        <div class="flex justify-center mt-6 lg:hidden">
+          <div class="flex space-x-2" id="mobile-indicators">
+            {featuredNews.map((_, index) => (
+              <div class="w-2 h-2 rounded-full bg-gray-300" data-indicator={index}></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ) : (
+      <!-- Fallback if no featured news -->
+      <div class="text-center py-12">
+        <div class="max-w-md mx-auto">
+          <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15" />
+          </svg>
+          <h3 class="mt-2 text-sm font-medium text-gray-900">No featured news</h3>
+          <p class="mt-1 text-sm text-gray-500">Check back soon for highlighted stories and updates.</p>
+          <div class="mt-6">
+            <a
+              href="/news"
+              class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-full text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
+            >
+              View All News
+              <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    )}
+
+    <!-- View All News button -->
+    <div class="mt-8 text-center">
+      <a
+        href="/news"
+        class="inline-flex items-center px-6 py-3 border border-gray-300 rounded-full text-base font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors duration-200"
+      >
+        View All News
+        <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hide scrollbar for news container */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Smooth scrolling for snap points */
+  #news-container {
+    scroll-behavior: smooth;
+    cursor: grab;
+  }
+  
+  #news-container:active {
+    cursor: grabbing;
+  }
+  
+  /* Custom scroll snap for better control */
+  @media (max-width: 1024px) {
+    #news-container {
+      scroll-snap-type: x mandatory;
+    }
+    
+    #news-container > div {
+      scroll-snap-align: start;
+    }
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Featured news scroll functionality
+    const newsContainer = document.getElementById('news-container');
+    const scrollLeftBtn = document.getElementById('scroll-left');
+    const scrollRightBtn = document.getElementById('scroll-right');
+    const indicators = document.querySelectorAll('[data-indicator]');
+    
+    if (newsContainer && scrollLeftBtn && scrollRightBtn) {
+      const scrollAmount = 320; // Width of one card plus gap
+      
+      // Update scroll buttons state
+      function updateScrollButtons() {
+        const isAtStart = newsContainer.scrollLeft <= 0;
+        const isAtEnd = newsContainer.scrollLeft >= newsContainer.scrollWidth - newsContainer.clientWidth - 10;
+        
+        scrollLeftBtn.disabled = isAtStart;
+        scrollRightBtn.disabled = isAtEnd;
+        
+        // Update indicators
+        const currentCard = Math.round(newsContainer.scrollLeft / scrollAmount);
+        indicators.forEach((indicator, index) => {
+          if (index === currentCard) {
+            indicator.classList.remove('bg-gray-300');
+            indicator.classList.add('bg-melody');
+          } else {
+            indicator.classList.remove('bg-melody');
+            indicator.classList.add('bg-gray-300');
+          }
+        });
+      }
+      
+      // Scroll left
+      scrollLeftBtn.addEventListener('click', () => {
+        newsContainer.scrollBy({
+          left: -scrollAmount,
+          behavior: 'smooth'
+        });
+      });
+      
+      // Scroll right
+      scrollRightBtn.addEventListener('click', () => {
+        newsContainer.scrollBy({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+      });
+      
+      // Listen for scroll events
+      newsContainer.addEventListener('scroll', updateScrollButtons);
+      
+      // Initial state
+      updateScrollButtons();
+      
+      // Touch/mouse drag scrolling
+      let isDown = false;
+      let startX;
+      let scrollLeftPos;
+      
+      newsContainer.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - newsContainer.offsetLeft;
+        scrollLeftPos = newsContainer.scrollLeft;
+        newsContainer.style.cursor = 'grabbing';
+      });
+      
+      newsContainer.addEventListener('mouseleave', () => {
+        isDown = false;
+        newsContainer.style.cursor = 'grab';
+      });
+      
+      newsContainer.addEventListener('mouseup', () => {
+        isDown = false;
+        newsContainer.style.cursor = 'grab';
+      });
+      
+      newsContainer.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - newsContainer.offsetLeft;
+        const walk = (x - startX) * 2;
+        newsContainer.scrollLeft = scrollLeftPos - walk;
+      });
+    }
+  });
+</script>

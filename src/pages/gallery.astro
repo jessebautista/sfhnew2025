@@ -1,0 +1,395 @@
+---
+import Base from '../layouts/Base.astro';
+import PianoGallery from '../components/PianoGallery.tsx';
+---
+
+<Base
+  title="Piano Gallery - Sing for Hope"
+  description="Explore our collection of artist-designed pianos placed in communities worldwide. Discover the beautiful artwork and stories behind each piano."
+>
+  <div class="bg-white">
+    <!-- Hero Section -->
+    <div class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-melody via-melody/95 to-melodydark"></div>
+      <div class="absolute inset-0 bg-[url('/src/images/musical-notes-pattern.svg')] opacity-10"></div>
+      
+      <!-- Floating Elements -->
+      <div class="absolute top-20 left-20 w-48 h-48 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-32 right-16 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="backdrop-blur-sm bg-white/10 rounded-3xl p-12 border border-white/20 shadow-2xl">
+          <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
+            <span class="block">Piano</span>
+            <span class="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+              Gallery
+            </span>
+          </h1>
+          <p class="mt-8 text-xl md:text-2xl text-gray-100 max-w-4xl mx-auto leading-relaxed">
+            Discover the beautiful artist-designed pianos that bring music and joy to communities around the world.
+          </p>
+          
+          
+          <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="group">
+              <div class="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">700+</div>
+              <div class="text-gray-200 font-medium">Unique Designs</div>
+            </div>
+            <div class="group">
+              <div class="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">500+</div>
+              <div class="text-gray-200 font-medium">Artists Featured</div>
+            </div>
+            <div class="group">
+              <div class="text-4xl font-bold text-white mb-2 group-hover:scale-110 transition-transform duration-300">25+</div>
+              <div class="text-gray-200 font-medium">Cities Worldwide</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div class="animate-bounce">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Piano Gallery Section -->
+    <section id="gallery" class="py-12">
+      <!-- Full Piano Gallery Interface with Map on Left & List on Right -->
+      <div class="min-h-[800px]">
+        <PianoGallery client:load />
+      </div>
+    </section>
+
+    <!-- About the Gallery -->
+    <section class="py-24 bg-gradient-to-br from-gray-50 via-white to-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-8">
+              <span class="bg-gradient-to-r from-melody to-melodydark bg-clip-text text-transparent">
+                Art Meets Music
+              </span>
+            </h2>
+            <p class="text-xl text-gray-700 mb-8 leading-relaxed">
+              Each piano in our gallery represents a unique collaboration between talented artists and the transformative power of music. These aren't just instruments – they're works of art that tell stories, celebrate cultures, and inspire communities.
+            </p>
+            <p class="text-lg text-gray-600 mb-10 leading-relaxed">
+              From vibrant murals depicting local landmarks to abstract designs that capture the essence of music itself, every piano reflects the creativity and vision of its artist while serving as a beacon of hope and connection in public spaces.
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="group bg-gradient-to-br from-melody to-melodydark text-white p-6 rounded-2xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div class="text-3xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300">500+</div>
+                <div class="text-lg opacity-90">Artists</div>
+                <div class="mt-1 text-sm opacity-75">Professional & emerging</div>
+              </div>
+              <div class="group bg-gradient-to-br from-harmony to-harmonydark text-white p-6 rounded-2xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                <div class="text-3xl font-bold mb-2 group-hover:scale-110 transition-transform duration-300">∞</div>
+                <div class="text-lg opacity-90">Stories</div>
+                <div class="mt-1 text-sm opacity-75">Each piano unique</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="relative">
+            <div class="absolute -inset-4 bg-gradient-to-r from-melody to-harmony rounded-3xl blur opacity-20"></div>
+            <img
+              class="relative rounded-3xl shadow-2xl"
+              src="/src/images/piano-process.png"
+              alt="Artist creating a Sing for Hope Piano"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+            <span class="bg-gradient-to-r from-harmony via-harmonydark to-melody bg-clip-text text-transparent">
+              Frequently Asked Questions
+            </span>
+          </h2>
+          <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto">
+            Learn more about our piano gallery and artist program
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+          <div class="space-y-4" id="faq-accordion">
+            <div class="faq-item bg-gray-50 rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <button class="faq-question w-full px-8 py-6 text-left hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-gray-900">How are artists selected for the piano program?</h3>
+                <svg class="faq-icon w-6 h-6 text-melody transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="faq-answer px-8 pb-6 hidden">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  Artists are selected through an open application process that prioritizes diversity, artistic excellence, and community connection. We work with both established and emerging artists, including painters, muralists, graphic designers, and community art groups. Selection criteria include artistic vision, technical skill, and the ability to create work that resonates with diverse communities.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item bg-gray-50 rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <button class="faq-question w-full px-8 py-6 text-left hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-gray-900">What materials and techniques do artists use?</h3>
+                <svg class="faq-icon w-6 h-6 text-melody transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="faq-answer px-8 pb-6 hidden">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  Artists use weather-resistant paints and materials designed for outdoor exposure. Techniques range from traditional brush painting to digital printing, mosaic work, and mixed media applications. All materials must be non-toxic and safe for public interaction. We provide guidelines and support to ensure both artistic freedom and durability.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item bg-gray-50 rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <button class="faq-question w-full px-8 py-6 text-left hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-gray-900">Can I commission a custom piano design?</h3>
+                <svg class="faq-icon w-6 h-6 text-melody transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="faq-answer px-8 pb-6 hidden">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  Custom commissions are available for organizations and sponsors who want to support the program with specific themes or messages. These collaborations involve working closely with our curatorial team and selected artists to create designs that align with both the sponsor's vision and our program's mission of community connection through art and music.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item bg-gray-50 rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <button class="faq-question w-full px-8 py-6 text-left hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-gray-900">How do you preserve the artwork on outdoor pianos?</h3>
+                <svg class="faq-icon w-6 h-6 text-melody transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="faq-answer px-8 pb-6 hidden">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  Each piano receives multiple protective coatings including UV-resistant clear sealers and weather-resistant finishes. We also provide temporary covers during severe weather and conduct regular maintenance checks. While some weathering is expected and even celebrated as part of the piano's journey, we take steps to preserve the artistic integrity throughout their public placement period.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item bg-gray-50 rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+              <button class="faq-question w-full px-8 py-6 text-left hover:bg-gray-100 transition-colors duration-200 flex justify-between items-center">
+                <h3 class="text-xl font-semibold text-gray-900">Are the piano designs documented or archived?</h3>
+                <svg class="faq-icon w-6 h-6 text-melody transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div class="faq-answer px-8 pb-6 hidden">
+                <p class="text-lg text-gray-700 leading-relaxed">
+                  Yes! We maintain a comprehensive digital archive of every piano design, including high-resolution photographs, artist statements, and documentation of their placement and community impact. This gallery serves as both a celebration of the artists' work and a historical record of the program's evolution over the years.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Artist Spotlight -->
+    <section class="py-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-br from-harmony via-harmony/95 to-harmonydark"></div>
+      <div class="absolute inset-0 bg-[url('/src/images/artistic-pattern.svg')] opacity-10"></div>
+      
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">
+            Celebrating Our Artists
+          </h2>
+          <p class="text-xl md:text-2xl text-gray-100 max-w-4xl mx-auto">
+            Meet some of the talented artists who bring our pianos to life
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div class="text-center mb-6">
+              <div class="w-20 h-20 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-semibold text-white mb-2">Professional Artists</h3>
+            </div>
+            <p class="text-lg text-gray-100 leading-relaxed">
+              Established artists bring their expertise and unique styles to create stunning large-scale works that captivate and inspire communities.
+            </p>
+          </div>
+
+          <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div class="text-center mb-6">
+              <div class="w-20 h-20 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-semibold text-white mb-2">Emerging Artists</h3>
+            </div>
+            <p class="text-lg text-gray-100 leading-relaxed">
+              Up-and-coming talents get a platform to showcase their work on a grand scale, reaching thousands of people in public spaces.
+            </p>
+          </div>
+
+          <div class="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+            <div class="text-center mb-6">
+              <div class="w-20 h-20 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h3 class="text-2xl font-semibold text-white mb-2">Community Groups</h3>
+            </div>
+            <p class="text-lg text-gray-100 leading-relaxed">
+              Local art groups and organizations collaborate to create designs that reflect their community's unique character and cultural heritage.
+            </p>
+          </div>
+        </div>
+
+        <div class="text-center mt-16">
+          <a
+            href="/contact"
+            class="bg-white text-harmony px-10 py-5 rounded-2xl font-semibold text-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 inline-flex items-center gap-3"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+            </svg>
+            Become an Artist
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Get Involved -->
+    <section class="py-24 bg-gradient-to-br from-melody via-melody/95 to-melodydark">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6">
+            Get Involved
+          </h2>
+          <p class="text-xl md:text-2xl text-gray-100 max-w-4xl mx-auto mb-12">
+            Help us bring more beautiful art and music to communities around the world
+          </p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <a
+              href="/contact"
+              class="bg-white text-melody px-8 py-6 rounded-2xl font-semibold text-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 text-center"
+            >
+              <svg class="w-8 h-8 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
+              Apply as Artist
+            </a>
+            <a
+              href="/contact"
+              class="bg-white text-melody px-8 py-6 rounded-2xl font-semibold text-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 text-center"
+            >
+              <svg class="w-8 h-8 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+              Sponsor a Piano
+            </a>
+            <button
+              type="button"
+              id="gallery-donate-button"
+              class="bg-white/20 backdrop-blur-sm text-white border-2 border-white/30 px-8 py-6 rounded-2xl font-semibold text-lg hover:bg-white/30 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+            >
+              <svg class="w-8 h-8 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              Support Gallery
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // FAQ Accordion functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach((item) => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+      
+      if (question && answer && icon) {
+        question.addEventListener('click', function() {
+          const isOpen = !answer.classList.contains('hidden');
+          
+          // Close all other FAQ items
+          faqItems.forEach((otherItem) => {
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            const otherIcon = otherItem.querySelector('.faq-icon');
+            if (otherAnswer && otherIcon && otherItem !== item) {
+              otherAnswer.classList.add('hidden');
+              (otherIcon as HTMLElement).style.transform = 'rotate(0deg)';
+            }
+          });
+          
+          // Toggle current item
+          if (isOpen) {
+            answer.classList.add('hidden');
+            (icon as HTMLElement).style.transform = 'rotate(0deg)';
+          } else {
+            answer.classList.remove('hidden');
+            (icon as HTMLElement).style.transform = 'rotate(180deg)';
+          }
+        });
+      }
+    });
+
+    // Smooth scrolling for anchor links
+    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    anchorLinks.forEach((link) => {
+      link.addEventListener('click', function(e: Event) {
+        e.preventDefault();
+        const href = (this as HTMLAnchorElement).getAttribute('href');
+        if (href) {
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+            });
+          }
+        }
+      });
+    });
+    
+    // Donate button functionality
+    const donateButton = document.getElementById('gallery-donate-button');
+    
+    if (donateButton) {
+      donateButton.addEventListener('click', function(e: Event) {
+        e.preventDefault();
+        
+        try {
+          if (window.Funraise) {
+            window.Funraise.popup();
+          } else {
+            window.location.href = '/donate';
+          }
+        } catch (error) {
+          console.warn('Funraise popup failed, redirecting to fallback', error);
+          window.location.href = '/donate';
+        }
+      });
+    }
+  });
+</script>

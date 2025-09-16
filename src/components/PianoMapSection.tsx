@@ -72,7 +72,7 @@ const PianoMapSection: React.FC = () => {
               </div>
               
               <motion.a
-                href="/discover"
+                href="/gallery"
                 className="bg-white bg-opacity-20 backdrop-blur-sm border border-white/30 text-white px-4 py-2 rounded-lg font-medium hover:bg-opacity-30 transition-all duration-200 flex items-center space-x-2 pointer-events-auto"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -96,8 +96,8 @@ const PianoMapSection: React.FC = () => {
       <div className="mt-4 text-center text-sm text-gray-500">
         <p>
           💡 Tip: For the best mobile experience, visit our 
-          <a href="/discover" className="text-green-600 hover:text-green-700 font-medium ml-1">
-            dedicated discovery page
+          <a href="/gallery" className="text-green-600 hover:text-green-700 font-medium ml-1">
+            dedicated gallery page
           </a>
         </p>
       </div>

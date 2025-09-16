@@ -32,6 +32,7 @@ export interface NewsItem {
   news_image_caption?: string;
   news_author?: string;
   news_link?: string;
+  featured?: boolean;
   created_at: string;
   updated_at: string;
 }
@@ -229,5 +230,27 @@ export async function fetchPianoByUrl(pianoUrl: string) {
   } catch (error) {
     console.error('Error fetching piano:', error);
     return null;
+  }
+}
+
+export async function fetchFeaturedNews(limit?: number) {
+  try {
+    let query = supabase
+      .from('news')
+      .select('*')
+      .eq('featured', true)
+      .order('news_date', { ascending: false });
+
+    if (limit) {
+      query = query.limit(limit);
+    }
+
+    const { data, error } = await query;
+
+    if (error) throw error;
+    return data || [];
+  } catch (error) {
+    console.error('Error fetching featured news:', error);
+    return [];
   }
 }

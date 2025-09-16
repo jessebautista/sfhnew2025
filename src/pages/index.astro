@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import ProgramHighlights from '../components/ProgramHighlights.astro';
-import NewsSection from '../components/NewsSection.astro';
+import FeaturedNewsSection from '../components/FeaturedNewsSection.astro';
 import CallToAction from '../components/CallToAction.astro';
 import { getLanguageFromURL, loadTranslations } from '../lib/i18n';
 
@@ -17,6 +17,6 @@ const translations = await loadTranslations(currentLang);
 >
   <Hero />
   <ProgramHighlights currentLang={currentLang} translations={translations} />
-  <NewsSection currentLang={currentLang} translations={translations} />
+  <FeaturedNewsSection />
   <CallToAction currentLang={currentLang} translations={translations} />
 </Base>

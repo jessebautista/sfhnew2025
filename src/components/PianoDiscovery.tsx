@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Map, Grid, Music } from 'lucide-react';
-import PianoMapLeaflet from './PianoMapLeaflet';
+import PianoMapML from './PianoMapML';
+import PianoListSidebar from './PianoListSidebar';
+import PianoDetailPanel from './PianoDetailPanel';
 import PianoFilters from './PianoFilters';
 import type { PianoFiltersState } from './PianoFilters';
 import PianoDetailModal from './PianoDetailModal';
@@ -80,6 +82,19 @@ const PianoDiscovery: React.FC = () => {
     return filtered;
   }, [pianos, filters]);
 
+  // When switching to map view or after filters change, trigger a resize to
+  // help map libraries recalc dimensions after animations/layout changes.
+  useEffect(() => {
+    if (viewMode !== 'map') return;
+    const trigger = () => window.dispatchEvent(new Event('resize'));
+    const t1 = setTimeout(trigger, 50);
+    const t2 = setTimeout(trigger, 300);
+    const t3 = setTimeout(trigger, 800);
+    return () => {
+      clearTimeout(t1); clearTimeout(t2); clearTimeout(t3);
+    };
+  }, [viewMode, filteredPianos.length]);
+
   const handlePianoSelect = (piano: Piano) => {
     setSelectedPiano(piano);
   };
@@ -145,18 +160,38 @@ const PianoDiscovery: React.FC = () => {
           {viewMode === 'map' ? (
             <motion.div
               key="map"
-              className="h-full min-h-[600px]"
+              className="h-full min-h-[680px] flex"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <PianoMapLeaflet
-                pianos={filteredPianos}
-                onPianoSelect={handlePianoSelect}
-                className="h-full w-full"
-                height="100%"
-              />
+              {/* Left sidebar (desktop) */}
+              <div className="hidden lg:block w-80 flex-shrink-0">
+                <PianoListSidebar
+                  pianos={filteredPianos}
+                  selectedPiano={selectedPiano}
+                  onSelect={handlePianoSelect}
+                  onSearch={(q) => setFilters(f => ({ ...f, searchQuery: q }))}
+                  className="h-full"
+                />
+              </div>
+
+              {/* Map center */}
+              <div className="flex-1 min-w-0">
+                <PianoMapML
+                  pianos={filteredPianos}
+                  onPianoSelect={handlePianoSelect}
+                  selectedPiano={selectedPiano}
+                  className="h-full w-full"
+                  height="100%"
+                />
+              </div>
+
+              {/* Right detail panel (large screens) */}
+              <div className="hidden xl:block w-[360px] flex-shrink-0">
+                <PianoDetailPanel piano={selectedPiano} className="h-full" />
+              </div>
             </motion.div>
           ) : (
             <motion.div
@@ -176,12 +211,14 @@ const PianoDiscovery: React.FC = () => {
         </AnimatePresence>
       </div>
 
-      {/* Piano Detail Modal */}
-      <PianoDetailModal
-        piano={selectedPiano}
-        isOpen={!!selectedPiano}
-        onClose={handleCloseModal}
-      />
+      {/* Piano Detail Modal (mobile-only) */}
+      <div className="xl:hidden">
+        <PianoDetailModal
+          piano={selectedPiano}
+          isOpen={!!selectedPiano}
+          onClose={handleCloseModal}
+        />
+      </div>
     </div>
   );
 };

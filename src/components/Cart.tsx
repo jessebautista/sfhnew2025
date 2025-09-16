@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { X, Plus, Minus, ShoppingCart, Heart, Trash2 } from '../lib/icons';
 import { useCart } from './CartContext';
 import { formatPrice as utilFormatPrice } from '../lib/utils';
@@ -14,6 +14,77 @@ interface CartProps {
 
 const Cart: React.FC<CartProps> = ({ isCheckingOut = false, onCheckout }) => {
   const { state, removeItem, updateQuantity, closeCart } = useCart();
+
+  // Shipping estimate state
+  const [country, setCountry] = useState('US');
+  const [zip, setZip] = useState('');
+  const [shippingCents, setShippingCents] = useState<number | null>(null);
+  const [estimating, setEstimating] = useState(false);
+  const [shipErr, setShipErr] = useState<string | null>(null);
+
+  const subtotal = state.totalPrice;
+  const itemsForEstimate = useMemo(() => {
+    return state.items
+      .map((it) => ({ product_id: it.id, variant_id: it.variantId, quantity: it.quantity }));
+  }, [state.items]);
+
+  // We no longer force free shipping by subtotal; rely on live estimate.
+  const canFreeShip = false;
+
+  async function estimateShipping() {
+    if (!itemsForEstimate.length) {
+      setShippingCents(0);
+      return;
+    }
+    setEstimating(true);
+    setShipErr(null);
+    try {
+      const res = await fetch('/api/shipping/estimate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ country, zip, items: itemsForEstimate }),
+      });
+      const json = await res.json();
+      if (json.success) {
+        setShippingCents(Number(json.data?.shipping_cents || 0));
+      } else {
+        setShipErr(json.error || 'Failed to estimate');
+        setShippingCents(null);
+      }
+    } catch (e: any) {
+      setShipErr(e?.message || 'Failed to estimate');
+      setShippingCents(null);
+    } finally {
+      setEstimating(false);
+    }
+  }
+
+  // Persist destination in localStorage
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('sfh-ship-dest');
+      if (saved) {
+        const d = JSON.parse(saved);
+        if (d.country) setCountry(d.country);
+        if (d.zip) setZip(d.zip);
+      }
+    } catch {}
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('sfh-ship-dest', JSON.stringify({ country, zip }));
+    } catch {}
+  }, [country, zip]);
+
+  // Re-estimate when cart changes or destination changes
+  useEffect(() => {
+    // Do not auto-force free shipping; use live estimate when possible
+    // trigger estimate if we have a ZIP (US) or country non-US
+    if (zip || country !== 'US') estimateShipping();
+    else setShippingCents(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(itemsForEstimate), country, zip, canFreeShip]);
 
   const handleCheckout = () => {
     if (state.items.length === 0) return;
@@ -67,17 +138,41 @@ const Cart: React.FC<CartProps> = ({ isCheckingOut = false, onCheckout }) => {
                   </span>
                 </div>
                 
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Shipping</span>
-                  <span className="text-green-600 font-medium">
-                    {state.totalPrice >= 5000 ? 'Free' : '+$9.99'}
-                  </span>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm items-center">
+                    <span className="text-gray-600">Shipping</span>
+                    <span className="text-green-600 font-medium">
+                      {shippingCents == null ? '—' : (shippingCents === 0 ? 'Free' : formatPrice(shippingCents))}
+                    </span>
+                  </div>
+                  {!canFreeShip && (
+                    <div className="flex items-center space-x-2">
+                      <input
+                        value={zip}
+                        onChange={(e) => setZip(e.target.value)}
+                        placeholder="ZIP"
+                        className="w-24 px-2 py-1 text-sm border rounded"
+                      />
+                      <select value={country} onChange={(e) => setCountry(e.target.value)} className="px-2 py-1 text-sm border rounded">
+                        <option value="US">US</option>
+                        <option value="CA">CA</option>
+                        <option value="GB">GB</option>
+                        <option value="AU">AU</option>
+                        <option value="DE">DE</option>
+                        <option value="FR">FR</option>
+                      </select>
+                      <button onClick={estimateShipping} className="text-sm text-harmony hover:underline" disabled={estimating}>
+                        {estimating ? 'Estimating…' : 'Estimate'}
+                      </button>
+                    </div>
+                  )}
+                  {shipErr && <div className="text-xs text-red-600">{shipErr}</div>}
                 </div>
                 
                 <div className="flex justify-between text-lg font-semibold pt-3 border-t">
                   <span className="text-gray-900">Total</span>
                   <span className="text-gray-900">
-                    {formatPrice(state.totalPrice + (state.totalPrice >= 5000 ? 0 : 999))}
+                    {formatPrice(subtotal + (shippingCents || 0))}
                   </span>
                 </div>
                 
@@ -165,17 +260,41 @@ const Cart: React.FC<CartProps> = ({ isCheckingOut = false, onCheckout }) => {
                     </span>
                   </div>
                   
-                  <div className="flex justify-between text-sm">
-                    <span className="text-gray-600">Shipping</span>
-                    <span className="text-green-600 font-medium">
-                      {state.totalPrice >= 5000 ? 'Free' : '+$9.99'}
-                    </span>
+                  <div className="space-y-2">
+                    <div className="flex justify-between text-sm items-center">
+                      <span className="text-gray-600">Shipping</span>
+                      <span className="text-green-600 font-medium">
+                        {shippingCents == null ? '—' : (shippingCents === 0 ? 'Free' : formatPrice(shippingCents))}
+                      </span>
+                    </div>
+                    {!canFreeShip && (
+                      <div className="flex items-center space-x-2">
+                        <input
+                          value={zip}
+                          onChange={(e) => setZip(e.target.value)}
+                          placeholder="ZIP"
+                          className="w-24 px-2 py-1 text-sm border rounded"
+                        />
+                        <select value={country} onChange={(e) => setCountry(e.target.value)} className="px-2 py-1 text-sm border rounded">
+                          <option value="US">US</option>
+                          <option value="CA">CA</option>
+                          <option value="GB">GB</option>
+                          <option value="AU">AU</option>
+                          <option value="DE">DE</option>
+                          <option value="FR">FR</option>
+                        </select>
+                        <button onClick={estimateShipping} className="text-sm text-harmony hover:underline" disabled={estimating}>
+                          {estimating ? 'Estimating…' : 'Estimate'}
+                        </button>
+                      </div>
+                    )}
+                    {shipErr && <div className="text-xs text-red-600">{shipErr}</div>}
                   </div>
                   
                   <div className="flex justify-between text-lg font-semibold pt-2 border-t">
                     <span className="text-gray-900">Total</span>
                     <span className="text-gray-900">
-                      {formatPrice(state.totalPrice + (state.totalPrice >= 5000 ? 0 : 999))}
+                      {formatPrice(subtotal + (shippingCents || 0))}
                     </span>
                   </div>
                 </div>
@@ -188,11 +307,7 @@ const Cart: React.FC<CartProps> = ({ isCheckingOut = false, onCheckout }) => {
                   {isCheckingOut ? 'Processing...' : 'Secure Checkout'}
                 </button>
                 
-                {state.totalPrice < 5000 && (
-                  <p className="text-xs text-center text-harmony">
-                    Add {formatPrice(5000 - state.totalPrice)} more for free shipping!
-                  </p>
-                )}
+                {/* Free shipping threshold messaging removed; relying on live estimate */}
                 
                 <p className="text-xs text-gray-500 text-center">
                   Secure payment powered by Stripe

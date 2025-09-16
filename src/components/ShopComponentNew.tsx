@@ -151,6 +151,9 @@ const ShopComponentContent: React.FC = () => {
         console.log('ShopComponent: Fetch response:', response.status);
         const result = await response.json();
         console.log('ShopComponent: API result:', result);
+        if (result.debug) {
+          console.log('ShopComponent: API debug:', result.debug);
+        }
         
         if (result.success && result.data) {
           // Transform Printful data to match our product interface
@@ -283,14 +286,27 @@ const ShopComponentContent: React.FC = () => {
 
   const handleCheckout = async () => {
     if (state.items.length === 0) return;
-
     setIsCheckingOut(true);
-    
     try {
-      toast.loading('Redirecting to checkout...');
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      toast.dismiss();
-      window.location.href = '/shop/checkout';
+      // Build payload for server (validate/price server-side)
+      const items = state.items.map(it => ({ product_id: it.id, variant_id: Number(it.variantId), quantity: it.quantity }));
+      let destination: any = {};
+      try {
+        const saved = localStorage.getItem('sfh-ship-dest');
+        if (saved) destination = JSON.parse(saved);
+      } catch {}
+      const res = await fetch('/api/checkout/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items, destination }),
+      });
+      const json = await res.json();
+      if (json.success && json.url) {
+        window.location.href = json.url;
+        return;
+      }
+      console.error('Checkout error:', json);
+      toast.error(json.error || 'Checkout failed. Please try again.');
     } catch (err) {
       console.error('Checkout error:', err);
       toast.error('Checkout failed. Please try again.');

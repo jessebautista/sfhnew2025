@@ -110,12 +110,12 @@ const staticPages: SearchableContent[] = [
     description: 'Artist-designed pianos in public spaces worldwide'
   },
   {
-    id: 'page-discover',
-    title: 'Discover Pianos',
-    content: 'Interactive map piano locations discovery find pianos near me',
+    id: 'page-gallery',
+    title: 'Piano Gallery',
+    content: 'Interactive map piano locations gallery find pianos near me browse collection',
     type: 'page',
-    url: '/discover',
-    description: 'Find piano locations with our interactive map'
+    url: '/gallery',
+    description: 'Browse our piano gallery with interactive map and detailed piano information'
   },
   {
     id: 'page-education',

@@ -1,72 +1,66 @@
----
 import Base from '../../../layouts/Base.astro';
 import { Heart, Share2, ShoppingCart, Truck, Award, Shield, ArrowLeft } from 'lucide-react';
 
-// Mock product data - in production this would come from API/database
 const { id } = Astro.params;
 
-// Sample product data
-const products = {
-  '1': {
-    id: 1,
-    name: 'Sing for Hope Classic T-Shirt',
-    price: 2500,
-    originalPrice: 3000,
-    description: 'Our signature comfortable cotton t-shirt featuring the iconic Sing for Hope logo. Made from 100% organic cotton with a relaxed fit that\'s perfect for everyday wear.',
-    longDescription: 'This classic t-shirt represents more than just comfortable clothing—it\'s a statement of support for arts programs that transform communities. Crafted from premium 100% organic cotton, this shirt features our signature logo prominently displayed on the front. The relaxed fit ensures comfort throughout your day, whether you\'re attending a concert, volunteering in your community, or simply enjoying life.\n\nEvery purchase directly supports our mission to spread hope through the arts. The shirt is pre-shrunk and features reinforced seams for durability. Available in a range of sizes and colors to suit every supporter of the arts.',
-    images: [
-      '/src/images/singforhope.jpg',
-      '/src/images/singforhope.jpg',
-      '/src/images/singforhope.jpg',
-      '/src/images/singforhope.jpg'
-    ],
-    variants: [
-      { id: 'tshirt-xs-black', size: 'XS', color: 'Black', inStock: true },
-      { id: 'tshirt-s-black', size: 'S', color: 'Black', inStock: true },
-      { id: 'tshirt-m-black', size: 'M', color: 'Black', inStock: true },
-      { id: 'tshirt-l-black', size: 'L', color: 'Black', inStock: true },
-      { id: 'tshirt-xl-black', size: 'XL', color: 'Black', inStock: false },
-      { id: 'tshirt-s-white', size: 'S', color: 'White', inStock: true },
-      { id: 'tshirt-m-white', size: 'M', color: 'White', inStock: true },
-      { id: 'tshirt-l-white', size: 'L', color: 'White', inStock: true },
-    ],
-    colors: ['Black', 'White', 'Gray'],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    rating: 4.8,
-    reviewCount: 127,
-    category: 'Apparel',
-    tags: ['cotton', 'organic', 'comfort', 'everyday'],
-    artist: 'Official Design',
-    specs: {
-      'Material': '100% Organic Cotton',
-      'Fit': 'Relaxed',
-      'Care': 'Machine wash cold, tumble dry low',
-      'Origin': 'Made in USA',
-      'Features': 'Pre-shrunk, reinforced seams'
-    },
-    shipping: {
-      standard: 'Free shipping on orders over $50',
-      express: '$9.99 - 2-3 business days',
-      overnight: '$19.99 - 1 business day'
+const toUSD = (cents: number) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(cents / 100);
+
+// Fetch product details from our API (server-side)
+let product: any = null;
+let error: string | null = null;
+try {
+  const res = await fetch(`${Astro.site ? Astro.site.origin : ''}/api/products/${id}`);
+  if (res.ok) {
+    const json = await res.json();
+    if (json.success && json.data) {
+      const p = json.data;
+      // Normalize to template-friendly structure
+      const sizes = Array.from(new Set((p.variants || []).map((v: any) => v.size).filter(Boolean)));
+      const colors = Array.from(new Set((p.variants || []).map((v: any) => v.color).filter(Boolean)));
+      const variants = (p.variants || []).map((v: any) => ({
+        id: v.id,
+        size: v.size || 'One Size',
+        color: v.color || 'Default',
+        inStock: (v.availability || '').toLowerCase() !== 'out_of_stock'
+      }));
+      product = {
+        id: p.id,
+        name: p.name,
+        price: p.price,
+        originalPrice: undefined,
+        description: p.description || '',
+        longDescription: p.description || '',
+        images: p.images && p.images.length ? p.images : [p.image],
+        variants,
+        colors: colors.length ? colors : ['Default'],
+        sizes: sizes.length ? sizes : ['One Size'],
+        rating: 4.8,
+        reviewCount: 100,
+        category: 'Product',
+        tags: [],
+        artist: 'Sing for Hope',
+        specs: {},
+        shipping: {
+          standard: 'Free shipping on orders over $50',
+          express: '$9.99 - 2-3 business days',
+          overnight: '$19.99 - 1 business day'
+        }
+      };
+    } else {
+      error = 'Product not found';
     }
+  } else {
+    error = `Failed to fetch product (${res.status})`;
   }
-};
-
-const product = products[id as keyof typeof products];
-
-if (!product) {
-  return new Response(null, {
-    status: 404,
-    statusText: 'Product not found'
-  });
+} catch (e) {
+  error = 'Failed to load product';
 }
 
-const formatPrice = (cents: number) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  }).format(cents / 100);
-};
+if (!product) {
+  return new Response(JSON.stringify({ error: error || 'Not found' }), { status: 404 });
+}
+
+const formatPrice = toUSD;
 ---
 
 <Base
@@ -176,7 +170,7 @@ const formatPrice = (cents: number) => {
             </div>
 
             <div class="flex items-center space-x-4 mb-6">
-              <span class="text-3xl font-bold text-gray-900">
+              <span id="price-amount" class="text-3xl font-bold text-gray-900">
                 {formatPrice(product.price)}
               </span>
               {product.originalPrice && product.originalPrice > product.price && (
@@ -196,14 +190,15 @@ const formatPrice = (cents: number) => {
             <!-- Color Selection -->
             <div>
               <h3 class="text-sm font-medium text-gray-900 mb-3">Color</h3>
-              <div class="flex space-x-3">
+              <div id="color-options" class="flex space-x-3">
                 {product.colors.map((color) => (
                   <button 
-                    class="w-8 h-8 rounded-full border-2 border-gray-300 focus:border-harmony focus:outline-none"
+                    class="color-option w-8 h-8 rounded-full border-2 border-gray-300 focus:outline-none"
                     style={`background-color: ${color.toLowerCase()}`}
                     title={color}
-                  >
-                  </button>
+                    data-color={color}
+                    aria-label={`Color ${color}`}
+                  />
                 ))}
               </div>
             </div>
@@ -214,9 +209,9 @@ const formatPrice = (cents: number) => {
                 <h3 class="text-sm font-medium text-gray-900">Size</h3>
                 <button class="text-sm text-harmony hover:underline">Size Guide</button>
               </div>
-              <div class="grid grid-cols-3 gap-2">
+              <div id="size-options" class="grid grid-cols-3 gap-2">
                 {product.sizes.map((size) => (
-                  <button class="py-3 px-4 text-sm border border-gray-300 rounded-lg hover:border-harmony hover:text-harmony focus:border-harmony focus:outline-none transition-colors">
+                  <button class="size-option py-3 px-4 text-sm border border-gray-300 rounded-lg hover:border-harmony hover:text-harmony focus:outline-none transition-colors" data-size={size}>
                     {size}
                   </button>
                 ))}
@@ -240,7 +235,7 @@ const formatPrice = (cents: number) => {
 
           <!-- Action Buttons -->
           <div class="space-y-4">
-            <button class="w-full btn-harmony py-4 text-lg">
+            <button id="add-to-cart-btn" class="w-full btn-harmony py-4 text-lg">
               <ShoppingCart className="w-5 h-5 mr-2" />
               Add to Cart
             </button>
@@ -252,6 +247,27 @@ const formatPrice = (cents: number) => {
               <button class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
                 <Share2 className="w-5 h-5" />
               </button>
+            </div>
+
+            <!-- Shipping Estimate -->
+            <div class="mt-6 p-4 bg-gray-50 rounded-lg">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-sm font-medium text-gray-900">Shipping Estimate</h3>
+                <span id="ship-amount" class="text-sm font-semibold text-green-700">—</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <input id="ship-zip" placeholder="ZIP" class="w-28 px-3 py-2 text-sm border rounded" />
+                <select id="ship-country" class="px-3 py-2 text-sm border rounded">
+                  <option value="US">US</option>
+                  <option value="CA">CA</option>
+                  <option value="GB">GB</option>
+                  <option value="AU">AU</option>
+                  <option value="DE">DE</option>
+                  <option value="FR">FR</option>
+                </select>
+                <button id="ship-estimate-btn" class="text-sm text-harmony hover:underline">Estimate</button>
+              </div>
+              <div id="ship-error" class="text-xs text-red-600 mt-2 hidden"></div>
             </div>
           </div>
 
@@ -443,6 +459,125 @@ const formatPrice = (cents: number) => {
 </Base>
 
 <script>
+  // Variant selection, price updates, and add-to-cart (localStorage)
+  const VARIANTS = JSON.parse(decodeURIComponent(`${encodeURIComponent(JSON.stringify(product.variants))}`));
+  const BASE_PRICE = Number(`${product.price}`);
+  const PRODUCT_META = {
+    id: Number(`${product.id}`),
+    name: `${product.name}`,
+    image: `${product.images[0]}`
+  };
+
+  let selected = { color: null as string | null, size: null as string | null };
+
+  const priceEl = document.getElementById('price-amount');
+  const addBtn = document.getElementById('add-to-cart-btn') as HTMLButtonElement | null;
+
+  function findVariant() {
+    // prefer exact match (both size and color), then size-only, then color-only
+    let v = VARIANTS.find((x: any) => x.size === selected.size && x.color === selected.color);
+    if (!v && selected.size) v = VARIANTS.find((x: any) => x.size === selected.size && !x.color);
+    if (!v && selected.color) v = VARIANTS.find((x: any) => x.color === selected.color && !x.size);
+    return v || null;
+  }
+
+  function updatePriceAndButton() {
+    const v = findVariant();
+    const priceCents = (v && typeof v.price === 'number') ? v.price : BASE_PRICE;
+    if (priceEl) priceEl.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(priceCents / 100);
+    const out = v && typeof v.availability === 'string' && v.availability.toLowerCase() === 'out_of_stock';
+    if (addBtn) addBtn.disabled = !!out;
+  }
+
+  function selectOption(type: 'color' | 'size', value: string) {
+    selected[type] = value;
+    // toggle active styles
+    const clsOn = type === 'color' ? 'ring-2 ring-harmony border-harmony' : 'border-harmony text-harmony';
+    const clsOff = 'border-gray-300';
+    document.querySelectorAll(`.${type}-option`).forEach((el) => {
+      const btn = el as HTMLElement;
+      const isMatch = (btn.getAttribute(`data-${type}`) || '') === value;
+      btn.classList.remove('ring-2','ring-harmony','border-harmony','text-harmony');
+      if (isMatch) btn.classList.add(...clsOn.split(' ')); else btn.classList.add(...clsOff.split(' '));
+    });
+    updatePriceAndButton();
+  }
+
+  // Bind color buttons
+  document.querySelectorAll('.color-option').forEach(btn => {
+    btn.addEventListener('click', () => selectOption('color', (btn as HTMLElement).dataset.color || ''));
+  });
+  // Bind size buttons
+  document.querySelectorAll('.size-option').forEach(btn => {
+    btn.addEventListener('click', () => selectOption('size', (btn as HTMLElement).dataset.size || ''));
+  });
+
+  // Add to cart (localStorage) to sync with CartContext
+  if (addBtn) {
+    addBtn.addEventListener('click', () => {
+      const v = findVariant();
+      if (!v) {
+        alert('Please select options before adding to cart.');
+        return;
+      }
+      const key = 'sfh-cart';
+      let items: any[] = [];
+      try { items = JSON.parse(localStorage.getItem(key) || '[]'); } catch {}
+      const idx = items.findIndex(it => it.id === PRODUCT_META.id && it.variantId === v.id);
+      if (idx >= 0) items[idx].quantity += 1;
+      else items.push({ id: PRODUCT_META.id, variantId: v.id, quantity: 1, size: v.size || 'One Size', color: v.color, price: (v.price || BASE_PRICE), name: PRODUCT_META.name, image: PRODUCT_META.image });
+      localStorage.setItem(key, JSON.stringify(items));
+      // Notify header/cart widgets
+      window.dispatchEvent(new CustomEvent('cartUpdated'));
+      // Optionally open/toggle cart drawer
+      window.dispatchEvent(new Event('toggleCart'));
+    });
+  }
+
+  // Shipping estimate on PDP
+  const shipZip = document.getElementById('ship-zip') as HTMLInputElement | null;
+  const shipCountry = document.getElementById('ship-country') as HTMLSelectElement | null;
+  const shipBtn = document.getElementById('ship-estimate-btn') as HTMLButtonElement | null;
+  const shipAmount = document.getElementById('ship-amount');
+  const shipError = document.getElementById('ship-error');
+
+  async function estimateShipPDP() {
+    if (!shipZip || !shipCountry || !shipAmount) return;
+    if (!findVariant()) {
+      shipError?.classList.remove('hidden');
+      if (shipError) shipError.textContent = 'Select size/color to estimate shipping.';
+      return;
+    }
+    shipError?.classList.add('hidden');
+    const v = findVariant();
+    const payload = {
+      country: shipCountry.value || 'US',
+      zip: shipZip.value || '',
+      items: [{ variant_id: Number(v.id), quantity: 1 }]
+    };
+    shipBtn && (shipBtn.disabled = true);
+    try {
+      const res = await fetch('/api/shipping/estimate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      const json = await res.json();
+      if (json.success) {
+        const cents = Number(json.data?.shipping_cents || 0);
+        shipAmount.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(cents / 100);
+      } else {
+        shipError?.classList.remove('hidden');
+        if (shipError) shipError.textContent = json.error || 'Failed to estimate.';
+      }
+    } catch (e) {
+      shipError?.classList.remove('hidden');
+      if (shipError) shipError.textContent = 'Failed to estimate.';
+    } finally {
+      shipBtn && (shipBtn.disabled = false);
+    }
+  }
+
+  shipBtn?.addEventListener('click', estimateShipPDP);
+
+  // Initial UI state
+  updatePriceAndButton();
   // Tab functionality
   const tabButtons = document.querySelectorAll('.tab-btn');
   const tabContents = document.querySelectorAll('.tab-content');

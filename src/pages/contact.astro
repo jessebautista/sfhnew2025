@@ -1402,13 +1402,23 @@ document.addEventListener('DOMContentLoaded', function() {
     let isValid = true;
     let errorMsg = '';
 
-    if (rules.required && (!value || value.trim() === '')) {
+    // Handle different value types (string vs boolean)
+    if (rules.required) {
+      if (typeof value === 'boolean') {
+        if (!value) {
+          isValid = false;
+          errorMsg = errorMessages[fieldName];
+        }
+      } else {
+        if (!value || value.trim() === '') {
+          isValid = false;
+          errorMsg = errorMessages[fieldName];
+        }
+      }
+    } else if (rules.minLength && typeof value === 'string' && value.length < rules.minLength) {
       isValid = false;
       errorMsg = errorMessages[fieldName];
-    } else if (rules.minLength && value.length < rules.minLength) {
-      isValid = false;
-      errorMsg = errorMessages[fieldName];
-    } else if (rules.pattern && !rules.pattern.test(value)) {
+    } else if (rules.pattern && typeof value === 'string' && !rules.pattern.test(value)) {
       isValid = false;
       errorMsg = errorMessages[fieldName];
     }
@@ -1510,7 +1520,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       field.addEventListener('input', function() {
         // Clear errors as user types
-        if (this.value.trim() !== '') {
+        if (this.value && this.value.trim() !== '') {
           showFieldError(fieldName, '');
         }
       });
@@ -1575,22 +1585,42 @@ document.addEventListener('DOMContentLoaded', function() {
           consentGiven: document.getElementById('consent').checked
         };
 
-        const response = await fetch('/api/email/contactForm', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(submissionData),
-        });
+        // Import existing Supabase client
+        const { supabase } = await import('../lib/supabase');
 
-        const result = await response.json();
+        // Simple data preparation
+        const inquiryData = {
+          first_name: submissionData.firstName,
+          last_name: submissionData.lastName,
+          email: submissionData.email,
+          intent_type: submissionData.intentType,
+          organization: submissionData.organization || null,
+          message: submissionData.message,
+          phone_number: submissionData.phoneNumber || null,
+          deadline: submissionData.deadline || null,
+          volunteer_type: submissionData.volunteerType || null,
+          availability: submissionData.availability || null,
+          programs_interested: submissionData.programs ? submissionData.programs.join(', ') : null,
+          newsletter_signup: submissionData.newsletter || false,
+          consent_given: submissionData.consentGiven
+        };
 
-        if (response.ok && result.success) {
+        const { data: insertedData, error } = await supabase
+          .from('contact_inquiries')
+          .insert([inquiryData])
+          .select();
+
+        if (error) {
+          console.error('Supabase error:', error);
+          throw new Error(error.message);
+        }
+
+        if (insertedData && insertedData.length > 0) {
           // Success
           showToast('success', 
             'Message Sent Successfully!', 
             'We\'ll get back to you soon.',
-            result.ticketId
+            `INQ-${insertedData[0].id}`
           );
           
           // Reset form
@@ -1606,7 +1636,7 @@ document.addEventListener('DOMContentLoaded', function() {
           // Server error
           showToast('error', 
             'Submission Failed', 
-            result.error || 'Please try again later.'
+            'Please try again later.'
           );
         }
 

@@ -1,5 +1,7 @@
 /* Import mobile piano map styles */
 @import './styles/mobile-piano-map.css';
+/* Leaflet CSS for map rendering */
+@import 'leaflet/dist/leaflet.css';
 
 @tailwind base;
 @tailwind components;

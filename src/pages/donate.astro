@@ -179,14 +179,32 @@ import Base from '../layouts/Base.astro';
               aria-labelledby="basic-tabs-item-2"
             >
               <div class="flex justify-center py-8">
-                <div id="donate-button-container" style="max-width: 180px;">
+                <div id="donate-button-container" style="max-width: 220px;">
                   <div id="donate-button"></div>
-                  <script
-                    is:inline
-                    src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js"
-                    charset="UTF-8"
-                    data-uid-auto="f8788dd414_mta6mzu6mdu"></script>
-                  <script is:inline>
+                </div>
+              </div>
+              
+              <script is:inline>
+                document.addEventListener('DOMContentLoaded', function() {
+                  // Only load PayPal if not already loaded
+                  if (typeof PayPal === 'undefined') {
+                    const script = document.createElement('script');
+                    script.src = 'https://www.paypalobjects.com/donate/sdk/donate-sdk.js';
+                    script.charset = 'UTF-8';
+                    script.onload = function() {
+                      PayPal.Donation.Button({
+                        env: 'production',
+                        hosted_button_id: '6YWZCXLLFHUHS',
+                        image: {
+                          src: 'https://sfhmedia.nyc3.digitaloceanspaces.com/2022/09/paypal-donate-button.png',
+                          alt: 'Donate with PayPal button',
+                          title: 'PayPal - The safer, easier way to pay online!',
+                        },
+                      }).render('#donate-button');
+                    };
+                    document.head.appendChild(script);
+                  } else {
+                    // PayPal already loaded, just render the button
                     PayPal.Donation.Button({
                       env: 'production',
                       hosted_button_id: '6YWZCXLLFHUHS',
@@ -196,9 +214,9 @@ import Base from '../layouts/Base.astro';
                         title: 'PayPal - The safer, easier way to pay online!',
                       },
                     }).render('#donate-button');
-                  </script>
-                </div>
-              </div>
+                  }
+                });
+              </script>
             </div>
             <div
               id="basic-tabs-3"

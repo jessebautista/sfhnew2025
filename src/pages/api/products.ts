@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { fetchPrintfulProducts, transformPrintfulProduct, isPrintfulConfigured } from '../../lib/printful';
+import { fetchPrintfulProductsWithDetails, isPrintfulConfigured, getPrintfulConfig } from '../../lib/printful';
 
 // Mock products as fallback
 const MOCK_PRODUCTS = [
@@ -50,13 +50,16 @@ const MOCK_PRODUCTS = [
 
 export const GET: APIRoute = async () => {
   try {
+    const cfg = getPrintfulConfig();
+    console.log('[API /products] Start. Config:', cfg);
     // Check if Printful is properly configured
     if (!isPrintfulConfigured()) {
-      console.log('Printful not configured, using mock products');
+      console.log('[API /products] Printful not configured, using mock products');
       return new Response(JSON.stringify({
         success: true,
         data: MOCK_PRODUCTS,
-        source: 'mock'
+        source: 'mock',
+        debug: { reason: 'not_configured', cfg }
       }), {
         status: 200,
         headers: {
@@ -65,15 +68,17 @@ export const GET: APIRoute = async () => {
       });
     }
 
-    // Fetch real products from Printful
-    const printfulProducts = await fetchPrintfulProducts();
+    // Fetch real products from Printful (enriched with variants/prices) using provided store ID
+    console.log('[API /products] Fetching from Printful store...');
+    const productsDetailed = await fetchPrintfulProductsWithDetails();
     
-    if (printfulProducts.length === 0) {
-      console.log('No Printful products found, using mock products');
+    if (productsDetailed.length === 0) {
+      console.log('[API /products] No Printful products found, using mock products');
       return new Response(JSON.stringify({
         success: true,
         data: MOCK_PRODUCTS,
-        source: 'mock'
+        source: 'mock',
+        debug: { reason: 'empty_store_or_error' }
       }), {
         status: 200,
         headers: {
@@ -82,13 +87,22 @@ export const GET: APIRoute = async () => {
       });
     }
 
-    // Transform Printful products to our format
-    const products = printfulProducts.map(transformPrintfulProduct);
-    
+    const products = productsDetailed;
+    // Optional: ensure minimal structure if anything missing
+    const normalized = products.map(p => ({
+      id: p.id,
+      name: p.name,
+      price: p.price,
+      description: p.description,
+      image: p.image,
+      variants: p.variants && p.variants.length ? p.variants.map(v => ({ id: v.id, size: v.size || 'One Size' })) : [{ id: `${p.id}-default`, size: 'One Size' }]
+    }));
+
     return new Response(JSON.stringify({
       success: true,
-      data: products,
-      source: 'printful'
+      data: normalized,
+      source: 'printful_store',
+      debug: { count: normalized.length, storeId: cfg.storeId }
     }), {
       status: 200,
       headers: {
