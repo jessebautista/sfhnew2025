@@ -23,6 +23,13 @@ interface Program {
 
 mapboxgl.accessToken = import.meta.env.PUBLIC_MAPBOX_TOKEN;
 
+// Debug logging for Vercel deployment
+console.log('Mapbox token configured:', !!mapboxgl.accessToken);
+console.log('Environment:', import.meta.env.MODE);
+if (!mapboxgl.accessToken) {
+  console.error('Mapbox token is not configured. Please set PUBLIC_MAPBOX_TOKEN in environment variables.');
+}
+
 // Error Boundary Component
 class PianoGalleryErrorBoundary extends React.Component<
   { children: React.ReactNode },
