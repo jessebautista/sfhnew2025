@@ -64,7 +64,7 @@ const { currentLang, translations = {} } = Astro.props;
           <a href={getLocalizedPath("/diplomacy", currentLang)} class="text-gray-300 hover:text-white transition-colors text-sm">{t("footer.diplomacy", translations) || "Arts Diplomacy"}</a>
           <a href={getLocalizedPath("/workforce", currentLang)} class="text-gray-300 hover:text-white transition-colors text-sm">{t("footer.workforce", translations) || "Workforce Development"}</a>
           <a href={getLocalizedPath("/news", currentLang)} class="text-gray-300 hover:text-white transition-colors text-sm">{t("footer.news", translations) || "News"}</a>
-          <a href={getLocalizedPath("/shop", currentLang)} class="text-gray-300 hover:text-white transition-colors text-sm">{t("footer.shop", translations) || "Shop"}</a>
+          <a href="https://shop.singforhope.org/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white transition-colors text-sm">{t("footer.shop", translations) || "Shop"}</a>
           <a href={getLocalizedPath("/donate", currentLang)} class="text-melody hover:text-melodydark transition-colors text-sm font-medium">{t("footer.donate", translations) || "Donate"}</a>
         </div>
       </div>

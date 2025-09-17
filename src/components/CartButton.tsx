@@ -58,13 +58,8 @@ const CartButton: React.FC<CartButtonProps> = ({ translations }) => {
                           window.location.pathname.includes('/shop/category') ||
                           window.location.pathname.includes('/shop/product/');
     
-    if (isProductsPage) {
-      // Dispatch custom event to toggle cart
-      window.dispatchEvent(new CustomEvent('toggleCart'));
-    } else {
-      // Redirect to products page where cart is functional
-      window.location.href = '/shop/products';
-    }
+    // Always redirect to external shop
+    window.location.href = 'https://shop.singforhope.org/';
   };
 
   if (!isClient) {

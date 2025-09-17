@@ -6,7 +6,9 @@ const { currentLang, translations = {} } = Astro.props;
 ---
 
 <a
-  href={getLocalizedPath("/shop", currentLang)}
+  href="https://shop.singforhope.org/"
+  target="_blank"
+  rel="noopener noreferrer"
   class="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-harmony transition-all duration-200"
   aria-label={t("nav.shop", translations)}
 >
