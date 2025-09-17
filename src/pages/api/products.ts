@@ -8,7 +8,7 @@ const MOCK_PRODUCTS = [
     name: 'Sing for Hope T-Shirt',
     price: 2500,
     description: 'Comfortable cotton t-shirt featuring our signature logo',
-    image: '/src/images/singforhope.jpg',
+    image: '/singforhope.jpg',
     variants: [
       { id: 'tshirt-s', size: 'S' },
       { id: 'tshirt-m', size: 'M' },

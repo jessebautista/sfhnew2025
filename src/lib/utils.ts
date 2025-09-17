@@ -52,7 +52,7 @@ export async function fetchPrintfulProducts() {
       name: 'Sing for Hope T-Shirt',
       price: 2500,
       description: 'Comfortable cotton t-shirt featuring our signature logo',
-      image: '/src/images/singforhope.jpg',
+      image: '/singforhope.jpg',
       variants: [
         { id: 'tshirt-s', size: 'S', printful_id: 'variant_1' },
         { id: 'tshirt-m', size: 'M', printful_id: 'variant_2' },
