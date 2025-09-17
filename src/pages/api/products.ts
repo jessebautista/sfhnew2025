@@ -21,7 +21,7 @@ const MOCK_PRODUCTS = [
     name: 'Piano Design Tote Bag',
     price: 1800,
     description: 'Canvas tote bag featuring beautiful piano artwork',
-    image: '/src/images/pianos-stock-1.png',
+    image: '/singforhope.jpg',
     variants: [
       { id: 'tote-standard', size: 'One Size' }
     ]

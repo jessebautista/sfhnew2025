@@ -13,7 +13,7 @@ const MOCK_PRODUCTS = [
     name: 'Sing for Hope T-Shirt',
     price: 2500, // in cents
     description: 'Comfortable cotton t-shirt featuring our signature logo',
-    image: '/src/images/singforhope.jpg',
+    image: '/singforhope.jpg',
     variants: [
       { id: 'tshirt-s', size: 'S' },
       { id: 'tshirt-m', size: 'M' },
@@ -26,7 +26,7 @@ const MOCK_PRODUCTS = [
     name: 'Piano Design Tote Bag',
     price: 1800,
     description: 'Canvas tote bag featuring beautiful piano artwork',
-    image: '/src/images/pianos-stock-1.png',
+    image: '/singforhope.jpg',
     variants: [
       { id: 'tote-standard', size: 'One Size' }
     ]

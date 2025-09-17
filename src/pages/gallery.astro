@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import PianoGallery from '../components/PianoGallery.tsx';
+import PianoGallery from '../components/PianoGallery';
 ---
 
 <Base
@@ -11,7 +11,7 @@ import PianoGallery from '../components/PianoGallery.tsx';
     <!-- Hero Section -->
     <div class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-br from-melody via-melody/95 to-melodydark"></div>
-      <div class="absolute inset-0 bg-[url('/src/images/musical-notes-pattern.svg')] opacity-10"></div>
+      <!-- Background pattern removed (asset not present in deployment) -->
       
       <!-- Floating Elements -->
       <div class="absolute top-20 left-20 w-48 h-48 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
@@ -100,7 +100,7 @@ import PianoGallery from '../components/PianoGallery.tsx';
             <div class="absolute -inset-4 bg-gradient-to-r from-melody to-harmony rounded-3xl blur opacity-20"></div>
             <img
               class="relative rounded-3xl shadow-2xl"
-              src="/src/images/piano-process.png"
+              src="/singforhope.jpg"
               alt="Artist creating a Sing for Hope Piano"
             />
           </div>
@@ -201,7 +201,7 @@ import PianoGallery from '../components/PianoGallery.tsx';
     <!-- Artist Spotlight -->
     <section class="py-24 relative overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-br from-harmony via-harmony/95 to-harmonydark"></div>
-      <div class="absolute inset-0 bg-[url('/src/images/artistic-pattern.svg')] opacity-10"></div>
+      <!-- Background pattern removed (asset not present in deployment) -->
       
       <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">

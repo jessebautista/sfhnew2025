@@ -99,6 +99,16 @@ const PianoGallery: React.FC = () => {
   
   const itemsPerPage = 24;
 
+  // Normalize image URLs that might be stored as relative storage paths
+  const normalizeImageUrl = (src?: string) => {
+    if (!src) return '/pianos-icon.png';
+    if (/^https?:\/\//i.test(src)) return src;
+    const base = import.meta.env.PUBLIC_SUPABASE_URL || '';
+    if (!base) return src; // best effort
+    if (src.startsWith('/')) return `${base}${src}`;
+    return `${base}/${src}`;
+  };
+
   // Check if desktop layout
   useEffect(() => {
     const checkScreenSize = () => {
@@ -629,9 +639,10 @@ const PianoGallery: React.FC = () => {
             <div className="absolute bottom-4 left-4 right-4 bg-white p-4 shadow-lg rounded-lg border">
               <div className="flex gap-3">
                 <img 
-                  src={selectedPiano.piano_image} 
+                  src={normalizeImageUrl(selectedPiano.piano_image)} 
                   alt={selectedPiano.piano_title}
                   className="w-16 h-16 object-cover rounded-lg"
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/pianos-icon.png'; }}
                 />
                 <div className="flex-1">
                   <h3 className="font-bold text-lg leading-tight">{selectedPiano.piano_title}</h3>
@@ -683,8 +694,9 @@ const PianoGallery: React.FC = () => {
                   <div className="relative group">
                     <img
                       className="w-full h-40 object-cover rounded-t-xl"
-                      src={piano.piano_image}
+                      src={normalizeImageUrl(piano.piano_image)}
                       alt={piano.piano_title}
+                      onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/pianos-icon.png'; }}
                     />
                     <div className="absolute top-2 left-2">
                       <span className="px-2 py-1 opacity-90 rounded-full bg-green-500 text-white font-bold text-xs">
